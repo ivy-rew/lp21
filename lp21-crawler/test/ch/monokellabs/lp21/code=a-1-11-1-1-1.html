@@ -1,0 +1,616 @@
+	
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  	<title>Lehrplan 21</title>
+	<meta name="description" content="Lehrplan 21">
+	<meta name="D-EDK" content="Projekt Lehrplan 21">
+    <meta name="programmer" content="h1z - Heinz Estermann">
+
+
+	<!-- Mobile Viewports
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+
+	<!-- CSS
+  ================================================== -->
+<link rel="stylesheet" type="text/css" href="https://lu.lehrplan.ch/css/base.css"> <!-- lokal vorhanden! -->
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/skeleton.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/layout.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lp21.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lp21kompaufbau.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lpu.css">
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lpu_rev2014.css">
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/tooltipster.css" />
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/colorbox.css" />
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/slidetabs.css" />
+    
+	<!--[if lt IE 9]>
+		<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="SHORTCUT ICON" href="https://lu.lehrplan.ch/images/favicon.ico"><link rel="apple-touch-icon" href="https://lu.lehrplan.ch/images/apple-touch-icon.png"><link rel="apple-touch-icon" sizes="72x72" href="https://lu.lehrplan.ch/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="114x114" href="https://lu.lehrplan.ch/images/apple-touch-icon-114x114.png">    
+    
+    
+    <!-- Scripts
+	================================================== -->
+
+      	
+ 
+    <!-- jQuery von Google holen, wenn nicht erreichbar lokal laden -->
+	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	 
+	<script>!window.jQuery && document.write('<script src="https://stammdaten.lehrplan.ch/js/jquery-1.4.2.min.js"><\/script>')</script>
+    
+    
+	
+
+<script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/jquery.colorbox.js"></script>
+<!-- <script type="text/javascript" src="https://www.zebis.ch/scripts/ckeditor/ckeditor.js"></script> -->
+  	
+   <script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/tipsy.js"></script>
+   
+<script type="text/javascript">
+   $(document).ready(function(){
+      $(function(){
+		 $(".sprachfolge").colorbox({iframe:true, width:"500px", height:"415px",overlayClose:false,onLoad:function(){ $('#cboxClose').remove();},onClosed:function(){ location.reload(true);} });
+ 		 $(".editieren").colorbox({iframe:true, width:"800px", height:"90%",overlayClose:false,onClosed:function(){ location.reload(true);} });
+		 $(".kleinebox").colorbox({iframe:true,inline:true,height:"300px",width:"400px" });
+		 $(".listenbox").colorbox({iframe:true,inline:true,height:"90%",width:"450px" });
+		 $("a.kapitelbild").colorbox({maxHeight:"95%",maxWidth:"90%" });
+		 $("#hinweis_R").colorbox({open:true,inline:true, height:"200px",width:"300px" });
+		 $("#hinweis_I").colorbox({open:true,inline:true, height:"200px",width:"300px" });
+         $(".tooltip").tipsy({gravity: 's'});
+         $(".tooltip_auto").tipsy({gravity: $.fn.tipsy.autoNS})});
+	     $("#cboxCloseMe").click(function(){
+			$.fn.colorbox.close();
+			return false;
+			});
+		 $(".side").sidecontent();	
+
+
+
+   });
+</script>
+<script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/jquery.fallback.js"></script>
+<script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/jquery.slidetabs.js"></script>
+
+
+
+</head>
+<body>
+<div id="how">
+
+			
+</div> 
+
+	<div class="container sixteen columns">
+    
+    
+         <!-- Header
+================================================== -->
+
+      <div class="header container sixteen columns alpha omega">
+
+        <div class="header-logo seven columns alpha">
+          <a href="index.php" alt="Startseite"><img title="Lehrplan des Kantons Luzern" src="https://stammdaten.lehrplan.ch/grafiken/logo_web/LU.png"></a>        </div>
+        
+        <div class="two columns alpha">
+        
+            <div style="margin-top:6px;height:18px; width:100%;"></div>
+                   
+	        </div>
+
+        <div class="header-right seven columns omega">
+
+          <div class="seven columns alpha omega " >
+
+          		
+		
+          <div class="seven columns omega alpha kanton">
+          <div class="five columns alpha">
+            <form name="form_kantonsauswahl" id="form_kantonsauswahl" class="kantonsauswahl" action="set_sessions.php" method="get">	 
+		
+        		<select id="selectList" class="tooltip_auto" title="Wählen Sie den Kanton aus" name="kantonsauswahl" onChange="document.form_kantonsauswahl.submit()">
+                <optgroup label="Kantone" class="kantone">
+					SELECT * FROM kanton WHERE aktiv=1 AND  id NOT LIKE 'V_EF' AND id NOT LIKE 'V_FE' ORDER BY name<option value="AG" >Aargau</option><option value="AR" >Appenzell Ausserrhoden</option><option value="AI" >Appenzell Innerrhoden</option><option value="BL" >Basel-Landschaft</option><option value="BS" >Basel-Stadt</option><option value="BE" >Bern</option><option value="FR" >Freiburg</option><option value="GL" >Glarus</option><option value="GR_D" >Graubünden deutschsprachige Schulen</option><option value="GR_I" >Grigioni scuole di lingua italiana</option><option value="GR_R" >Grischun scolas rumantschas</option><option value="LU" selected="selected">Luzern</option><option value="NW" >Nidwalden</option><option value="OW" >Obwalden</option><option value="SZ" >Schwyz</option><option value="SO" >Solothurn</option><option value="SG" >St.Gallen</option><option value="TG" >Thurgau</option><option value="UR" >Uri</option><option value="VS" >Wallis</option><option value="ZG" >Zug</option><option value="ZH" >Zürich</option>                    </optgroup>
+                    <optgroup label="Vorlagen" class="vorlagen">
+                    <option value="V_EF" >1. Fremdsprache Englisch (mit Latein)</option><option value="V_FE" >1. Fremdsprache Französisch (mit Latein)</option>                    </optgroup>
+                    <input name="url_from" type="hidden" value="https://lu.lehrplan.ch/index.php?code=a%7C1%7C11%7C1%7C1%7C1">				</select>
+			
+		</form> 
+		
+		</div>
+                   
+	
+	   <div class="two columns omega"><div class="right download"><a title="Hier können Sie die Inhalte des Lehrplans als PDF herunterladen." href="/downloads.php" class="tooltip_auto">Downloadbereich</a></div></div>
+
+
+</div>
+
+          <div class="two columns alpha ">
+            <!-- -->
+
+            <div class="alpha two columns zyklus ">
+<div class=" alpha two columns">
+
+		<!--	<p class="selectinfo">Ihre Zyklenauswahl:</p> -->
+        <form name="form_zyklusauswahl" id="form_zyklusauswahl" class="zyklusauswahl" action="set_sessions.php" method="get">
+        		<select id="selectList" name="zyklusauswahl" class="tooltip_auto" title="Wählen Sie einen Zyklus aus." onChange="document.form_zyklusauswahl.submit()">
+
+					<option value="0">Alle Zyklen</option>
+                    <option value="1" >1. Zyklus</option><option value="2" >2. Zyklus</option><option value="3" >3. Zyklus</option><input name="url_from" type="hidden" value="lu.lehrplan.ch/index.php?code=a%7C1%7C11%7C1%7C1%7C1">				</select>
+		</form>
+		</div>
+		</div>
+                  </div> <!-- search -->
+
+          <div class="five columns omega filter" style="text-align:right">
+            <!-- evtl. Logo Lehrplan21 -->
+           <img src="https://stammdaten.lehrplan.ch/grafiken/logo_web/lp21.png"  title="Lehrplan 21" width="115px">            
+
+          </div> <!-- search -->
+
+          <!-- Search - neu im Navibereich index.php /23.3.15aa
+        <div class="four columns omega suche">
+
+        	</div>  -->
+
+
+        </div><!-- header-right -->
+
+
+
+      </div> <!-- header -->
+    
+    
+    
+      
+		
+		       	<!-- Content
+	================================================== -->
+
+		<div class="main"> 
+        
+
+       <div class="four columns alpha navigation">
+
+              <!-- zweiter  Aufruf , stehen lassen -->         
+        
+        	
+        	
+        
+
+		<div id="navigation"><div id="breadcrumb" class="dd-header"><a id="breadcrumbnavigation_first"  href="index.php" >Startseite</a><a id="breadcrumbnavigation" href="index.php?code=b|1|0&la=yes" >Sprachen</a><a id="breadcrumbnavigation" href="index.php?code=b|1|11" >Deutsch </a><a id="breadcrumbnavigation" href="index.php?code=b|1|11|1" >1 Hören</a><a id="breadcrumbnavigation" href="index.php?code=b|1|11|1|1" >A Grundfertigkeiten</a></div><div id="navigation"><div id="breadcrumb" class="dd-header"><a id="breadcrumbnavigation" class="active_breadcrumb" style="padding:1px" href="index.php">Deutsch </a></div></div><div class="grey">
+<ul id="menuliste">
+<li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|1|1">Zum Fachbereich</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|1|2">Bedeutung und Zielsetzungen</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|1|3">Didaktische Hinweise</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|1|4">Strukturelle und inhaltliche Hinweise</a></li><li class="dreieck_mit"><a class="active_menu parent_menu" href="index.php?code=b|1|11|1">1 Hören</a><ul id="menuliste2"><li><a class="active_menu"href="index.php?code=b|1|11|1|1">A Grundfertigkeiten</a></li><li><a href="index.php?code=b|1|11|1|2">B Verstehen in monologischen Hörsituationen</a></li><li><a href="index.php?code=b|1|11|1|3">C Verstehen in dialogischen Hörsituationen</a></li><li><a href="index.php?code=b|1|11|1|4">D Reflexion über das Hörverhalten</a></li></ul></li><li class="dreieck_mit"><a class="parent_menu" href="index.php?code=b|1|11|2">2 Lesen</a></li><li class="dreieck_mit"><a class="parent_menu" href="index.php?code=b|1|11|3">3 Sprechen</a></li><li class="dreieck_mit"><a class="parent_menu" href="index.php?code=b|1|11|4">4 Schreiben</a></li><li class="dreieck_mit"><a class="parent_menu" href="index.php?code=b|1|11|5">5 Sprache(n) im Fokus</a></li><li class="dreieck_mit"><a class="parent_menu" href="index.php?code=b|1|11|6">6 Literatur im Fokus</a></li></ul>
+</div>
+
+</div>
+
+
+
+
+
+        
+        <div class="four columns alpha textblock"> <h3>Hinweis zum Download</h3>
+<p>Im Downloadbereich können Sie die Dokumente des Lehrplans als PDF herunterladen und ausdrucken.</p></div>
+         <div class="four columns alpha">
+           <form id="searchbox" action="index.php" method="get">
+    <input id="search" name="suchwort" type="text" placeholder="Suchbegriff eingeben">
+    <input id="submit" type="submit" value="Suchen">
+    <input name="code" type="hidden" value="s">
+</form>
+                 </div>
+       <!-- zwieter Auftruf fertig, stehen lassen -->
+       </div> <!-- / navigation -->
+        
+       
+
+        
+        <div class="twelve columns omega">
+        	
+                			
+  				<!--  <div class="kompetenznavigation kntop">
+                 	 </div> -->
+			
+
+   
+   
+        	
+        	<div class="kompetenzaufbau">
+        		
+        		<div class="kompetenzcode twelve columns alpha omega">
+        			<div class=" two columns kcode alpha"><p>D.1</p></div>
+        			<div class="kompetenzbereich  columns"><p>Hören</p></div><div class="rightmenu columns">
+					
+<nav >
+    <ul>
+        <li>
+            <a href="#">Herunterladen</a>
+            <ul class="fallback">
+            <li><a target="_blank" href="https://lu.lehrplan.ch/lehrplan_printout.php?k=1&fb_id=1&f_id=11&kb_id=1&ha_id=1&k_id=1">Diese Kompetenz herunterladen</a></li><li><a target="_blank" href="https://lu.lehrplan.ch/lehrplan_printout.php?k=1&fb_id=1&f_id=11&kb_id=1">Diesen Kompetenzbereich herunterladen</a></li><li><a target="_blank" href="https://lu.lehrplan.ch/lehrplan_printout.php?k=1&fb_id=1">Diesen Fachbereich herunterladen</a></li><li><a target="_blank" href="https://lu.lehrplan.ch/lehrplan_printout.php?e=1&fb_id=1">Die Einleitung des Fachbereichs herunterladen</a></li>            </ul>
+        </li>
+  
+    </ul>
+</nav></div>
+
+<!-- evtl. Spezifika -->
+<div class="kompetenzcode twelve columns alpha omega "><div class=" two columns htacode alpha"><p>A</p></div><div class="kompetenzbereich columns"><p style="color:#CB3A27">Grundfertigkeiten</p></div>       		
+        		</div><!-- kompetenzcode -->
+
+        		     <!-- koresspondierende -->
+		      	   			<!-- / koresspondierende -->
+				
+				<!-- / kompetenz -->
+			
+        		<div class="komptitel twelve columns alpha omega">
+        		<div class="two columns kompetenz_nr alpha">
+                <a href="#" class="tooltip left"><img src="css/images/space1.png"></a>
+		
+				
+				<nav class="menu">
+    <ul>
+        <li>
+        <p></p>				
+            
+        </li>
+  
+    </ul>
+</nav>
+<a href="index.php?code=a|1|11|1|2|1" class="tooltip right abstand" original-title="Zur nachfolgenden Kompetenz wechseln"><img src="css/images/arrow_right1.png"></a>        		
+        		</div> <!-- / kompetenz_nr -->
+					<div class="kompetenztitel eight columns
+                                        ">
+    
+        		<p class="komptitelnr">1</p><p>
+				Die Schülerinnen und Schüler können Laute, Silben, Stimmen, Geräusche und Töne wahrnehmen, einordnen und vergleichen. Sie können ihren rezeptiven Wortschatz aktivieren, um das Gehörte angemessen schnell zu verstehen.</p>
+        		</div><!-- kompetenztitel -->
+				
+				
+        		
+        		<div class="querverweis_einleitung one column omega">
+        		<p class="querv">Querverweise</p>
+                <p class="querv">
+                <a class="tooltip" title="Räumliche Orientierung (4)"  href="https://lu.lehrplan.ch/101e200GwPaNXbKkHyYhyDU5pvTtBJ">EZ</a><br><a class="tooltip" title="Wahrnehmung (2)"  href="https://lu.lehrplan.ch/101e2008uNVR7rD6Y5wJ6nNw23vE8a">EZ</a><br>                
+                </p>
+        		</div> <!-- / querverweis_einleitung -->
+        		
+        		</div>
+
+
+
+
+        	
+
+<div id="101kkzcLJBXg79dW3ct8Su6wC7mypWx64.u0" class="twelve columns alpha omega"><div class="two columns alpha ganzercode"><p><span title="Codierung dieser Kompetenz" class="tooltip font_ganzercode">D.1.A.1</span></p></div><div class="eight columns alpha kompetenzen_einleitung_titel"><p>Die Schülerinnen und Schüler ...</p></div></div>
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row zyklus_1_start ">        	
+        		<div title="Auftrag 1. Zyklus" class="tooltip one column komp_cell marker_z1 "> 
+	        		  		<p class="zycode">
+	        		  		1</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="tooltip one column komp_cell kompetenz_lit" title="D.1.A.1.a"><p id="101CrGwDRqePC4zRFTJPk22ZLtRFww8eD" class="lit">a</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>können die Aufmerksamkeit auf die sprechende Person und deren Beitrag richten.</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p>&nbsp;</p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <hr class="hr_komp" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row ">        	
+        		<div title="Auftrag 1. Zyklus" class="tooltip one column komp_cell marker_z1 "> 
+	        		  		<p class="zycode">
+	        		  		</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="tooltip one column komp_cell kompetenz_lit" title="D.1.A.1.b"><p id="101d5775swvszV6pdqfVLRLpKDF9FfZHq" class="lit">b</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>können Klänge, Geräusche sowie Reime, Silben und einzelne Laute (z.B. Anlaute) heraushören (phonologische Bewusstheit).</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p>&nbsp;</p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <hr class="hr_komp" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row ">        	
+        		<div title="Auftrag 1. Zyklus" class="tooltip one column komp_cell marker_z1 "> 
+	        		  		<p class="zycode">
+	        		  		</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="tooltip one column komp_cell kompetenz_lit" title="D.1.A.1.c"><p id="101AwcVWqm5nHvZWwsK43JSd4WNLBmaSt" class="lit">c</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>können den Tonfall einer Stimme in der entsprechenden Situation deuten (z.B. Lautstärke, Geschwindigkeit, Stimmlage).</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p>&nbsp;</p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <hr class="hr_komp" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row mindestanspruch ">        	
+        		<div title="Auftrag 1. Zyklus" class="tooltip one column komp_cell marker_z1 "> 
+	        		  		<p class="zycode">
+	        		  		</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="tooltip one column komp_cell kompetenz_lit" title="D.1.A.1.d"><p id="101Sm5YwPEA5nDL5tDteKdc7zcKWn3uAD" class="lit">d</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>können unterschiedliche Laute und Lautverbindungen heraushören, im Wort verorten (Anlaut, Mittellaute, Endlaut) und mit Erfahrungen aus der Erstsprache vergleichen.</li><li>können einzelne Wörter und Wendungen in vertrauten Situationen verstehen oder deren Bedeutung erfragen und so ihren rezeptiven Wortschatz erweitern.</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p class="querv"><a class="tooltip" title="FS1E.1.B.1.a"  href="https://lu.lehrplan.ch/1011349904403nWRND6tP5TMVhUTTZDEB">FS1E.1.B.1.a</a><br><a class="tooltip" title="FS2F.1.B.1.a"  href="https://lu.lehrplan.ch/1011349905290GGKCwLncg46afecwYVtT">FS2F.1.B.1.a</a><br></p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <hr class="hr_komp" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row ">        	
+        		<div title="Auftrag 2. Zyklus" class="tooltip one column komp_cell marker_z2 "><div class="one column komp_cell marker_z12"></div> 
+	        		  		<p class="zycode">
+	        		  		</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="zyklus_2_start"></div><div class="tooltip one column komp_cell kompetenz_lit" title="D.1.A.1.e"><p id="101RAgrHEc3J5a7qA2MYLN4uWynFsErdf" class="lit">e</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>können nonverbale Mittel (z.B. Gestik, Mimik, Körperhaltung) und paraverbale Mittel (z.B. Intonation, Sprechfluss) in der Hörsituation deuten.</li><li>können eine Hörerwartung aufbauen und die nötige Ausdauer aufbringen, um einem längeren Hörbeitrag zu folgen.</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p class="querv"><a class="tooltip" title="FS1E.1.B.1.a"  href="https://lu.lehrplan.ch/1011349904403nWRND6tP5TMVhUTTZDEB">FS1E.1.B.1.a</a><br><a class="tooltip" title="FS2F.1.B.1.a"  href="https://lu.lehrplan.ch/1011349905290GGKCwLncg46afecwYVtT">FS2F.1.B.1.a</a><br></p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <hr class="hr_komp kompetenz_ende_1" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row mindestanspruch ">        	
+        		<div title="Auftrag 2. Zyklus" class="tooltip one column komp_cell marker_z2 "><div class="one column komp_cell marker_z2"></div> 
+	        		  		<p class="zycode">
+	        		  		2</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="tooltip one column komp_cell kompetenz_lit" title="D.1.A.1.f"><p id="101gRdZJERzzAhqCyYFM3h3egB5DDtZXK" class="lit">f</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>können in anforderungsreichen Situationen (z.B. Zeitdruck, Nebengeräusche) Emotionen der sprechenden Person einschätzen.</li><li>können Wörter und Wendungen in unterschiedlichen Situationen verstehen und so ihren rezeptiven Wortschatz erweitern.</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p>&nbsp;</p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <div title="Orientierungspunkt" class="tooltip one column  marker_z2_op"><img src="css/images/op.png" alt="orientierungspunkt" /></div><hr title="Orientierungspunkt" class="tooltip op" /><hr class="hr_komp" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row ">        	
+        		<div title="Auftrag 3. Zyklus" class="tooltip one column komp_cell marker_z3 "><div class="one column komp_cell marker_z23"></div> 
+	        		  		<p class="zycode">
+	        		  		</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="zyklus_3_start"></div><div class="tooltip one column komp_cell kompetenz_lit" title="D.1.A.1.g"><p id="101awApBVVsCuTm75VNLemkuue6J7yBTz" class="lit">g</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>können unterschiedliche Sprachregister aufgrund des Wortschatzes erkennen (z.B. Fachsprachen, Jugendsprachen, Sportsprachen).</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p>&nbsp;</p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <hr class="hr_komp kompetenz_ende_2" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row mindestanspruch ">        	
+        		<div title="Auftrag 3. Zyklus" class="tooltip one column komp_cell marker_z3 "><div class="one column komp_cell marker_z3"></div> 
+	        		  		<p class="zycode">
+	        		  		3</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="tooltip one column komp_cell kompetenz_lit" title="D.1.A.1.h"><p id="101bmAWRfRMxZrhwsnvJWw8Xk5twRdPP2" class="lit">h</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>können Wörter und Wendungen in unterschiedlichen Situationen verstehen, sie Sprachregistern zuordnen und so ihren rezeptiven Wortschatz differenzieren.</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p>&nbsp;</p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <div title="Orientierungspunkt" class="tooltip one column  marker_z3_op"><img src="css/images/op.png" alt="orientierungspunkt" /></div><hr title="Orientierungspunkt" class="tooltip op" /><hr class="hr_komp kompetenz_ende_3" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            		   
+		      </div> <!-- / kompetenzausgabe -->
+		      
+		      <!-- korrespondierende -->
+              					</div>
+	   			<!-- / koresspondierende -->
+	   
+        	<!-- / <div class="kompetenznavigation knbottom">
+        	        
+        		
+	
+
+
+
+        		
+        	</div><!-- twelve columns -->
+        </div> <!-- main -->
+
+        
+        		       	<!-- Fusszeile
+	================================================== -->
+
+  <div class="sixteen columns alpha omega fusszeile servicelinks">    <!-- Servicelinks -->
+    
+ 
+
+
+    
+        <ul class="mainmenu">
+	
+	
+    <li><a href="/impressum.php">Impressum</a></li><li><a href="/hilfe.php">Hilfe</a></li><li><a href="https://www.lehrplan.ch" target="_blank">Über den Lehrplan 21</a></li><li><a href="https://www.d-edk.ch" target="_blank">Die D-EDK</a></li><li><a title="Modus für das Setzen externer Links einschalten" href="if_set_link.php?back=index.php%3Fcode%3Da%257C1%257C11%257C1%257C1%257C1"><img src="https://stammdaten.lehrplan.ch/grafiken/icons/clipboard.png"></a></li>	<li class="right">Lehrplan 21 · 29.2.2016</li>
+</ul>         
+                       
+        </div><!-- Fusszeile -->
+
+
+
+	</div><!-- container -->
+
+	<script src="js/selectnav.js"></script>
+	<script> selectnav('menuliste', {
+    activeclass: 'act',
+    nested: false,
+    label: false
+});
+</script>
+		
+   
+</body>
+</html>
