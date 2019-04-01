@@ -1,30 +1,26 @@
 package ch.monokellabs.lp21;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.http.client.ClientProtocolException;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import ch.monokellabs.lp21.Kompetenz.KpEntry;
-
-import static org.assertj.core.api.Assertions.*;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.utils.URIBuilder;
-import org.jsoup.Jsoup;
-import org.jsoup.select.Elements;
 
 public class TestKompetenz {
 
 	@Test
 	public void parseKompetenzHtml() throws ClientProtocolException, IOException, URISyntaxException
 	{
-		String hoerenHtml = IOUtils.toString(TestKompetenz.class.getResourceAsStream("code=a-1-11-1-1-1.html"), StandardCharsets.UTF_8);
+		String hoerenHtml = loadStaticResource("code=a-1-11-1-1-1.html");
 		
 		Kompetenz deHoeren = Kompetenz.parse(hoerenHtml);
 		assertThat(deHoeren.fach).isEqualTo("Deutsch");
@@ -43,7 +39,7 @@ public class TestKompetenz {
 		KpPageLoader kompetenz = new KpPageLoader();
 		kompetenz.setKanton("Luzern");
 		kompetenz.setZyklus(1);
-		URI testDeHoeren = new URIBuilder("https://lu.lehrplan.ch/index.php").addParameter("code", "a|1|11|1|1|1").build();
+		URI testDeHoeren = LehrplanUri.createLpUri("a|1|11|1|1|1");
 		String html = kompetenz.fetch(testDeHoeren);
 		assertThat(html).isNotNull();
 		
@@ -53,13 +49,35 @@ public class TestKompetenz {
 	}
 	
 	@Test
-	public void navigateThroughFach() throws IOException
+	public void canNavigateToNext() throws IOException, URISyntaxException
 	{
-		String hoerenHtml = IOUtils.toString(TestKompetenz.class.getResourceAsStream("code=a-1-11-1-1-1.html"), StandardCharsets.UTF_8);
-		Elements nexts = Jsoup.parse(hoerenHtml).select("a[original-title*=Zur nachfolgenden]");
-		assertThat(nexts).hasSize(1);
-		String nextUri = nexts.get(0).attr("href");
-		assertThat(nextUri).isEqualTo("index.php?code=a|1|11|1|2|1");
+		String hoerenHtml = loadStaticResource("code=a-1-11-1-1-1.html");
+		URI nextUri = LehrplanUri.parseNext(hoerenHtml);
+		assertThat(nextUri.getQuery().toString()).isEqualTo("code=a|1|11|1|2|1");
+		
+		String lastMathHtml = loadStaticResource("code=a-5-0-3-3-3.html");
+		URI noLink = LehrplanUri.parseNext(lastMathHtml);
+		assertThat(noLink).isNull();
+	}
+
+	private String loadStaticResource(String resource) throws IOException {
+		return IOUtils.toString(TestKompetenz.class.getResourceAsStream(resource), StandardCharsets.UTF_8);
+	}
+	
+	@Test
+	public void runThroughFach() throws Exception
+	{
+		URI testDeHoeren = LehrplanUri.createLpUri("a|1|11|1|1|1");
+		List<String> deutsch = new KpPageLoader().fetchFach(testDeHoeren);
+		assertThat(deutsch).hasSize(28);
+	}
+	
+	@Test
+	public void downloadAll() throws Exception
+	{
+		List<URI> starts = LehrplanUri.getStarts();
+		List<String> all = new KpPageLoader().fetchLehrplan(starts);
+		assertThat(all).isNotEmpty();
 	}
 	
 	@Test @Ignore("not yet implemented")
