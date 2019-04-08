@@ -38,6 +38,11 @@ public class KpPageLoader {
 		this.zyklus = zyklus;
 	}
 	
+	public void setCacheDir(File cache)
+	{
+		this.siteCacheDir = cache;
+	}
+	
 	public List<String> fetchLehrplan(List<URI> fachStarts) throws ClientProtocolException, IOException, URISyntaxException
 	{
 		List<String> html = new LinkedList<>();
