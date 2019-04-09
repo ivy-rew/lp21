@@ -16,10 +16,13 @@ import java.util.stream.Collectors;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import ch.monokellabs.lp21.Kompetenz.KpEntry;
+import ch.monokellabs.lp21.export.CsvWriter;
+import ch.monokellabs.lp21.export.XlsWriter;
 
 public class TestKompetenz {
 
@@ -89,6 +92,9 @@ public class TestKompetenz {
 		assertThat(StringUtils.countMatches(csv, CsvWriter.ROW_SEPARATOR))
 			.as("contains a header and a single kompetenz entry (with 8 sub entries)")
 			.isEqualTo(expetedRowCount);
+		
+		File csvFile = new File("target/deutsch.csv");
+		writeToCsvFile(Collections.singletonList(deHoeren), csvFile);
 	}
 	
 	@Test
@@ -102,6 +108,28 @@ public class TestKompetenz {
 		assertThat(kompetenzen).hasSameSizeAs(htmlPages);
 		
 		File csv = new File("target/kompetenzen.csv");
+		writeToCsvFile(kompetenzen, csv);
+	}
+
+	@Test
+	public void xlsLehrplan() throws Exception
+	{
+		List<String> htmlPages = loadPages();
+		assertThat(htmlPages).isNotEmpty();
+		System.out.println("Loaded "+htmlPages.size()+" competences from LP21");
+		
+		List<Kompetenz> kompetenzen = parse(htmlPages);
+		assertThat(kompetenzen).hasSameSizeAs(htmlPages);
+		
+		XSSFWorkbook workbook = XlsWriter.write(kompetenzen);
+		File xls = new File("target/kompetenzen.xls");
+		try(OutputStream out = new FileOutputStream(xls))
+		{
+			XlsWriter.persist(workbook, out);
+		}
+	}
+	
+	private static void writeToCsvFile(List<Kompetenz> kompetenzen, File csv) throws IOException {
 		try(OutputStream os = new FileOutputStream(csv))
 		{
 			String csvContent = CsvWriter.writeKompetenzen(kompetenzen);
@@ -117,7 +145,7 @@ public class TestKompetenz {
 
 	private static KpPageLoader cachedLoader() {
 		KpPageLoader loader = new KpPageLoader();
-		loader.setCacheDir(new File("target/site-cache"));
+		loader.setCacheDir(new File("target/site-cache-april"));
 		return loader;
 	}
 

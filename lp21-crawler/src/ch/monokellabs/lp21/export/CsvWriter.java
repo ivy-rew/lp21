@@ -1,7 +1,10 @@
-package ch.monokellabs.lp21;
+package ch.monokellabs.lp21.export;
 
 import java.util.Collection;
 
+import org.apache.commons.lang3.StringUtils;
+
+import ch.monokellabs.lp21.Kompetenz;
 import ch.monokellabs.lp21.Kompetenz.KpEntry;
 
 public class CsvWriter {
@@ -33,16 +36,22 @@ public class CsvWriter {
 		
 		for(KpEntry entry : komp.entries)
 		{
-			line.append(komp.fach).append(COL_SEPARATOR);
-			line.append(komp.code).append(COL_SEPARATOR);
-			line.append(komp.titel).append(COL_SEPARATOR);
+			line.append(escape(komp.fach)).append(COL_SEPARATOR);
+			line.append(escape(komp.code)).append(COL_SEPARATOR);
+			line.append(escape(komp.titel)).append(COL_SEPARATOR);
 
-			line.append(entry.code).append(COL_SEPARATOR);
+			line.append(escape(entry.code)).append(COL_SEPARATOR);
 			line.append(entry.zyklus).append(COL_SEPARATOR);
-			line.append(entry.text).append(ROW_SEPARATOR);
+			line.append(escape(entry.text)).append(ROW_SEPARATOR);
 		}
 		
 		return line.toString();
 	}
+	
+	private static String escape(String colContent)
+	{ // ensure that no accidental column switches will be added to the CSV.
+		return StringUtils.replace(colContent, COL_SEPARATOR, ":");
+	}
+	
 	
 }
