@@ -23,6 +23,9 @@ import org.junit.Test;
 import ch.monokellabs.lp21.Kompetenz.KpEntry;
 import ch.monokellabs.lp21.export.CsvWriter;
 import ch.monokellabs.lp21.export.XlsWriter;
+import ch.monokellabs.lp21.load.KpPageLoader;
+import ch.monokellabs.lp21.load.LehrplanUri;
+import ch.monokellabs.lp21.load.ZipHtmlLoader;
 
 public class TestKompetenz {
 

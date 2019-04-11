@@ -1,4 +1,4 @@
-package ch.monokellabs.lp21;
+package ch.monokellabs.lp21.load;
 
 import java.io.File;
 import java.io.IOException;

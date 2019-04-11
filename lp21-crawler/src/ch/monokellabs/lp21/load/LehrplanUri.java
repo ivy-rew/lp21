@@ -1,4 +1,4 @@
-package ch.monokellabs.lp21;
+package ch.monokellabs.lp21.load;
 
 import java.net.URI;
 import java.net.URISyntaxException;

@@ -1,4 +1,4 @@
-package ch.monokellabs.lp21;
+package ch.monokellabs.lp21.load;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class ZipHtmlLoader
 {
 	private static final Logger LOGGER = Logger.getLogger(ZipHtmlLoader.class.getName());
 	
-	static List<String> loadPagesZip(File zipFile) throws IOException {
+	public static List<String> loadPagesZip(File zipFile) throws IOException {
 		String fileUri = zipFile.getAbsoluteFile().toURI().toASCIIString();
 		URI uri = URI.create("jar:"+fileUri);
 		try(FileSystem zipFs = FileSystems.newFileSystem(uri, Collections.emptyMap()))
