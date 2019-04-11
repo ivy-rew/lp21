@@ -7,6 +7,8 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -16,6 +18,11 @@ import ch.monokellabs.lp21.Kompetenz.KpEntry;
 
 public class XlsWriter {
 
+	private static final XSSFFont HEADER_FONT = new XSSFFont();
+	static{
+		HEADER_FONT.setBold(true);
+	}
+	
 	public static XSSFWorkbook write(Collection<Kompetenz> kompetenzen)
 	{
 	        XSSFWorkbook workbook = new XSSFWorkbook();
@@ -36,8 +43,10 @@ public class XlsWriter {
 		for(int col=0; col<headers.size(); col++)
 		{
 			String colHeader = headers.get(col);
-			XSSFCell headercell = row.createCell(col);
-			headercell.setCellValue(colHeader);
+			XSSFCell cell = row.createCell(col);
+			XSSFRichTextString formattedValue = new XSSFRichTextString(colHeader);
+			formattedValue.applyFont(HEADER_FONT);
+			cell.setCellValue(formattedValue);
 		}
 	}
 
