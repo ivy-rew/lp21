@@ -111,10 +111,19 @@ public class TestKompetenz {
 		writeToCsvFile(kompetenzen, csv);
 	}
 
+	private static void writeToCsvFile(List<Kompetenz> kompetenzen, File csv) throws IOException {
+		try(OutputStream os = new FileOutputStream(csv))
+		{
+			String csvContent = CsvWriter.writeKompetenzen(kompetenzen);
+			IOUtils.write(csvContent, os, StandardCharsets.UTF_8);
+		}
+	}
+	
 	@Test
 	public void xlsLehrplan() throws Exception
 	{
-		List<String> htmlPages = loadPages();
+		File zipFile = new File("test/ch/monokellabs/lp21/lu.lehrplan.ch-april.zip");
+		List<String> htmlPages  = ZipHtmlLoader.loadPagesZip(zipFile);
 		assertThat(htmlPages).isNotEmpty();
 		System.out.println("Loaded "+htmlPages.size()+" competences from LP21");
 		
@@ -129,14 +138,6 @@ public class TestKompetenz {
 		}
 	}
 	
-	private static void writeToCsvFile(List<Kompetenz> kompetenzen, File csv) throws IOException {
-		try(OutputStream os = new FileOutputStream(csv))
-		{
-			String csvContent = CsvWriter.writeKompetenzen(kompetenzen);
-			IOUtils.write(csvContent, os, StandardCharsets.UTF_8);
-		}
-	}
-
 	private List<String> loadPages() throws URISyntaxException, ClientProtocolException, IOException {
 		List<URI> starts = LehrplanUri.getStarts();
 		List<String> htmlPages = cachedLoader().fetchLehrplan(starts);
