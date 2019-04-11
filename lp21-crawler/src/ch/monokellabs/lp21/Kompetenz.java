@@ -10,6 +10,9 @@ import ch.monokellabs.lp21.html.KpHtmLParser;
 
 public class Kompetenz {
 
+	/** qualifizerter code: eindeutig */
+	public String code;
+
 	/** Fach bzw fachübergreifendes Thema */
 	public String fach;
 
@@ -24,7 +27,6 @@ public class Kompetenz {
 	public String titel;
 	public List<Verweis> verweise;
 	
-	public String code;
 	
 	public List<Kompetenzstufe> stufen = new ArrayList<>();
 

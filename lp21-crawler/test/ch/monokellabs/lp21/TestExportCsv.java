@@ -24,7 +24,7 @@ public class TestExportCsv extends BaseLpTest {
 		String hoerenHtml = loadStaticResource("code=a-1-11-1-1-1.html");
 		Kompetenz deHoeren = Kompetenz.parse(hoerenHtml);
 		String csv = CsvWriter.writeKompetenzen(Collections.singletonList(deHoeren));
-		assertThat(csv).startsWith("FACH;CODE");
+		assertThat(csv).startsWith("K Code;Fach");
 		int expetedRowCount = 8+1;
 		assertThat(StringUtils.countMatches(csv, CsvWriter.ROW_SEPARATOR))
 			.as("contains a header and a single kompetenz entry (with 8 sub entries)")
