@@ -24,7 +24,7 @@ public class TestHtmlParser extends BaseLpTest {
 		assertThat(deHoeren.bereich).isEqualTo("Hören");
 		assertThat(deHoeren.aspektCode).isEqualTo("A");
 		assertThat(deHoeren.aspekt).isEqualTo("Grundfertigkeiten");
-		assertThat(deHoeren.titelNr).isEqualTo("1");
+		assertThat(deHoeren.titelNr).isEqualTo(1);
 		assertThat(deHoeren.titel).isEqualTo("Die Schülerinnen und Schüler können Laute, Silben, Stimmen, Geräusche und Töne wahrnehmen, einordnen und vergleichen. Sie können ihren rezeptiven Wortschatz aktivieren, um das Gehörte angemessen schnell zu verstehen.");
 		assertThat(deHoeren.verweise).hasSize(2);
 		assertThat(deHoeren.verweise).containsExactly(

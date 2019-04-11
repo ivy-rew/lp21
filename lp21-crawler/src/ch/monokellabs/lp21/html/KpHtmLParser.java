@@ -24,7 +24,7 @@ public class KpHtmLParser
 		kp.bereich = areas.get(0).text();
 		kp.aspekt = areas.get(1).text();
 		
-		kp.titelNr = document.select(".komptitelnr").get(0).text();
+		kp.titelNr = Integer.parseInt(document.select(".komptitelnr").get(0).text());
 		Elements titels = document.select(".kompetenztitel");
 		kp.titel = titels.select("p").get(1).text();
 		

@@ -26,8 +26,9 @@ public class BaseLpTest {
 	protected static final List<Kompetenz> parse(List<String> htmlPages) {
 		List<Kompetenz> kompetenzen = htmlPages.stream()
 			.map(html -> Kompetenz.parse(html))
+			.sorted(new Kompetenz.CodeComparator())
 			.collect(Collectors.toList());
 		return kompetenzen;
 	}
-
+	
 }

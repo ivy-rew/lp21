@@ -1,6 +1,7 @@
 package ch.monokellabs.lp21;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -23,7 +24,7 @@ public class Kompetenz {
 	public String aspektCode;
 	public String aspekt;
 	
-	public String titelNr;
+	public int titelNr;
 	public String titel;
 	public List<Verweis> verweise;
 	
@@ -41,4 +42,11 @@ public class Kompetenz {
 				ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 	
+	public static class CodeComparator implements Comparator<Kompetenz>
+	{
+		@Override
+		public int compare(Kompetenz k1, Kompetenz k2) {
+			return k1.code.compareTo(k2.code);
+		}
+	}
 }
