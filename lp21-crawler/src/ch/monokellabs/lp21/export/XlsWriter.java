@@ -14,7 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import ch.monokellabs.lp21.Kompetenz;
-import ch.monokellabs.lp21.Kompetenz.KpEntry;
+import ch.monokellabs.lp21.Kompetenz.Kompetenzstufe;
 
 public class XlsWriter {
 
@@ -51,7 +51,7 @@ public class XlsWriter {
 	}
 
 	private static int writeKompetenz(Kompetenz komp, XSSFSheet sheet, int rowNum) {
-		for(KpEntry entry : komp.entries)
+		for(Kompetenzstufe entry : komp.stufen)
 		{
 			XSSFRow row = sheet.createRow(rowNum++);
 			int col = 0;

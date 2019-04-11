@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.monokellabs.lp21.Kompetenz;
-import ch.monokellabs.lp21.Kompetenz.KpEntry;
+import ch.monokellabs.lp21.Kompetenz.Kompetenzstufe;
 
 public class CsvWriter {
 
@@ -34,7 +34,7 @@ public class CsvWriter {
 	{
 		StringBuilder line = new StringBuilder();
 		
-		for(KpEntry entry : komp.entries)
+		for(Kompetenzstufe entry : komp.stufen)
 		{
 			line.append(escape(komp.fach)).append(COL_SEPARATOR);
 			line.append(escape(komp.code)).append(COL_SEPARATOR);
@@ -42,12 +42,17 @@ public class CsvWriter {
 
 			line.append(escape(entry.code)).append(COL_SEPARATOR);
 			line.append(entry.zyklus).append(COL_SEPARATOR);
-			line.append(escape(entry.text)).append(ROW_SEPARATOR);
+			line.append(singleLine(escape(entry.text))).append(ROW_SEPARATOR);
 		}
 		
 		return line.toString();
 	}
 	
+	private static String singleLine(String titel) 
+	{ // normalize multi lined content to single
+		return StringUtils.replace(titel, "\n", " || ");
+	}
+
 	private static String escape(String colContent)
 	{ // ensure that no accidental column switches will be added to the CSV.
 		return StringUtils.replace(colContent, COL_SEPARATOR, ":");
