@@ -1,0 +1,60 @@
+package ch.monokellabs.lp21;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import org.apache.http.client.ClientProtocolException;
+import org.junit.Test;
+
+import ch.monokellabs.lp21.load.LehrplanUri;
+
+public class TestHtmlParser extends BaseLpTest {
+
+	@Test
+	public void parseKompetenzHtml() throws ClientProtocolException, IOException, URISyntaxException
+	{
+		String hoerenHtml = loadStaticResource("code=a-1-11-1-1-1.html");
+		
+		Kompetenz deHoeren = Kompetenz.parse(hoerenHtml);
+		assertThat(deHoeren.fach).isEqualTo("Deutsch");
+		assertThat(deHoeren.bereichCode).isEqualTo("D.1");
+		assertThat(deHoeren.bereich).isEqualTo("Hören");
+		assertThat(deHoeren.aspektCode).isEqualTo("A");
+		assertThat(deHoeren.aspekt).isEqualTo("Grundfertigkeiten");
+		assertThat(deHoeren.titelNr).isEqualTo("1");
+		assertThat(deHoeren.titel).isEqualTo("Die Schülerinnen und Schüler können Laute, Silben, Stimmen, Geräusche und Töne wahrnehmen, einordnen und vergleichen. Sie können ihren rezeptiven Wortschatz aktivieren, um das Gehörte angemessen schnell zu verstehen.");
+		assertThat(deHoeren.verweise).hasSize(2);
+		assertThat(deHoeren.verweise).containsExactly(
+				new Verweis("EZ", "Räumliche Orientierung (4)"),
+				new Verweis("EZ", "Wahrnehmung (2)"));
+		assertThat(deHoeren.code).isEqualTo("D.1.A.1");
+		
+		assertThat(deHoeren.stufen).hasSize(8);
+		Kompetenzstufe first = deHoeren.stufen.get(0);
+		assertThat(first.zyklus).isEqualTo(1);
+		assertThat(first.code).isEqualTo("D.1.A.1.a");
+		assertThat(first.text).isEqualTo("können die Aufmerksamkeit auf die sprechende Person und deren Beitrag richten.");
+	
+		Kompetenzstufe fourth = deHoeren.stufen.get(3);
+		assertThat(fourth.code).isEqualTo("D.1.A.1.d");
+		assertThat(fourth.text).isEqualTo("können unterschiedliche Laute und Lautverbindungen heraushören, im Wort verorten (Anlaut, Mittellaute, Endlaut) und mit Erfahrungen aus der Erstsprache vergleichen.\n"
+				+ "können einzelne Wörter und Wendungen in vertrauten Situationen verstehen oder deren Bedeutung erfragen und so ihren rezeptiven Wortschatz erweitern.");
+		assertThat(fourth.verweise).hasSize(2);
+	}
+	
+	@Test
+	public void canNavigateToNext() throws IOException, URISyntaxException
+	{
+		String hoerenHtml = loadStaticResource("code=a-1-11-1-1-1.html");
+		URI nextUri = LehrplanUri.parseNext(hoerenHtml);
+		assertThat(nextUri.getQuery().toString()).isEqualTo("code=a|1|11|1|2|1");
+		
+		String lastMathHtml = loadStaticResource("code=a-5-0-3-3-3.html");
+		URI noLink = LehrplanUri.parseNext(lastMathHtml);
+		assertThat(noLink).isNull();
+	}
+	
+}
