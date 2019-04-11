@@ -14,6 +14,24 @@ import ch.monokellabs.lp21.export.xls.XlsWriter;
 
 public class TestExportExcel extends BaseLpTest {
 
+	@Test
+	public void xlsMerged() throws Exception
+	{
+		List<String> htmlPages = loadLocalLp21();
+		List<Kompetenz> kompetenzen = parse(htmlPages);
+		String de = "Deutsch";
+		List<Kompetenz> deutsch = kompetenzen.stream()
+			.filter(kp -> kp.fach.equals(de))
+			.collect(Collectors.toList());
+		
+		XlsWriter workbook = new XlsWriter();
+		workbook.writeMerged(deutsch);
+		File xls = new File("target/deutsch.xls");
+		try(OutputStream out = new FileOutputStream(xls))
+		{
+			workbook.persist(out);
+		}
+	}
 	
 	@Test
 	public void xlsDeutsch() throws Exception
@@ -27,7 +45,7 @@ public class TestExportExcel extends BaseLpTest {
 		
 		XlsWriter workbook = new XlsWriter();
 		workbook.write(deutsch);
-		File xls = new File("target/deutsch.xls");
+		File xls = new File("target/deutschAll.xls");
 		try(OutputStream out = new FileOutputStream(xls))
 		{
 			workbook.persist(out);
@@ -46,7 +64,7 @@ public class TestExportExcel extends BaseLpTest {
 		
 		XlsWriter workbook = new XlsWriter();
 		workbook.write(kompetenzen);
-		File xls = new File("target/kompetenzen.xls");
+		File xls = new File("target/kompetenzenAll.xls");
 		try(OutputStream out = new FileOutputStream(xls))
 		{
 			workbook.persist(out);

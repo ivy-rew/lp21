@@ -25,10 +25,18 @@ public class XlsWriter {
 	
 	public XSSFWorkbook write(Collection<Kompetenz> kompetenzen)
 	{
-        RawSheet rawSheet = new RawSheet(workbook.createSheet("Kompetenzen"));
-        rawSheet.fill(kompetenzen);
+		writeMerged(kompetenzen);
+        writeRaw(kompetenzen);
         return workbook;
     }
+
+	public void writeMerged(Collection<Kompetenz> kompetenzen) {
+		new MergedSheet(workbook.createSheet("LP21")).fill(kompetenzen);
+	}
+	
+	public void writeRaw(Collection<Kompetenz> kompetenzen) {
+		new RawSheet(workbook.createSheet("RAW")).fill(kompetenzen);
+	}
 	
 	public void persist(OutputStream out) throws IOException {
 	    workbook.write(out);
