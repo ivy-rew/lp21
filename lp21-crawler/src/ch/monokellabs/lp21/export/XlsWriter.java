@@ -14,7 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import ch.monokellabs.lp21.Kompetenz;
-import ch.monokellabs.lp21.Kompetenz.Kompetenzstufe;
+import ch.monokellabs.lp21.Kompetenzstufe;
 
 public class XlsWriter {
 

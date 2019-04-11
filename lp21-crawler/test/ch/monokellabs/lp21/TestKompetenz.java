@@ -20,8 +20,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import ch.monokellabs.lp21.Kompetenz.Kompetenzstufe;
-import ch.monokellabs.lp21.Kompetenz.Verweis;
 import ch.monokellabs.lp21.export.CsvWriter;
 import ch.monokellabs.lp21.export.XlsWriter;
 import ch.monokellabs.lp21.load.KpPageLoader;

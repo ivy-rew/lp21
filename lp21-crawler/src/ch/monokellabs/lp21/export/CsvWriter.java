@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.monokellabs.lp21.Kompetenz;
-import ch.monokellabs.lp21.Kompetenz.Kompetenzstufe;
+import ch.monokellabs.lp21.Kompetenzstufe;
 
 public class CsvWriter {
 
