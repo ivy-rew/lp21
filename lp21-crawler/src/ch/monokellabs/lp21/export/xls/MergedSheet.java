@@ -107,14 +107,14 @@ public class MergedSheet
 			Row row = new Row(getOrCreate(rowNum++), STUFE_COL_START);
 			XSSFCell zyklusCell = row.addCell();
 			zyklusCell.setCellValue(stufe.zyklus);
-			zyklusCell.setCellStyle(style.topCenter);
+			zyklusCell.setCellStyle(style.getZyklusStyle(stufe.zyklus));
 			row.add(stufe.code).setCellStyle(style.top);
 			row.add(stufe.text);
 			row.add(verweiseCell(stufe.verweise)).setCellStyle(style.top);
 		}
 		return rowNum;
 	}
-	
+
 	private XSSFRow getOrCreate(int row)
 	{
 		XSSFRow existing = sheet.getRow(row);
