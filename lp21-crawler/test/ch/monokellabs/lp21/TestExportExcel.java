@@ -8,8 +8,11 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.junit.Test;
 
+import ch.monokellabs.lp21.export.xls.Header;
 import ch.monokellabs.lp21.export.xls.XlsWriter;
 
 public class TestExportExcel extends BaseLpTest {
@@ -24,13 +27,36 @@ public class TestExportExcel extends BaseLpTest {
 			.filter(kp -> kp.fach.equals(de))
 			.collect(Collectors.toList());
 		
-		XlsWriter workbook = new XlsWriter();
-		workbook.writeMerged(deutsch);
+		XlsWriter excel = new XlsWriter();
+		XSSFSheet sheet = excel.writeMerged(deutsch);
+		
+		assertThat(sheet.getRow(0).getPhysicalNumberOfCells())
+			.as("has headers")
+			.isEqualTo(Header.ALL.size());
+		
+		XSSFRow kpRow = sheet.getRow(2);
+		assert_D1A1a(kpRow);
+
 		File xls = new File("target/deutsch.xls");
 		try(OutputStream out = new FileOutputStream(xls))
 		{
-			workbook.persist(out);
+			excel.persist(out);
 		}
+	}
+
+	private static void assert_D1A1a(XSSFRow kpRow) {
+		assertThat(kpRow.getPhysicalNumberOfCells()).isEqualTo(Header.ALL.size());
+		assertThat(kpRow.getCell(0).getStringCellValue()).isEqualTo("D.1.A.1");
+		assertThat(kpRow.getCell(1).getStringCellValue()).isEqualTo("Deutsch");
+		assertThat(kpRow.getCell(2).getStringCellValue()).isEqualTo("D.1");
+		assertThat(kpRow.getCell(3).getStringCellValue()).isEqualTo("Hören");
+		assertThat(kpRow.getCell(4).getStringCellValue()).isEqualTo("A");
+		assertThat(kpRow.getCell(5).getStringCellValue()).isEqualTo("Grundfertigkeiten");
+		assertThat(kpRow.getCell(6).getNumericCellValue()).isEqualTo(1);
+		assertThat(kpRow.getCell(7).getStringCellValue()).contains("können Laute, Silben, Stimmen");
+		assertThat(kpRow.getCell(9).getNumericCellValue()).isEqualTo(1);
+		assertThat(kpRow.getCell(10).getStringCellValue()).isEqualTo("D.1.A.1.a");
+		assertThat(kpRow.getCell(11).getStringCellValue()).startsWith("können die Aufmerksamkeit");
 	}
 	
 	@Test
@@ -45,6 +71,7 @@ public class TestExportExcel extends BaseLpTest {
 		
 		XlsWriter workbook = new XlsWriter();
 		workbook.write(deutsch);
+		
 		File xls = new File("target/deutschAll.xls");
 		try(OutputStream out = new FileOutputStream(xls))
 		{

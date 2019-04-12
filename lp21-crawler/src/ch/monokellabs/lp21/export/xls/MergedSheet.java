@@ -1,14 +1,11 @@
 package ch.monokellabs.lp21.export.xls;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -22,84 +19,110 @@ import ch.monokellabs.lp21.Verweis;
  */
 public class MergedSheet
 {
-	private final XSSFSheet sheet;
-	private XSSFCellStyle top;
+	private static final int KP_ROW_START = 2;
+	private static final int STUFE_COL_START = 9;
 
+	private final XSSFSheet sheet;
+	private final Style style;
+	
 	public MergedSheet(XSSFSheet sheet) {
 		this.sheet = sheet;
-		
-		top = this.sheet.getWorkbook().createCellStyle();
-		top.setVerticalAlignment(VerticalAlignment.TOP);
+		this.style = new Style(sheet.getWorkbook());
 	}
 	
 	public void fill(Collection<Kompetenz> kompetenzen)
 	{
 		writeHeaderRow(sheet.createRow(0));
-        
-        int rowNum = 2;
-        for(Kompetenz komp : kompetenzen)
-        {
-        	rowNum = writeKompetenz(komp, sheet, rowNum);
-        }
+		writeKompetenzen(kompetenzen);
+        writeKompetenStufen(kompetenzen);
         addAutoFilter();
 	}
 
+	private void writeKompetenzen(Collection<Kompetenz> kompetenzen) {
+		int rowNum = KP_ROW_START;
+        for(Kompetenz komp : kompetenzen)
+        {
+        	Row kpRow = new Row(sheet.createRow(rowNum));
+        	for(int col=0; col<9; col++)
+        	{	// 9 common Kompetenz prefixes for Stufe
+        		sheet.addMergedRegion(range(komp, rowNum, col));
+        	}
+			kpRow.add(komp.code).setCellStyle(style.top);
+			kpRow.add(komp.fach).setCellStyle(style.top);
+			kpRow.add(komp.bereichCode).setCellStyle(style.codeShort);
+			kpRow.add(komp.bereich).setCellStyle(style.top);
+			kpRow.add(komp.aspektCode).setCellStyle(style.codeShort);
+			kpRow.add(komp.aspekt).setCellStyle(style.topAutoBreak);
+			
+			XSSFCell tNrCell = kpRow.addCell();
+			tNrCell.setCellValue((komp.titelNr));
+			tNrCell.setCellStyle(style.codeShort);
+			
+			XSSFCell titelCell = kpRow.add(komp.titel);
+			titelCell.setCellStyle(style.topAutoBreak);
+			kpRow.add(verweiseCell(komp.verweise)).setCellStyle(style.top);
+			rowNum+=komp.stufen.size();
+        }
+        
+        optimizeSize();
+	}
+
+	private void optimizeSize() {
+        sheet.setColumnWidth(Header.indexOf(Header.bCode), 4*256);
+		sheet.setColumnWidth(Header.indexOf(Header.aCode), 4*256);
+		sheet.setColumnWidth(Header.indexOf(Header.titelNo), 4*256);
+		sheet.setColumnWidth(Header.indexOf(Header.titel), 12*4*256);
+	}
+
 	private void addAutoFilter() {
-		sheet.setAutoFilter(new CellRangeAddress(1, sheet.getLastRowNum(), 0, HEADERS.size()));
+		sheet.setAutoFilter(new CellRangeAddress(
+				1, sheet.getLastRowNum(), 0, Header.ALL.size()-1));
 	}
 	
-	private static final List<String> HEADERS = Arrays.asList(
-			"K Code", 
-			"Fach", 
-			"B Code", "Bereich",
-			"A Code", "Aspekt",
-			"TNR", "Titel", "TQV",
-			"Zyklus",
-			"S Code", "Stufe", "SQV"
-	);
-	
 	static void writeHeaderRow(XSSFRow row) {
-		for(int col=0; col<HEADERS.size(); col++)
+		for(int col=0; col<Header.ALL.size(); col++)
 		{
-			String colHeader = HEADERS.get(col);
+			String colHeader = Header.ALL.get(col);
 			XSSFCell cell = row.createCell(col);
 			XSSFRichTextString formattedValue = new XSSFRichTextString(colHeader);
 			formattedValue.applyFont(XlsWriter.HEADER_FONT);
 			cell.setCellValue(formattedValue);
 		}
 	}
+
+	private void writeKompetenStufen(Collection<Kompetenz> kompetenzen) {
+		int rowNum = KP_ROW_START;
+        for(Kompetenz komp : kompetenzen)
+        {
+        	rowNum = writeKompetenzStufen(komp, sheet, rowNum);
+        }
+	}
 	
-	private int writeKompetenz(Kompetenz komp, XSSFSheet sheet, int rowNum) 
+	private int writeKompetenzStufen(Kompetenz komp, XSSFSheet sheet, int rowNum) 
 	{
-		for(int i=0; i<9; i++)
-		{	// 9 common Kompetenz prefixes for Stufe
-			sheet.addMergedRegion(range(komp, rowNum, i));
-		}
 		for(Kompetenzstufe stufe : komp.stufen)
 		{
-			Row row = new Row(sheet.createRow(rowNum++));
-			row.add(komp.code).setCellStyle(top);
-			row.add(komp.fach).setCellStyle(top);
-			row.add(komp.bereichCode).setCellStyle(top);
-			row.add(komp.bereich).setCellStyle(top);
-			row.add(komp.aspektCode).setCellStyle(top);
-			row.add(komp.aspekt).setCellStyle(top);
-			
-			XSSFCell tNrCell = row.addCell();
-			tNrCell.setCellValue((komp.titelNr));
-			tNrCell.setCellStyle(top);
-			
-			row.add(komp.titel).setCellStyle(top);
-			row.add(verweiseCell(komp.verweise)).setCellStyle(top);
-			
-			row.addCell().setCellValue(stufe.zyklus);
-			row.add(stufe.code);
+			Row row = new Row(getOrCreate(rowNum++), STUFE_COL_START);
+			XSSFCell zyklusCell = row.addCell();
+			zyklusCell.setCellValue(stufe.zyklus);
+			zyklusCell.setCellStyle(style.topCenter);
+			row.add(stufe.code).setCellStyle(style.top);
 			row.add(stufe.text);
-			row.add(verweiseCell(stufe.verweise));
+			row.add(verweiseCell(stufe.verweise)).setCellStyle(style.top);
 		}
 		return rowNum;
 	}
-
+	
+	private XSSFRow getOrCreate(int row)
+	{
+		XSSFRow existing = sheet.getRow(row);
+		if (existing != null)
+		{
+			return existing;
+		}
+		return sheet.createRow(row);
+	}
+	
 	private CellRangeAddress range(Kompetenz komp, int row, int col) {
 		return new CellRangeAddress(row, row+komp.stufen.size()-1, col, col);
 	}

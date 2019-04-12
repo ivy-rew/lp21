@@ -9,8 +9,12 @@ class Row
 	private int col;
 
 	public Row(XSSFRow row) {
+		this(row, 0);
+	}
+	
+	public Row(XSSFRow row, int col) {
 		this.row = row;
-		this.col = 0;
+		this.col = col;
 	}
 	
 	public XSSFCell add(String value)

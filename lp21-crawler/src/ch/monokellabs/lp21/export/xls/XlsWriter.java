@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.util.Collection;
 
 import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import ch.monokellabs.lp21.Kompetenz;
@@ -16,7 +17,7 @@ public class XlsWriter {
 		HEADER_FONT.setBold(true);
 	}
 
-	private XSSFWorkbook workbook;
+	private final XSSFWorkbook workbook;
 	
 	public XlsWriter()
 	{
@@ -30,8 +31,10 @@ public class XlsWriter {
         return workbook;
     }
 
-	public void writeMerged(Collection<Kompetenz> kompetenzen) {
-		new MergedSheet(workbook.createSheet("LP21")).fill(kompetenzen);
+	public XSSFSheet writeMerged(Collection<Kompetenz> kompetenzen) {
+		XSSFSheet lp21 = workbook.createSheet("LP21");
+		new MergedSheet(lp21).fill(kompetenzen);
+		return lp21;
 	}
 	
 	public void writeRaw(Collection<Kompetenz> kompetenzen) {
