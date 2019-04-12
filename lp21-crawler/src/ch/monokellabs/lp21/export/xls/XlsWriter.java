@@ -22,8 +22,9 @@ public class XlsWriter {
 	public XlsWriter()
 	{
 		workbook = new XSSFWorkbook();
+		new MetaData(workbook).write();
 	}
-	
+
 	public XSSFWorkbook write(Collection<Kompetenz> kompetenzen)
 	{
 		writeMerged(kompetenzen);

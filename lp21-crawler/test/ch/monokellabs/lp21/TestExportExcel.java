@@ -37,7 +37,7 @@ public class TestExportExcel extends BaseLpTest {
 		XSSFRow kpRow = sheet.getRow(2);
 		assert_D1A1a(kpRow);
 
-		File xls = new File("target/deutsch.xls");
+		File xls = new File("target/deutsch.xlsx");
 		try(OutputStream out = new FileOutputStream(xls))
 		{
 			excel.persist(out);
@@ -72,7 +72,7 @@ public class TestExportExcel extends BaseLpTest {
 		XlsWriter workbook = new XlsWriter();
 		workbook.write(deutsch);
 		
-		File xls = new File("target/deutschAll.xls");
+		File xls = new File("target/deutschAll.xlsx");
 		try(OutputStream out = new FileOutputStream(xls))
 		{
 			workbook.persist(out);
@@ -91,7 +91,7 @@ public class TestExportExcel extends BaseLpTest {
 		
 		XlsWriter workbook = new XlsWriter();
 		workbook.write(kompetenzen);
-		File xls = new File("target/kompetenzenAll.xls");
+		File xls = new File("target/kompetenzenAll.xlsx");
 		try(OutputStream out = new FileOutputStream(xls))
 		{
 			workbook.persist(out);

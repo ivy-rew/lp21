@@ -1,6 +1,5 @@
 package ch.monokellabs.lp21.export.xls;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,15 +35,7 @@ public class RawSheet
         }
 	}
 	
-	private static final List<String> HEADERS = Arrays.asList(
-			"K Code", 
-			"Fach", 
-			"B Code", "Bereich",
-			"A Code", "Aspekt",
-			"TNR", "Titel", "TQV",
-			"Zyklus",
-			"S Code", "Stufe", "SQV"
-	);
+	private static final List<String> HEADERS = Header.ALL;
 	
 	static void writeHeaderRow(XSSFRow row) {
 		for(int col=0; col<HEADERS.size(); col++)
@@ -85,30 +76,6 @@ public class RawSheet
 		return verweise.stream()
 		.map(verweis -> verweis.code)
 		.collect(Collectors.joining(", "));
-	}
-	
-	private static class Row
-	{
-		private final XSSFRow row;
-		private int col;
-
-		public Row(XSSFRow row) {
-			this.row = row;
-			this.col = 0;
-		}
-		
-		public XSSFCell add(String value)
-		{
-			XSSFCell cell = addCell();
-			cell.setCellValue(value);
-			return cell;
-		}
-		
-		public XSSFCell addCell()
-		{
-			return row.createCell(col++);
-		}
-		
 	}
 	
 }
