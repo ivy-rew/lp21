@@ -1,4 +1,4 @@
-package ch.monokellabs.lp21.export.xls;
+package ch.monokellabs.lp21.export.xls.meta;
 
 import org.apache.poi.hssf.usermodel.HSSFPrintSetup;
 import org.apache.poi.xssf.usermodel.XSSFSheet;

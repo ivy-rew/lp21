@@ -5,14 +5,14 @@ import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 
-class Style
+public class Style
 {
 	public final CellStyle top;
 	public final CellStyle topCenter;
 	public final CellStyle topAutoBreak;
 	public final CellStyle codeShort;
 	
-	Style(Workbook wb)
+	public Style(Workbook wb)
 	{
 		top = wb.createCellStyle();
 		top.setVerticalAlignment(VerticalAlignment.TOP);

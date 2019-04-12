@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import ch.monokellabs.lp21.Kompetenz;
+import ch.monokellabs.lp21.export.xls.meta.MetaData;
 
 public class XlsWriter {
 

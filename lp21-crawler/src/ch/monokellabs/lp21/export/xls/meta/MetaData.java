@@ -1,4 +1,4 @@
-package ch.monokellabs.lp21.export.xls;
+package ch.monokellabs.lp21.export.xls.meta;
 
 import org.apache.poi.ooxml.POIXMLProperties;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -7,7 +7,7 @@ public class MetaData
 {
 	private final POIXMLProperties props;
 	
-	MetaData(XSSFWorkbook wb)
+	public MetaData(XSSFWorkbook wb)
 	{
 		props = wb.getProperties();
 	}

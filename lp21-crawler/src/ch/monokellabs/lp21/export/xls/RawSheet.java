@@ -12,6 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import ch.monokellabs.lp21.Kompetenz;
 import ch.monokellabs.lp21.Kompetenzstufe;
 import ch.monokellabs.lp21.Verweis;
+import ch.monokellabs.lp21.export.xls.meta.PrintOptions;
 
 /**
  * Technical output with de-normalized data
