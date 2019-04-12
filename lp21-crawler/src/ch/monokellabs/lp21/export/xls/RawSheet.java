@@ -22,6 +22,7 @@ public class RawSheet
 
 	public RawSheet(XSSFSheet sheet) {
 		this.sheet = sheet;
+		new PrintOptions(sheet).optimize();
 	}
 	
 	public void fill(Collection<Kompetenz> kompetenzen)

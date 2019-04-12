@@ -28,6 +28,7 @@ public class MergedSheet
 	public MergedSheet(XSSFSheet sheet) {
 		this.sheet = sheet;
 		this.style = new Style(sheet.getWorkbook());
+		new PrintOptions(sheet).optimize();
 	}
 	
 	public void fill(Collection<Kompetenz> kompetenzen)
