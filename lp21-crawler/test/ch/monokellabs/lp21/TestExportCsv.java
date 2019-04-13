@@ -43,7 +43,7 @@ public class TestExportCsv extends BaseLpTest {
 		System.out.println("Loaded "+htmlPages.size()+" competences from LP21");
 		
 		List<Kompetenz> kompetenzen = parse(htmlPages);
-		assertThat(kompetenzen).hasSameSizeAs(htmlPages);
+		assertThat(kompetenzen).hasSize(407);
 		
 		File csv = new File("target/kompetenzen.csv");
 		writeToCsvFile(kompetenzen, csv);

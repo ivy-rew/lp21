@@ -69,11 +69,13 @@ public class TestHtmlParser extends BaseLpTest {
 		
 		assertThat(selfreflect.fach).isEqualTo("Überfachliche Kompetenzen");
 		assertThat(selfreflect.bereich).isEqualTo("Personale Kompetenzen");
+		assertThat(selfreflect.bereichCode).isEqualTo("P");
 		assertThat(selfreflect.aspekt).isEqualTo("Selbstreflexion");
 		assertThat(selfreflect.titel).isEqualTo("Eigene Ressourcen kennen und nutzen");
 		
 		assertThat(selfreflect.stufen).hasSize(8);
-		assertThat(selfreflect.stufen.get(0).text)
+		Kompetenzstufe stufe1 = selfreflect.stufen.get(0);
+		assertThat(stufe1.text)
 			.isEqualTo("können eigene Gefühle wahrnehmen und situationsangemessen ausdrücken.");
 	}
 }
