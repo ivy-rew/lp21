@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import ch.monokellabs.lp21.export.CsvWriter;
+import ch.monokellabs.lp21.html.UeberfachlicheKpParser;
 
 public class TestExportCsv extends BaseLpTest {
 	
@@ -45,6 +46,15 @@ public class TestExportCsv extends BaseLpTest {
 		assertThat(kompetenzen).hasSameSizeAs(htmlPages);
 		
 		File csv = new File("target/kompetenzen.csv");
+		writeToCsvFile(kompetenzen, csv);
+	}
+	
+	@Test
+	public void writeUeberfachlich() throws Exception
+	{
+		String ueberHtml = loadStaticResource("code=e-200-3.html");
+		List<Kompetenz> kompetenzen = UeberfachlicheKpParser.parse(ueberHtml);
+		File csv = new File("target/ueberfachlich.csv");
 		writeToCsvFile(kompetenzen, csv);
 	}
 

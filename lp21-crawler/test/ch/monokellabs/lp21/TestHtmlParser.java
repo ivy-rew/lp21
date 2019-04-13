@@ -5,10 +5,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 import org.apache.http.client.ClientProtocolException;
 import org.junit.Test;
 
+import ch.monokellabs.lp21.html.UeberfachlicheKpParser;
 import ch.monokellabs.lp21.load.LehrplanUri;
 
 public class TestHtmlParser extends BaseLpTest {
@@ -57,4 +59,21 @@ public class TestHtmlParser extends BaseLpTest {
 		assertThat(noLink).isNull();
 	}
 	
+	@Test
+	public void parseUeberfachlicheKp() throws Exception
+	{
+		String ueberHtml = loadStaticResource("code=e-200-3.html");
+		
+		List<Kompetenz> ueberfachlich = UeberfachlicheKpParser.parse(ueberHtml);
+		Kompetenz selfreflect = ueberfachlich.get(0);
+		
+		assertThat(selfreflect.fach).isEqualTo("Überfachliche Kompetenzen");
+		assertThat(selfreflect.bereich).isEqualTo("Personale Kompetenzen");
+		assertThat(selfreflect.aspekt).isEqualTo("Selbstreflexion");
+		assertThat(selfreflect.titel).isEqualTo("Eigene Ressourcen kennen und nutzen");
+		
+		assertThat(selfreflect.stufen).hasSize(8);
+		assertThat(selfreflect.stufen.get(0).text)
+			.isEqualTo("können eigene Gefühle wahrnehmen und situationsangemessen ausdrücken.");
+	}
 }

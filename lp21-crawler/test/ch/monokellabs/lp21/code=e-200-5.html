@@ -1,0 +1,431 @@
+	
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  	<title>Lehrplan 21</title>
+	<meta name="description" content="Lehrplan 21">
+	<meta name="D-EDK" content="Projekt Lehrplan 21">
+    <meta name="programmer" content="h1z - Heinz Estermann">
+
+
+	<!-- Mobile Viewports
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+
+	<!-- CSS
+  ================================================== -->
+<link rel="stylesheet" type="text/css" href="https://lu.lehrplan.ch/css/base.css"> <!-- lokal vorhanden! -->
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/skeleton.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/layout.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lp21.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lp21kompaufbau.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lpu.css">
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lpu_rev2014.css">
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/tooltipster.css" />
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/colorbox.css" />
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/slidetabs.css" />
+    
+	<!--[if lt IE 9]>
+		<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="SHORTCUT ICON" href="https://lu.lehrplan.ch/images/favicon.ico"><link rel="apple-touch-icon" href="https://lu.lehrplan.ch/images/apple-touch-icon.png"><link rel="apple-touch-icon" sizes="72x72" href="https://lu.lehrplan.ch/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="114x114" href="https://lu.lehrplan.ch/images/apple-touch-icon-114x114.png">    
+    
+    
+    <!-- Scripts
+	================================================== -->
+
+      	
+ 
+    <!-- jQuery von Google holen, wenn nicht erreichbar lokal laden -->
+	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	 
+	<script>!window.jQuery && document.write('<script src="https://stammdaten.lehrplan.ch/js/jquery-1.4.2.min.js"><\/script>')</script>
+    
+    
+	
+
+<script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/jquery.colorbox.js"></script>
+<!-- <script type="text/javascript" src="https://www.zebis.ch/scripts/ckeditor/ckeditor.js"></script> -->
+  	
+   <script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/tipsy.js"></script>
+   
+<script type="text/javascript">
+   $(document).ready(function(){
+      $(function(){
+		 $(".sprachfolge").colorbox({iframe:true, width:"500px", height:"415px",overlayClose:false,onLoad:function(){ $('#cboxClose').remove();},onClosed:function(){ location.reload(true);} });
+ 		 $(".editieren").colorbox({iframe:true, width:"800px", height:"90%",overlayClose:false,onClosed:function(){ location.reload(true);} });
+		 $(".kleinebox").colorbox({iframe:true,inline:true,height:"300px",width:"400px" });
+		 $(".listenbox").colorbox({iframe:true,inline:true,height:"90%",width:"450px" });
+		 $("a.kapitelbild").colorbox({maxHeight:"95%",maxWidth:"90%" });
+		 $("#hinweis_R").colorbox({open:true,inline:true, height:"200px",width:"300px" });
+		 $("#hinweis_I").colorbox({open:true,inline:true, height:"200px",width:"300px" });
+         $(".tooltip").tipsy({gravity: 's'});
+         $(".tooltip_auto").tipsy({gravity: $.fn.tipsy.autoNS})});
+	     $("#cboxCloseMe").click(function(){
+			$.fn.colorbox.close();
+			return false;
+			});
+		 $(".side").sidecontent();	
+
+
+
+   });
+</script>
+<script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/jquery.fallback.js"></script>
+<script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/jquery.slidetabs.js"></script>
+
+
+
+</head>
+<body>
+<div id="how">
+
+			
+</div> 
+
+	<div class="container sixteen columns">
+    
+    
+         <!-- Header
+================================================== -->
+
+      <div class="header container sixteen columns alpha omega">
+
+        <div class="header-logo seven columns alpha">
+          <a href="index.php" alt="Startseite"><img title="Lehrplan des Kantons Luzern" src="https://stammdaten.lehrplan.ch/grafiken/logo_web/LU.png"></a>        </div>
+        
+        <div class="two columns alpha">
+        
+            <div style="margin-top:6px;height:18px; width:100%;"></div>
+                   
+	        </div>
+
+        <div class="header-right seven columns omega">
+
+          <div class="seven columns alpha omega " >
+
+          		
+		
+          <div class="seven columns omega alpha kanton">
+          <div class="five columns alpha">
+            <form name="form_kantonsauswahl" id="form_kantonsauswahl" class="kantonsauswahl" action="set_sessions.php" method="get">	 
+		
+        		<select id="selectList" class="tooltip_auto" title="Wählen Sie den Kanton aus" name="kantonsauswahl" onChange="document.form_kantonsauswahl.submit()">
+                <optgroup label="Kantone" class="kantone">
+					SELECT * FROM kanton WHERE aktiv=1 AND  id NOT LIKE 'V_EF' AND id NOT LIKE 'V_FE' ORDER BY name<option value="AG" >Aargau</option><option value="AR" >Appenzell Ausserrhoden</option><option value="AI" >Appenzell Innerrhoden</option><option value="BL" >Basel-Landschaft</option><option value="BS" >Basel-Stadt</option><option value="BE" >Bern</option><option value="FR" >Freiburg</option><option value="GL" >Glarus</option><option value="GR_D" >Graubünden deutschsprachige Schulen</option><option value="GR_I" >Grigioni scuole di lingua italiana</option><option value="GR_R" >Grischun scolas rumantschas</option><option value="LU" selected="selected">Luzern</option><option value="NW" >Nidwalden</option><option value="OW" >Obwalden</option><option value="SZ" >Schwyz</option><option value="SO" >Solothurn</option><option value="SG" >St.Gallen</option><option value="TG" >Thurgau</option><option value="UR" >Uri</option><option value="VS" >Wallis</option><option value="ZG" >Zug</option><option value="ZH" >Zürich</option>                    </optgroup>
+                    <optgroup label="Vorlagen" class="vorlagen">
+                    <option value="V_EF" >1. Fremdsprache Englisch (mit Latein)</option><option value="V_FE" >1. Fremdsprache Französisch (mit Latein)</option>                    </optgroup>
+                    <input name="url_from" type="hidden" value="https://lu.lehrplan.ch/index.php?code=e%7C200%7C5">				</select>
+			
+		</form> 
+		
+		</div>
+                   
+	
+	   <div class="two columns omega"><div class="right download"><a title="Hier können Sie die Inhalte des Lehrplans als PDF herunterladen." href="/downloads.php" class="tooltip_auto">Downloadbereich</a></div></div>
+
+
+</div>
+
+          <div class="two columns alpha ">
+            <!-- -->
+
+                      </div> <!-- search -->
+
+          <div class="five columns omega filter" style="text-align:right">
+            <!-- evtl. Logo Lehrplan21 -->
+           <img src="https://stammdaten.lehrplan.ch/grafiken/logo_web/lp21.png"  title="Lehrplan 21" width="115px">            
+
+          </div> <!-- search -->
+
+          <!-- Search - neu im Navibereich index.php /23.3.15aa
+        <div class="four columns omega suche">
+
+        	</div>  -->
+
+
+        </div><!-- header-right -->
+
+
+
+      </div> <!-- header -->
+    
+    
+    
+      
+		
+		       	<!-- Content
+	================================================== -->
+
+		<div class="main"> 
+        
+
+       <div class="four columns alpha navigation">
+
+              <!-- zweiter  Aufruf , stehen lassen -->         
+        
+        	
+        	
+        
+
+		<div id="navigation"><div id="breadcrumb" class="dd-header"><a id="breadcrumbnavigation_first"  href="index.php" >Startseite</a><a id="breadcrumbnavigation" href="index.php?code=e|200|1">Grundlagen</a><a id="breadcrumbnavigation" href="index.php?code=e|200|5" >Schwerpunkte des 1. Zyklus</a></div><div id="navigation"><div id="breadcrumb" class="dd-header"><a id="breadcrumbnavigation" class="active_breadcrumb" style="padding:1px" href="index.php?code=e|200|1">Grundlagen</a></div></div><div class="grey">
+<ul id="menuliste">
+<li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|200|1">Bildungsziele</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|200|2">Lern- und Unterrichtsverständnis</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|200|3">Überfachliche Kompetenzen</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|200|4">Bildung für Nachhaltige Entwicklung</a></li><li class="dreieck_ohne"><a class="active_menu parent_menu" href="index.php?code=e|200|5">Schwerpunkte des 1. Zyklus</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|200|6">Schwerpunkte des 2. und 3. Zyklus</a></li></ul>
+</div>
+
+</div>
+
+
+
+
+
+        
+        <div class="four columns alpha textblock"> <h3>Hinweis zum Download</h3>
+<p>Im Downloadbereich können Sie die Dokumente des Lehrplans als PDF herunterladen und ausdrucken.</p></div>
+         <div class="four columns alpha">
+           <form id="searchbox" action="index.php" method="get">
+    <input id="search" name="suchwort" type="text" placeholder="Suchbegriff eingeben">
+    <input id="submit" type="submit" value="Suchen">
+    <input name="code" type="hidden" value="s">
+</form>
+                 </div>
+       <!-- zwieter Auftruf fertig, stehen lassen -->
+       </div> <!-- / navigation -->
+        
+       
+
+        
+        <div class="twelve columns omega">
+        	
+                      	                <div class="einleitendekapitel">
+                <div class="ek_absatz"><div class="ek_titel"><span id="101e200nctZErNaXeyqav8vJVghYUp"><h1><a style="text-decoration:none" name="a1">Schwerpunkte des 1. Zyklus</a></h1></span></div></div><div class="ek_absatz"><div class="ek_titel"><span id="101e200agwncaTLhWwFMGSJwTerXas"><h2><a style="text-decoration:none" name="a2">Einleitung</a></h2></span></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200k34YKDpFRrMskyVbGsveyPG"><h4 class="mager" ><a style="text-decoration:none" name="a3"></a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Der Lehrplan 21 ist als Fachbereichslehrplan konzipiert. Darin wird aufgezeigt, wie Kompetenzen über die ganze Schulzeit - vom Kindergarten bis zum Ende der Volksschule - aufgebaut werden. Neu wird der Kompetenzerwerb damit auch für den Kindergarten nach Fachbereichen strukturiert und beschrieben.<p>
+	Der Unterricht im 1. Zyklus orientiert sich allerdings stark an der Entwicklung der Kinder und wird vor allem zu Beginn fächerübergreifend organisiert und gestaltet. Um dieser Ausrichtung Rechnung zu tragen, sind die Ausführungen zum 1. Zyklus an dieser Stelle ausführlicher. Sie nehmen den 1. Zyklus als Ganzes in den Blick, gehen von der Entwicklung des Kindes aus und beschreiben, wie die Entwicklungsorientierung allmählich in ein fachliches Lernen übergeht. Im zweiten Teil des folgenden Kapitels werden neun entwicklungsorientierte Zugänge zum Lehrplan 21 entworfen und beschrieben, welche die Entwicklung und das Lernen des Kindes ins Zentrum stellen. Diese entwicklungsorientierten Zugänge helfen den Lehrerinnen und Lehrern, einen Zugang zum Lehrplan 21 zu finden und bauen eine Brücke von der Entwicklungsperspektive zur Fachbereichsstruktur des Lehrplans.</p>
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200h5xgeKSKk4uCddHWtnp4CqU"><h4 class="mager" ><a style="text-decoration:none" name="a4">Eintritt</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Mit dem Eintritt in den Kindergarten oder eine Eingangsstufe beginnt für das Kind die Bildungslaufbahn in der Volksschule. Es wird in den sozialen Kontext der Schule aufgenommen und in die Welt des schulischen Lernens eingeführt. Einige Kinder besuchten vorher eine Spielgruppe oder eine Kinderkrippe und sind sich bereits gewohnt, mit gleichaltrigen Kindern zusammen und von den Eltern und Erziehungsberechtigten getrennt zu sein. Andere Kinder verlassen zum ersten Mal regelmässig und für einen längeren Zeitraum das familiäre Umfeld. Allen Kindern eröffnet sich im Kindergarten oder in der Eingangsstufe ein neuer Lebens-, Spiel- und Erfahrungsraum. Dieser führt sie in ein erweitertes soziales Umfeld mit neuen Aufgaben und Herausforderungen.
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200nqyAAWdV7dwxydWG9eZAn3m"><h4 class="mager" ><a style="text-decoration:none" name="a5">Individuelle Voraussetzungen</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Entwicklungs- und Lernprozesse hängen von den individuellen Voraussetzungen des Kindes und von den Anregungen und der Unterstützung ab, welche das Kind erfährt. Beim Eintritt in den 1. Zyklus unterscheiden sich die Kinder bezogen auf ihr Wissen, ihr Können, ihre Bereitschaften, Haltungen und Einstellungen wie auch auf ihren individuellen Entwicklungsstand und ihre sprachlichen Voraussetzungen in hohem Masse. Ausgehend von dieser Heterogenität besteht das Ziel darin, die Entwicklung und das Lernen aller Kinder anzuregen und zu fördern. Alle Kinder sollen ihr Potenzial bestmöglich entfalten können.
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200NVPPsk4AU7Yhg4pN6AkRrGV"><h4 class="mager" ><a style="text-decoration:none" name="a6">Spielen und Lernen</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Wenn Kinder spielen, lernen sie gleichzeitig. Jüngere Kinder lernen beim Beobachten, Imitieren, Mitmachen, Gestalten oder im Gespräch. Ihre Aktivitäten werden dabei in erster Linie von ihren Interessen und der Motivation geleitet, die eigenen Fähigkeiten zu erproben und zu erweitern. Im Spiel können sich viele Kinder über eine lange Zeitspanne in eine Aufgabe oder eine Rolle vertiefen, eine hohe Konzentration aufrechterhalten und spezifisches Wissen erwerben. Dabei erleben Kinder Spielen und Lernen als Einheit.<p>
+	Im Verlaufe des 1. Zyklus verändert sich das Denken und Lernen der Kinder. Zunehmend sind sie in der Lage, ihre Aufmerksamkeit auch auf von aussen vorgegebene Lerninhalte zu richten und systematischer zu lernen. Ihr Arbeitsgedächtnis wird effizienter und sie bauen ihre sprachlichen Kompetenzen und ihr Wissen aus. Der Glaube an die eigenen Fähigkeiten (subjektive Kompetenzüberzeugungen) verändert sich ebenfalls und die Kinder lernen, sich und ihre Fähigkeiten einzuschätzen. Ausgehend vom interessegeleiteten Lernen in Alltags- und Spielsituationen werden Kinder zunehmend fähig, mit vorgegebenen Aufgaben, Aufträgen und fachspezifischer Ausrichtung umzugehen.</p>
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200cqB59XwH8WwHLh6DZ7WwCGf"><h4 class="mager" ><a style="text-decoration:none" name="a7">Erwerb der Kulturtechniken</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Im Laufe des 1. Zyklus lassen sich Kinder auf ein schulisch ausgerichtetes Lernen ein und erwerben die Grundlagen der Kulturtechniken. Im sprachlichen Bereich wird zu Beginn gezielt am präzisen Umgang mit Sprache insbesondere im Mündlichen, an der phonologischen Bewusstheit und an der Erweiterung des Wortschatzes gearbeitet. Damit wird der Erwerb von Lese- und Schreib­kompetenzen vorbereitet und unterstützt.<p>
+	Hinter mathematischen Leistungen stehen ein mengen- und zahlenbezogenes Vorwissen bzw. das Verstehen entsprechender Zusammenhänge. Dies ist eine notwendige Voraussetzung, damit Kinder Zählstrategien durch effizientere Operationen und Rechenstrategien ersetzen lernen.</p>
+<p>
+	Nähere Angaben zum Erwerb der Kulturtechniken finden sich in den entsprechenden Fachbereichslehrplänen.</p>
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200U4kuaDhD5SYaYuLFyz8YbNF"><h4 class="mager" ><a style="text-decoration:none" name="a8">Freies Spiel</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Verschiedene Formen des Spiels sind wichtiger Bestandteil der Unterrichtspraxis vor allem zu Beginn des 1. Zyklus. Insbesondere das freie Spiel stellt ein zentrales und vielschichtiges Lernfeld dar, das emotionale, soziale und kognitive Prozesse mit einbezieht, anregt und herausfordert. Im freien Spiel können Kinder ihre Tätigkeiten wählen, initiieren, gestalten und darin Autonomie erleben. Sie zeigen dabei eine hohe und vielfältige emotionale, soziale und kognitive Aktivität.
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200CdxFTAZkC8ASLtsT75TWV5u"><h4 class="mager" ><a style="text-decoration:none" name="a9">Spiel- und Lernbegleitung</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Die Lehrpersonen gestalten Spielangebote und Lernumgebungen im Innen- und Aussenraum, strukturieren Zeit und Prozesse, führen verschiedene Spiel- und Sozialformen, Inhalte und Themen ein und stellen die entsprechenden Materialien zur Verfügung. Sie leisten im Unterricht gezielte, proaktive Unterstützung und initiieren über Anregungen und Anpassungen von Spiel- und Lernsituationen nächste Entwicklungsschritte. Sie ermutigen die Kinder und leiten sie an, sich neuen, ihrem Entwicklungs- und Lernstand entsprechenden Situationen und Herausforderungen zu stellen. Über gezielte Beobachtungen des Spiel- und Lerngeschehens erfassen die Lehrpersonen den aktuellen Entwicklungs- und Lernstand der Kinder.<p>
+	In geführten Sequenzen geht die Lenkung direkt von den Lehrpersonen aus. Sie führen beispielsweise in ein Thema, eine Gestaltungsaufgabe oder ein Singspiel ein oder erzählen eine Geschichte. In offenen Sequenzen nehmen die Lehrpersonen indirekt Einfluss, indem sie je nach Bedarf und Situation ins freie Spiel eingreifen und mitspielen, Vorschläge machen, hilfreich nachfragen, ermutigen, um so an neue herausfordernde Spielformen heranzuführen.</p>
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200arryx7kHMUVPap4LS9b88kf"><h4 class="mager" ><a style="text-decoration:none" name="a10">Spielmaterial und Lernumgebungen</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Spielmaterial und Lernumgebungen knüpfen an bereits vorhandenen Interessen der Kinder an, sind aber auch geeignet, Neugierde zu wecken und neue Interessen zu generieren. Sie beinhalten die Möglichkeit zum Explorieren und Experimentieren und sind auf die im Lehrplan formulierten Kompetenzen ausgerichtet.<p>
+	In den Innenräumen stehen den Kindern verschieden konzipierte Spiele und Lernumgebungen offen: Räume für Rollenspiele und Inszenierungen, Forscherecken, Bau- und Konstruktionsecken, Mal- und Bewegungsräume, Spiel- und Bücherecken für mathematische, strategische und sprachliche Herausforderungen usw. Im Aussenraum des Schulareals werden ebenfalls verschiedene Aktivitäten angeregt. Ergänzend bieten sich Aussenräume wie Waldplätze, Wiesen, Bachläufe, Spiel- und Sportplätze in der näheren Umgebung als ideale Lernorte zum Sammeln von Erfahrungen und zur Schärfung der Wahrnehmung an.</p>
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200RNu8vu2hbhtaDBBzYypqXUR"><h4 class="mager" ><a style="text-decoration:none" name="a11">Überfachliche Kompetenzen</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Im 1. Zyklus ist die Verbindung von fachlichen und überfachlichen Kompetenzen und deren Förderung - bedingt durch die altersspezifische Nähe von Entwicklung und Lernen - besonders eng. Deshalb enthalten die im Folgenden dargestellten entwicklungsorientierten Zugänge zum Lehrplan 21 zahlreiche Aspekte überfachlicher Kompetenzen. (Siehe auch <em>Grundlagen</em>, Kapitel <em>Überfachliche Kompetenzen</em>.)
+</p></div></div><div class="ek_absatz"><div class="ek_titel"><span id="101e200RaJWPtEVRnNqcspVemhRBRw"><h2><a style="text-decoration:none" name="a12">Entwicklungsorientierte Zugänge zum Lehrplan 21</a></h2></span></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200VCtprPZCBUFevH5hKNDrpyZ"><h4 class="mager" ><a style="text-decoration:none" name="a13">Entwicklungsorientierung und fachliche Orientierung</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Zu Beginn des 1. Zyklus wird der Unterricht überwiegend fächerübergreifend organisiert und gestaltet. Der Lehrplan 21 bietet deshalb neun entwicklungsorientierte Zugänge an, die als Lesehilfe dienen und den Lehrpersonen den Zugang zu den Fachbereichslehrplänen erleichtern. Diese ent­wicklungsorientierten Zugänge bauen eine Brücke von der Entwicklungsperspektive zur Fachbereichsstruktur des Lehrplans und erleichtern den Lehrerinnen und Lehrern die Planung des fächerübergreifenden Unterrichts.
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200SfpdJMF4GLX5GXrr6mkPc8V"><h4 class="mager" ><a style="text-decoration:none" name="a14"></a></h4></span></div><div class="ek_text nine columns omega"></div><p><a class="kapitelbild" href="https://stammdaten.lehrplan.ch/pdf_inhalte/illustrationen/200/web/abb_4_1_zyklus.jpg" alt="200/web/abb_4_1_zyklus.jpg"><img src="https://stammdaten.lehrplan.ch/pdf_inhalte/illustrationen/200/web/abb_4_1_zyklus.jpg" alt="200/web/abb_4_1_zyklus.jpg" class="bildbreite" /></a></p></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200DzCHBhSGadKdwB8MSDhGf9h"><h4 class="mager" ><a style="text-decoration:none" name="a15"></a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Im Verlaufe des 1. Zyklus verschiebt sich der Schwerpunkt des Lernens von der Entwicklungsperspektive hin zum Lernen in den Fachbereichen. Die fachspezifischen Inhalte rücken zunehmend in den Vordergrund. In der Unterrichtspraxis lassen sich die entwicklungsorientierte und die fachorientierte Herangehensweise verbinden, vielfältig variieren und kombinieren. Beide Zugangsweisen bleiben miteinander verknüpft.
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200tbmzfY7qnXV7nPTfzgz2H85"><h4 class="mager" ><a style="text-decoration:none" name="a16">Querverweise als Brücke zu den Fachbereichslehrplänen</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Die entwicklungsorientierten Zugänge sind durch Querverweise mit den Fachbereichslehrplänen verknüpft. Mit den Querverweisen werden Kompetenzen bzw. erste Stufen des Kompetenzaufbaus gekennzeichnet, die sich besonders für einen fächerübergreifenden Unterricht unter einer Entwicklungsperspektive eignen. Querverweise ermöglichen den Lehrpersonen einen von der entsprechenden Entwicklungsperspektive ausgehenden Blick auf den Lehrplan und dienen ihnen als Orientierungshilfe in der Vorbereitung, Durchführung und Auswertung des Unterrichts.
+<p>
+	Im Folgenden werden die einzelnen entwicklungsorientierten Zugänge mit Blick auf die kindliche Entwicklung beschrieben.</p>
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200Z5Effc5CWZv4YttuaAEDEw2"><h4 class="mager" ><a style="text-decoration:none" name="14|0|1">Körper, Gesundheit und Motorik (1)</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Kinder erleben ihren Körper als Zentrum und entdecken die Welt durch ihr Handeln. Vielfältige Bewegungsmöglichkeiten unterstützen ihre gesunde physische und psychische Entwicklung. Mädchen und Jungen
+<ul>
+	<li>
+		sind aktiv, erproben und üben verschiedene Bewegungsformen;</li>
+	<li>
+		verfeinern ihre Bewegungsmöglichkeiten und motorischen Fertigkeiten;</li>
+	<li>
+		üben ihre koordinativen Fähigkeiten;</li>
+	<li>
+		drücken mit ihrem Körper Gefühle und Empfindungen aus;</li>
+	<li>
+		lernen, Themen körperlich zu gestalten und darzustellen;</li>
+	<li>
+		beginnen, mit körperlichen Stärken und Begrenzungen umzugehen;</li>
+	<li>
+		lernen, vorsichtig zu handeln;</li>
+	<li>
+		entwickeln Selbstvertrauen und sind mutig;</li>
+	<li>
+		beginnen, ihre körperlichen Leistungen mit andern zu messen.</li>
+</ul>
+</p></div></div><div class="marginalie three columns alpha">&nbsp;</div><div class="nine columns omega" style="margin-bottom:12px"><div class="nine columns"><p class="querv" style="font-weight:600">Beispiele für Bezüge zu den Fachbereichslehrplänen:</p></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bildnerisches Gestalten" class="querv">Bildnerisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkfzpZbX6vpzzzT9YyehtbLGtnBx8J".>BG.2.C.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkXpmmgA32Bm7csbpSADzGVMdZTYHu".>BG.2.D.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bewegung und Sport" class="querv">Bewegung und Sport</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkg9uH6khvda8eyBXMexRqAg65rBD8".>BS.1.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkSmGUHvgFTkLVCzY42vMGcEVrtn8y".>BS.1.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk9FvzemkTMx5nDuAmCPgYBNnNUsPT".>BS.2.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk37xcFAr9GWh9uC5CTS6ChXLYFNv3".>BS.4.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kktYkDYzBWeMgqvrS3A7q8VKw7SuYV".>BS.5.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkUFNFqYPByfb9ty4Ytp8E3STuaZTs".>BS.6.A.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Deutsch" class="querv">Deutsch</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkCWZ76VAzXttG5P9uGCWPe7hK4GFT".>D.3.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkwHfJKERCuCSz8nzHr5CrHPpnrDzS".>D.4.A.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Musik" class="querv">Musik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkFeVmRkqZpk77HEU6L6ZYyT9VpLa8".>MU.1.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkwkpYAWghSM6x2qaSphCs3LVuhzty".>MU.3.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkpBtAL9PfnHzUaXzR3rAAkAKHVB6h".>MU.3.C.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkPmdca7W7bGmRrsKMvye4wWUbg59g".>MU.5.B.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Natur, Mensch, Gesellschaft (1./2. Zyklus)" class="querv">Natur, Mensch, Gesellschaft (1./2. Zyklus)</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkrG9fzJSggMEhyHScLDAU4TnCFYCK".>NMG.1.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkW6XBThRkgk4xR59NKND8suvnhJA3".>NMG.1.4</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kksV6tCmdCmEMTmsTp7SUU9CSVkkzA".>NMG.4.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Textiles und Technisches Gestalten" class="querv">Textiles und Technisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk6paEWM7qkhVeb57wzT227bPeWTv3".>TTG.2.D.1</p></a></div></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e2008uNVR7rD6Y5wJ6nNw23vE8a"><h4 class="mager" ><a style="text-decoration:none" name="14|0|2">Wahrnehmung (2)</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Über die Wahrnehmung treten Kinder mit sich selbst und ihrer Lebenswelt in Kontakt.  Sie nehmen sich selbst, ihren Körper, die Mitmenschen und die Umwelt über die verschiedenen Sinne wahr. Sie sehen, hören, riechen, schmecken und spüren. Alle Bereiche sind eng miteinander verknüpft. Die Kinder
+<ul>
+	<li>
+		machen sich über die Wahrnehmung von Gegenständen, Situationen, und Vorgängen mit der Aussenwelt vertraut;</li>
+	<li>
+		nehmen ihren Körper in Zeit und Raum und über die Interaktion mit der Umwelt wahr;</li>
+	<li>
+		erschliessen sich über Gefühle, Empfindungen, Gedanken, Erinnerungen und Imaginationen die innere Welt;</li>
+	<li>
+		erkennen die für die aktuelle Situation bedeutsamen Sinneseindrücke;</li>
+	<li>
+		lernen, Wahrnehmungen zu beschreiben und zu vergleichen;</li>
+	<li>
+		fokussieren ihre Aufmerksamkeit und üben das genaue Beobachten;</li>
+	<li>
+		bauen durch Erfahrung ein entsprechendes Begriffsfeld auf.</li>
+</ul>
+</p></div></div><div class="marginalie three columns alpha">&nbsp;</div><div class="nine columns omega" style="margin-bottom:12px"><div class="nine columns"><p class="querv" style="font-weight:600">Beispiele für Bezüge zu den Fachbereichslehrplänen:</p></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bildnerisches Gestalten" class="querv">Bildnerisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkb47PcPZkaqvabq89w5FPXkuKcLJW".>BG.1.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkPKRnTLs7XRnhdM2fsBKD9R3cgNsK".>BG.1.A.2</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bewegung und Sport" class="querv">Bewegung und Sport</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkcZxqJqWaRHYLzhXxBmhLhdSWMppR".>BS.2.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk3LTvGD2cZMkNSddLxknmN8KzWx8e".>BS.3.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkRWD982U7p2LGWAbYCdDqdq52msYv".>BS.3.C.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Deutsch" class="querv">Deutsch</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkzcLJBXg79dW3ct8Su6wC7mypWx64".>D.1.A.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Musik" class="querv">Musik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkLqGFgRdJgkpVDh8Kn9dyYKmAups5".>MU.1.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkcrDGHw4ft4NEAhha8KkD8BXVpMWx".>MU.2.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk9pYRV3nhZ96WdV2geadNEZKyyt6q".>MU.3.A.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Natur, Mensch, Gesellschaft (1./2. Zyklus)" class="querv">Natur, Mensch, Gesellschaft (1./2. Zyklus)</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkrG9fzJSggMEhyHScLDAU4TnCFYCK".>NMG.1.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkKL2RnZGekZhRn4kA7LXmuLT3Xamc".>NMG.3.3</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkS2WxeSvB5xstERUFmWz6FNVM7eFK".>NMG.4.2</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Textiles und Technisches Gestalten" class="querv">Textiles und Technisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkHYDeXeAp4f3aqYKRzAnSpkvJtabN".>TTG.1.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkxuYbc4UPtbFAJHKk9gSEvSuGmYHP".>TTG.2.C.1</p></a></div></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200baM2pwH4STrZyPs2MDSHyhx"><h4 class="mager" ><a style="text-decoration:none" name="14|0|3">Zeitliche Orientierung (3)</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Kinder müssen lernen, Zeitdauern abzuschätzen, Zeit zu planen und Zeitressourcen zielgerecht einzusetzen, da es keinen angeborenen Zeitsinn gibt und Zeit ein soziales Konstrukt ist. Das Erfassen der Zeit ist ein langwieriger und komplexer Prozess. Kinder lernen diese durch vielfältige Anregungen kennen und einschätzen: Sie
+<ul>
+	<li>
+		klären Zeitbegriffe (z.B. morgen oder vorgestern);</li>
+	<li>
+		bilden Reihen und Listen;</li>
+	<li>
+		sagen Wochentage und Monate auf;</li>
+	<li>
+		reflektieren gleichbleibende und variierende Tagesstrukturen (Rhythmisierung);</li>
+	<li>
+		feiern markante Punkte im Jahreslauf (Geburtstage und andere Feste);</li>
+	<li>
+		stellen Zeit grafisch dar (Uhr, Monate, Jahreskreis);</li>
+	<li>
+		denken Handlungsabfolgen aus, führen sie durch und reflektieren sie;</li>
+	<li>
+		schätzen und messen die Zeitdauer von Handlungen.</li>
+</ul>
+</p></div></div><div class="marginalie three columns alpha">&nbsp;</div><div class="nine columns omega" style="margin-bottom:12px"><div class="nine columns"><p class="querv" style="font-weight:600">Beispiele für Bezüge zu den Fachbereichslehrplänen:</p></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bildnerisches Gestalten" class="querv">Bildnerisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkRdgKvnYxJ6ALwEq6UUmkJddLDhnF".>BG.3.A.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Deutsch" class="querv">Deutsch</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkb5AYNphnsZs2Cnkhuv2C2aHhyFuf".>D.3.B.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Mathematik" class="querv">Mathematik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk2DDSqUSEmJhvW8S2beKCN59K7F7G".>MA.3.A.2</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Musik" class="querv">Musik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kksbGnwmk6wpDKUTny6tPuK82yc5F4".>MU.6.A.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Natur, Mensch, Gesellschaft (1./2. Zyklus)" class="querv">Natur, Mensch, Gesellschaft (1./2. Zyklus)</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkbDEqHbL6HrWgygZhS32gUprTEM2E".>NMG.9.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkE89Lz5VDqnTwRgzKhSzXccCgXDwG".>NMG.9.3</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Textiles und Technisches Gestalten" class="querv">Textiles und Technisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkBCtgCuhd5FaCVXS3SrLdkw55DJps".>TTG.3.A.1</p></a></div></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200GwPaNXbKkHyYhyDU5pvTtBJ"><h4 class="mager" ><a style="text-decoration:none" name="14|0|4">Räumliche Orientierung (4)</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Kinder bauen über Erfahrungen eine kognitive Vorstellung ihrer näheren und weiteren Umgebung auf, die es ihnen erlaubt, sich zu orientieren. Durch vielfältige Erfahrungen in Räumen erwerben Kinder grundlegende Fähigkeiten der Orientierung. Mädchen und Jungen
+<ul>
+	<li>
+		erkunden ihren Lebensraum (Wohnumgebung, Schulhausareal, Schulweg);</li>
+	<li>
+		lernen unterschiedliche Nutzungen von Räumen kennen (Innenräume, Aussenräume);</li>
+	<li>
+		erkennen räumliche Merkmale, Zusammenhänge und Funktionen;</li>
+	<li>
+		zeichnen und beschreiben Räume aus ihrer Lebenswelt und Fantasie;</li>
+	<li>
+		lesen und verstehen einfache Darstellungen von Räumen (z.B. Pläne, Krokis, Fotos).</li>
+</ul>
+</p></div></div><div class="marginalie three columns alpha">&nbsp;</div><div class="nine columns omega" style="margin-bottom:12px"><div class="nine columns"><p class="querv" style="font-weight:600">Beispiele für Bezüge zu den Fachbereichslehrplänen:</p></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bewegung und Sport" class="querv">Bewegung und Sport</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkg9uH6khvda8eyBXMexRqAg65rBD8".>BS.1.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk3LTvGD2cZMkNSddLxknmN8KzWx8e".>BS.3.A.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Deutsch" class="querv">Deutsch</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkzcLJBXg79dW3ct8Su6wC7mypWx64".>D.1.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkNuYst8dfwy9w2Xcvw4kgLZzW2xEE".>D.2.A.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Mathematik" class="querv">Mathematik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkLWFsCqzS3kqu5p3sP7FzrTqsmLuM".>MA.2.A.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkVEf7EtRrvLamJR64dtehVnGh5RcP".>MA.2.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkuwrUXhXPwc9sYdqWyb77dF3AxnEP".>MA.2.C.3</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Musik" class="querv">Musik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kktWRGDJgWr8DAUUYauwZxH8BVwwHy".>MU.5.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kksbGnwmk6wpDKUTny6tPuK82yc5F4".>MU.6.A.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Natur, Mensch, Gesellschaft (1./2. Zyklus)" class="querv">Natur, Mensch, Gesellschaft (1./2. Zyklus)</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkmDAW5HcmdeKNZzkeTh2cYauvefS9".>NMG.8.4</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkamuUh3w42xB6h8FdZ8JafDzsFGKW".>NMG.8.5</p></a></div></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200K6e8DcxfXECRS2VgAbea6Rn"><h4 class="mager" ><a style="text-decoration:none" name="14|0|5">Zusammenhänge und Gesetzmässigkeiten (5)</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Kinder haben ein natürliches Interesse an der Welt. Sie entwickeln früh eigene Vorstellungen über die unbelebte und belebte Natur sowie über menschliche Beziehungen. Sie werden dazu angeregt, ihr Handeln selbst zu initiieren, erhalten Gelegenheit zum individuellen und gemeinsamen Spielen und Explorieren und tauschen ihre Beobachtungen und Erfahrungen in Gesprächen aus. Im selbst initiierten Handeln, im individuellen und gemeinsamen Spielen und Explorieren wie auch in Gesprächen
+<ul>
+	<li>
+		erschliessen sich Kinder Zusammenhänge und kausale Gesetzmässigkeiten;</li>
+	<li>
+		bauen sie Begriffe und Konzepte auf, die sie im Alltag gebrauchen und einsetzen;</li>
+	<li>
+		reflektieren Kinder ihre Vorstellungen und entwickeln diese weiter, angeregt durch Fragen wie <em>Warum ist das so?</em> oder <em>Wozu dient dies?</em>;</li>
+	<li>
+		differenzieren sie ihr Weltbild.</li>
+</ul>
+</p></div></div><div class="marginalie three columns alpha">&nbsp;</div><div class="nine columns omega" style="margin-bottom:12px"><div class="nine columns"><p class="querv" style="font-weight:600">Beispiele für Bezüge zu den Fachbereichslehrplänen:</p></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bildnerisches Gestalten" class="querv">Bildnerisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkNT2SDJa6cJHPXLY8A9kFFuKutgEy".>BG.3.B.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Deutsch" class="querv">Deutsch</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkxPcRUVmy3m5ycfq3yw57YmAKt48n".>D.1.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkb5AYNphnsZs2Cnkhuv2C2aHhyFuf".>D.3.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkcVEX9F9CrGv4BttZU9rckFErKSzh".>D.4.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kksTUZVUcVKs7RDAC7pgpCxR7YEF8C".>D.5.C.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Mathematik" class="querv">Mathematik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkT2nStwT8nBHqE3KEWeXeE9r659AG".>MA.1.A.3</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkt8fZtJzw6arsmgv9VuhfpgB3GfMR".>MA.1.A.4</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk9xwCWc3CxYFZZLUfsFa5tUEfs63G".>MA.1.B.3</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kktc3zPFKuX2cCy2fLc7yzJJNdtnUX".>MA.2.A.3</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Musik" class="querv">Musik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk3n7mU8PTd3a29gZxEY4R9NL8wh47".>MU.1.C.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkhw6fGJaVMDe6Eth2fLk7M4E55WEN".>MU.2.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk3H7EXJk6Ac4dLC5AVtATftWyKvV5".>MU.4.C.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkagXTkGM4m9YNMrWyJW2HfAZhUdbw".>MU.6.B.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Natur, Mensch, Gesellschaft (1./2. Zyklus)" class="querv">Natur, Mensch, Gesellschaft (1./2. Zyklus)</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkvVqksgaxgMmvp6h3dMrFGsvdSkbY".>NMG.2.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkmG2bPCprqKHJfckuMULKg8fV6kG9".>NMG.3.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk9Uy8WyrCugUSYNBmUCqJqMDpvtFA".>NMG.3.4</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkdVRyUv3LHfUEBuws9YXwqGUpFfm8".>NMG.4.3</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkG75KrMxbFzqGaKsrnVeA8xZYmhLM".>NMG.4.5</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkGFSYKtW8wwPd4FEL5aLvBfT4GX37".>NMG.5.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkgMft5BRrT5rCqvJEdDUr4GRqEAzp".>NMG.7.4</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Textiles und Technisches Gestalten" class="querv">Textiles und Technisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkHYDeXeAp4f3aqYKRzAnSpkvJtabN".>TTG.1.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkwcA3tWMeZaKSFBMNMAryxn8sS2Wu".>TTG.3.A.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkfZCHGAV7JLx7AX4LMsgw6J8LBC4d".>TTG.3.B.2</p></a></div></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200VgZwsCDn6uKDYhNBUK4maK7"><h4 class="mager" ><a style="text-decoration:none" name="14|0|6">Fantasie und Kreativität (6)</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Kreative Prozesse verlaufen bei Kindern vorwiegend unstrukturiert, teilbewusst und spontan. Die Kinder reagieren auf innere und äussere Wahrnehmungen, indem sie diese deuten und in einen Zusammenhang mit ihren Vorstellungen und ihrem Wissen stellen. Ein fantasievolles Kind verfügt über eine grosse Vielfalt an inneren Bildern und Vorstellungen. Freiraum, Anregung und Unterstützung fordern kreative Ausdrucksformen heraus. Besondere Bedeutung hat Kreativität überall dort, wo Mädchen und Jungen
+<ul>
+	<li>
+		frei spielen;</li>
+	<li>
+		Darstellungsmöglichkeiten für Erlebtes und Erdachtes ausprobieren;</li>
+	<li>
+		sich aktiv und eigenständig mit der Umwelt auseinander setzen;</li>
+	<li>
+		wahrgenommene Dinge neu denken und weiterentwickeln;</li>
+	<li>
+		ungewohnte Sichtweisen und Lösungen entwickeln.</li>
+</ul>
+</p></div></div><div class="marginalie three columns alpha">&nbsp;</div><div class="nine columns omega" style="margin-bottom:12px"><div class="nine columns"><p class="querv" style="font-weight:600">Beispiele für Bezüge zu den Fachbereichslehrplänen:</p></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bildnerisches Gestalten" class="querv">Bildnerisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkefxMG2HgcENd5fwAqtwNswTeakMu".>BG.2.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkVztveD8BZWfuh5WzKfCw536MquKD".>BG.2.A.2</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bewegung und Sport" class="querv">Bewegung und Sport</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkGUTeaWJLMCW2crBUEP2sf7WMG8Sp".>BS.3.B.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Deutsch" class="querv">Deutsch</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkVf4RptkGteGBmzqNarVvFdVWsPwk".>D.3.D.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkHPCdH4wMFuxHwnGrkurvXXMDhzhe".>D.4.C.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkbnJJxSfX3P6tsJ5UHB77bbggUnd9".>D.6.A.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Mathematik" class="querv">Mathematik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk3Bpqv7eCqwHBETY38BeU9JPNEn3t".>MA.1.C.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkeMdA5HS3arx7mkGqdYcGLf8qqMsv".>MA.2.C.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkKK7frKveVEzneqZwcbE8Dc2yCTpD".>MA.3.B.2</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Musik" class="querv">Musik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkFeVmRkqZpk77HEU6L6ZYyT9VpLa8".>MU.1.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkwkpYAWghSM6x2qaSphCs3LVuhzty".>MU.3.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk5zSvcKYX3f5mNDh6ukpeKHpncJvh".>MU.4.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kktWRGDJgWr8DAUUYauwZxH8BVwwHy".>MU.5.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkPmdca7W7bGmRrsKMvye4wWUbg59g".>MU.5.B.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Natur, Mensch, Gesellschaft (1./2. Zyklus)" class="querv">Natur, Mensch, Gesellschaft (1./2. Zyklus)</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkE89Lz5VDqnTwRgzKhSzXccCgXDwG".>NMG.9.3</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Textiles und Technisches Gestalten" class="querv">Textiles und Technisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk8wsztnFeVxeJag2RS7vnAMkrpNqn".>TTG.2.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkRMw8Yy5NyyG7HKGFgXHFKJPvtUxy".>TTG.2.B.1</p></a></div></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e2005RK5hSHYKn9mR2HKDnEU8JK"><h4 class="mager" ><a style="text-decoration:none" name="14|0|7">Lernen und Reflexion (7)</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Kinder erweitern im Verlaufe ihrer Entwicklung die eigenen Lernmöglichkeiten: Sie lassen sich auf unterschiedliche Themen ein, nehmen Anregungen und Aufträge an, erforschen, erkunden, üben, beobachten, vergleichen, ordnen, ahmen nach, wenden an, prüfen, vermuten interpretieren usw. Vieles davon erfolgt in einer spielerischen Auseinandersetzung, die sukzessive durch systematische Lernformen ergänzt wird. Im 1. Zyklus spielen insbesondere das Lernen durch Beobachten und Nachahmen und das Vorzeigen und Nachmachen (Modelllernen) eine zentrale Rolle. Dabei lernen Kinder von Erwachsenen und ausgeprägt auch von- und miteinander.<p>
+	In der Reflexion werden Handlungen, Bilder, Sprache, Symbole und Gedanken aufeinander bezogen, um zu Klärung, Einordnung und Übersicht zu gelangen. Die Kinder erweitern ihre reflexiven Fähigkeiten unter anderem dadurch, dass sie</p>
+<ul>
+	<li>
+		über sachbezogene und soziale Tätigkeiten und Ziele nachdenken;</li>
+	<li>
+		Neues mit Bekanntem vergleichen;</li>
+	<li>
+		ihr Tun und Lernen planen und ihre Aufmerksamkeit auf das Erreichen von Zielen richten;</li>
+	<li>
+		ein konkretes Erlebnis bzw. eine Beobachtung zeichnerisch oder sprachlich bearbeiten;</li>
+	<li>
+		verschiedene Darstellungen eines Lerninhaltes oder Vorgehens besprechen.</li>
+</ul>
+</p></div></div><div class="marginalie three columns alpha">&nbsp;</div><div class="nine columns omega" style="margin-bottom:12px"><div class="nine columns"><p class="querv" style="font-weight:600">Beispiele für Bezüge zu den Fachbereichslehrplänen:</p></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bildnerisches Gestalten" class="querv">Bildnerisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk3qG6cLk4GdpmgDLNxxMkzpCchVKS".>BG.2.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkfzpZbX6vpzzzT9YyehtbLGtnBx8J".>BG.2.C.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bewegung und Sport" class="querv">Bewegung und Sport</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk9FvzemkTMx5nDuAmCPgYBNnNUsPT".>BS.2.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kknFgC5nwVyusmVXZdT2DmCppJyAmv".>BS.6.C.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Deutsch" class="querv">Deutsch</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkNuYst8dfwy9w2Xcvw4kgLZzW2xEE".>D.2.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkb5AYNphnsZs2Cnkhuv2C2aHhyFuf".>D.3.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkr3aW2hvS9upZWufcgSUKuwf88bGA".>D.5.B.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Mathematik" class="querv">Mathematik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkzkggzmGsVEwNPbSXh7c9PaYTvC2c".>MA.1.B.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkLR9NSpSFbZ6xsARLPxBaJNMq2Rfb".>MA.1.C.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk6BGtd9mhUwnU3RbgdKW2988eEdZX".>MA.3.A.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Musik" class="querv">Musik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkhw6fGJaVMDe6Eth2fLk7M4E55WEN".>MU.2.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkY9STzhEzLDpeH86Dr4Runmb6vgDZ".>MU.2.C.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Natur, Mensch, Gesellschaft (1./2. Zyklus)" class="querv">Natur, Mensch, Gesellschaft (1./2. Zyklus)</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkJpbm9PJfz3RhLYyYuqhEUrLK28h4".>NMG.1.6</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkyKx5phDV7xYkEg7aZk4xK3ADsrDc".>NMG.11.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkXgkgkVFyueg3UKLrKX4xKCtAFBzH".>NMG.3.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkVwnTzcrJRMPkSAdVW5Uq7C5aPVDv".>NMG.4.4</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkZuuGMC5Jn3Wf92WfHfpZtEHMXevL".>NMG.6.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkUvG7qgUsEZ5VhH4CWJKFUPXYewNG".>NMG.8.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Textiles und Technisches Gestalten" class="querv">Textiles und Technisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkq38gEHqgqte2a8VndyNMG93zx2qG".>TTG.1.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkT4NPyF5maaFXRSeLaEXeX8KVXgkL".>TTG.2.A.3</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkEL5RhAHsAh5d6thLNP2mFfxAuqwT".>TTG.2.E.1</p></a></div></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e2003wkdXhbr7h7UCm2M5V6knYd"><h4 class="mager" ><a style="text-decoration:none" name="14|0|8">Sprache und Kommunikation (8)</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Mit Sprache erschliesst und erklärt sich den Kindern die Welt, indem sie ihre Erlebnisse, Erfahrungen und Empfindungen in Worte fassen. Die Sprache spielt bei der Entwicklung des Denkens, der Gestaltung sozialer Kontakte, bei Problemlösungen und beim Erwerb methodischer Kompetenzen und Strategien eine fundamentale Rolle. Um sich auszudrücken nutzen Kinder ein sehr breites Spektrum an Sprach- und Kommunikationsmitteln. Mädchen und Jungen
+<ul>
+	<li>
+		sind aufgefordert, sich in einer Grossgruppe zu äussern;</li>
+	<li>
+		gestalten vielfältige Sprechanlässe wie Absprachen, Erklärungen und Begründungen, Erzählungen, Beschreibungen, Präsentationen, Erlebnisse, Geschichten und Spielsituationen;</li>
+	<li>
+		erweitern ihren Wortschatz und bauen ihre Ausdrucksmöglichkeiten aus;</li>
+	<li>
+		finden musikalisch, gestaltend und in Bewegung weitere Ausdrucksformen.</li>
+</ul>
+</p></div></div><div class="marginalie three columns alpha">&nbsp;</div><div class="nine columns omega" style="margin-bottom:12px"><div class="nine columns"><p class="querv" style="font-weight:600">Beispiele für Bezüge zu den Fachbereichslehrplänen:</p></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bildnerisches Gestalten" class="querv">Bildnerisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkPKRnTLs7XRnhdM2fsBKD9R3cgNsK".>BG.1.A.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkc889gxcYP4hSFwbHECet96tve6vh".>BG.1.B.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bewegung und Sport" class="querv">Bewegung und Sport</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkGUTeaWJLMCW2crBUEP2sf7WMG8Sp".>BS.3.B.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Deutsch" class="querv">Deutsch</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkMScYBtwdXPxemEUZeScPKHPpRStf".>D.1.C.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkz8Mt8w7tpeHrG5pgBaMZyHTASa2C".>D.3.C.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkVf4RptkGteGBmzqNarVvFdVWsPwk".>D.3.D.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkbnJJxSfX3P6tsJ5UHB77bbggUnd9".>D.6.A.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Mathematik" class="querv">Mathematik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkneHrALL6cmWVpy5JEUn7pKkthgpr".>MA.1.B.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkPbAZnbNpvGFHDASxZ8aPapKexA4N".>MA.3.C.2</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Musik" class="querv">Musik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk3n7mU8PTd3a29gZxEY4R9NL8wh47".>MU.1.C.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkyW7RzBHMNAyyKEkkqHgfPH6DSDsB".>MU.5.C.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Natur, Mensch, Gesellschaft (1./2. Zyklus)" class="querv">Natur, Mensch, Gesellschaft (1./2. Zyklus)</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkTU7SKxKE6TzNR9FDCrVVBzmaW8E2".>NMG.10.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkyUM3hdhHC98GXaEvRhGyFtAPMWau".>NMG.11.3</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkbPBcZRgCWP6S8MZ5ZSvEF8pMCXhE".>NMG.12.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkddGNvA5PAnTx9J5Sh8w3SMscRzLG".>NMG.7.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkEvuSpn2npkALxydyrTnhVbwTSDxv".>NMG.8.2</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Textiles und Technisches Gestalten" class="querv">Textiles und Technisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkCvVBvhkYKTtF4aq4SSPPfvSm2uJW".>TTG.1.B.2</p></a></div></div></div><div class="ek_absatz"></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200xd95nhZSa9hJ45ac2UEdeLw"><h4 class="mager" ><a style="text-decoration:none" name="14|0|9">Eigenständigkeit und soziales Handeln (9)</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Kinder im 1. Zyklus erfahren sich als eigenständige Personen, welche die Welt erproben, die Initiative ergreifen, selbstständig Aufgaben lösen, Stärken entwickeln und ihre Selbsteinschätzung differenzieren. Zugleich erleben die Kinder das Sich-Einfügen in eine grössere Gruppe von Gleichaltrigen, erfahren unterschiedliche Beziehungen und lernen, diese zu gestalten. Sie lernen, Interessen und Wünsche anderer Kinder zu berücksichtigen, zu kooperieren und Konflikte mit und ohne Unterstützung zu lösen. Die Kinder
+<ul>
+	<li>
+		entwickeln Vertrauen in ihre Fähigkeiten und Fertigkeiten und können diese einschätzen;</li>
+	<li>
+		übernehmen zunehmend die Verantwortung für das eigene Handeln;</li>
+	<li>
+		lernen, Überlegungen von andern in das eigene Denken einzubeziehen (Perspektivenübernahme);</li>
+	<li>
+		lernen, ihre Bedürfnisse je nach Situation in der Gruppe durchzusetzen oder zurückzustellen;</li>
+	<li>
+		sind in der Lage, kurzfristige Wünsche aufzuschieben und längerfristige Ziele zu verfolgen;</li>
+	<li>
+		üben sich darin, die eigenen Emotionen zu regulieren;</li>
+	<li>
+		erweitern ihre Frustrationstoleranz.</li>
+</ul>
+</p></div></div><div class="marginalie three columns alpha">&nbsp;</div><div class="nine columns omega" style="margin-bottom:12px"><div class="nine columns"><p class="querv" style="font-weight:600">Beispiele für Bezüge zu den Fachbereichslehrplänen:</p></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bildnerisches Gestalten" class="querv">Bildnerisches Gestalten</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkz2HSnHzHF9NXm98ZfSpS7L7THC9W".>BG.1.A.3</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Bewegung und Sport" class="querv">Bewegung und Sport</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkXKnt4H8RakLRauPSW64d4YmYTTBh".>BS.4.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk7fLsRZt69gkrF2cL3bEcrCgdYdw2".>BS.4.C.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Deutsch" class="querv">Deutsch</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkMScYBtwdXPxemEUZeScPKHPpRStf".>D.1.C.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Mathematik" class="querv">Mathematik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkgZmRMGmamAF3zCgsVW9J8frsqAw3".>MA.2.B.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkBaqxUCTBREbS8VGsd8CsMSLZTN4m".>MA.3.B.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Musik" class="querv">Musik</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkLqGFgRdJgkpVDh8Kn9dyYKmAups5".>MU.1.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk9pYRV3nhZ96WdV2geadNEZKyyt6q".>MU.3.A.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkRXRfsytMMMReYGWfA7EgURYq2tCt".>MU.4.A.1</p></a></div></div><br style="clear:both"><div class="three columns" style="font-weight:600"><p title="Natur, Mensch, Gesellschaft (1./2. Zyklus)" class="querv">Natur, Mensch, Gesellschaft (1./2. Zyklus)</p></div><div class="five columns" style="margin-bottom:5px"><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kk4DaxE6xnAhzNAKqmkccKR9AcZ5Fz".>NMG.10.1</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkTU7SKxKE6TzNR9FDCrVVBzmaW8E2".>NMG.10.2</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkxW3WJTfNezDH7LDfGHaRLvPxTgcL".>NMG.10.4</p></a></div><div style="min-width:100px" class="two columns"><p class="querv"><a href="https://lu.lehrplan.ch/101kkaymfSeyYugkMRy93JNmvdwAmRduF".>NMG.10.5</p></a></div></div></div>
+
+        	</div><!-- einleitendekapitel -->
+ 	
+
+
+
+        		
+        	</div><!-- twelve columns -->
+        </div> <!-- main -->
+
+        
+        		       	<!-- Fusszeile
+	================================================== -->
+
+  <div class="sixteen columns alpha omega fusszeile servicelinks">    <!-- Servicelinks -->
+    
+ 
+
+
+    
+        <ul class="mainmenu">
+	
+	
+    <li><a href="/impressum.php">Impressum</a></li><li><a href="/hilfe.php">Hilfe</a></li><li><a href="https://www.lehrplan.ch" target="_blank">Über den Lehrplan 21</a></li><li><a href="https://www.d-edk.ch" target="_blank">Die D-EDK</a></li><li><a title="Modus für das Setzen externer Links einschalten" href="if_set_link.php?back=index.php%3Fcode%3De%257C200%257C5"><img src="https://stammdaten.lehrplan.ch/grafiken/icons/clipboard.png"></a></li>	<li class="right">Lehrplan 21 · 29.2.2016</li>
+</ul>         
+                       
+        </div><!-- Fusszeile -->
+
+
+
+	</div><!-- container -->
+
+	<script src="js/selectnav.js"></script>
+	<script> selectnav('menuliste', {
+    activeclass: 'act',
+    nested: false,
+    label: false
+});
+</script>
+		
+   
+</body>
+</html>

@@ -49,7 +49,7 @@ public class LehrplanUri
 	}
 	
 	
-	static enum Fach
+	public static enum Fach
 	{
 		DEUTSCH("a|1|11|1|1|1"),
 		ENGLISH("a|1|21|1|1|1"),
@@ -71,7 +71,10 @@ public class LehrplanUri
 		
 		MI("a|10|0|1|0|1"), 
 		PROJEKT_VPU("a|11|1|1|1|1"),
-		PROJEKT_PU("a|11|2|1|1|1");
+		PROJEKT_PU("a|11|2|1|1|1"), 
+		
+		UEBERFACHLICHE("e|200|3"),
+		ENTWICKLUNGSORIENTIERTE_ZUGAENGE("e|200|5");
 		
 		public final String code;
 		

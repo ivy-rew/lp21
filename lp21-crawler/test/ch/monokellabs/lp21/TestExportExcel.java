@@ -87,7 +87,7 @@ public class TestExportExcel extends BaseLpTest {
 		System.out.println("Loaded "+htmlPages.size()+" competences from LP21");
 		
 		List<Kompetenz> kompetenzen = parse(htmlPages);
-		assertThat(kompetenzen).hasSameSizeAs(htmlPages);
+		assertThat(kompetenzen).hasSize(407); // inkl ueberfachlich
 		
 		XlsWriter workbook = new XlsWriter();
 		workbook.write(kompetenzen);

@@ -1,0 +1,410 @@
+	
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  	<title>Lehrplan 21</title>
+	<meta name="description" content="Lehrplan 21">
+	<meta name="D-EDK" content="Projekt Lehrplan 21">
+    <meta name="programmer" content="h1z - Heinz Estermann">
+
+
+	<!-- Mobile Viewports
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+
+	<!-- CSS
+  ================================================== -->
+<link rel="stylesheet" type="text/css" href="https://lu.lehrplan.ch/css/base.css"> <!-- lokal vorhanden! -->
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/skeleton.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/layout.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lp21.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lp21kompaufbau.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lpu.css">
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lpu_rev2014.css">
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/tooltipster.css" />
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/colorbox.css" />
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/slidetabs.css" />
+    
+	<!--[if lt IE 9]>
+		<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="SHORTCUT ICON" href="https://lu.lehrplan.ch/images/favicon.ico"><link rel="apple-touch-icon" href="https://lu.lehrplan.ch/images/apple-touch-icon.png"><link rel="apple-touch-icon" sizes="72x72" href="https://lu.lehrplan.ch/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="114x114" href="https://lu.lehrplan.ch/images/apple-touch-icon-114x114.png">    
+    
+    
+    <!-- Scripts
+	================================================== -->
+
+      	
+ 
+    <!-- jQuery von Google holen, wenn nicht erreichbar lokal laden -->
+	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	 
+	<script>!window.jQuery && document.write('<script src="https://stammdaten.lehrplan.ch/js/jquery-1.4.2.min.js"><\/script>')</script>
+    
+    
+	
+
+<script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/jquery.colorbox.js"></script>
+<!-- <script type="text/javascript" src="https://www.zebis.ch/scripts/ckeditor/ckeditor.js"></script> -->
+  	
+   <script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/tipsy.js"></script>
+   
+<script type="text/javascript">
+   $(document).ready(function(){
+      $(function(){
+		 $(".sprachfolge").colorbox({iframe:true, width:"500px", height:"415px",overlayClose:false,onLoad:function(){ $('#cboxClose').remove();},onClosed:function(){ location.reload(true);} });
+ 		 $(".editieren").colorbox({iframe:true, width:"800px", height:"90%",overlayClose:false,onClosed:function(){ location.reload(true);} });
+		 $(".kleinebox").colorbox({iframe:true,inline:true,height:"300px",width:"400px" });
+		 $(".listenbox").colorbox({iframe:true,inline:true,height:"90%",width:"450px" });
+		 $("a.kapitelbild").colorbox({maxHeight:"95%",maxWidth:"90%" });
+		 $("#hinweis_R").colorbox({open:true,inline:true, height:"200px",width:"300px" });
+		 $("#hinweis_I").colorbox({open:true,inline:true, height:"200px",width:"300px" });
+         $(".tooltip").tipsy({gravity: 's'});
+         $(".tooltip_auto").tipsy({gravity: $.fn.tipsy.autoNS})});
+	     $("#cboxCloseMe").click(function(){
+			$.fn.colorbox.close();
+			return false;
+			});
+		 $(".side").sidecontent();	
+
+
+
+   });
+</script>
+<script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/jquery.fallback.js"></script>
+<script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/jquery.slidetabs.js"></script>
+
+
+
+</head>
+<body>
+<div id="how">
+
+			
+</div> 
+
+	<div class="container sixteen columns">
+    
+    
+         <!-- Header
+================================================== -->
+
+      <div class="header container sixteen columns alpha omega">
+
+        <div class="header-logo seven columns alpha">
+          <a href="index.php" alt="Startseite"><img title="Lehrplan des Kantons Luzern" src="https://stammdaten.lehrplan.ch/grafiken/logo_web/LU.png"></a>        </div>
+        
+        <div class="two columns alpha">
+        
+            <div style="margin-top:6px;height:18px; width:100%;"></div>
+                   
+	        </div>
+
+        <div class="header-right seven columns omega">
+
+          <div class="seven columns alpha omega " >
+
+          		
+		
+          <div class="seven columns omega alpha kanton">
+          <div class="five columns alpha">
+            <form name="form_kantonsauswahl" id="form_kantonsauswahl" class="kantonsauswahl" action="set_sessions.php" method="get">	 
+		
+        		<select id="selectList" class="tooltip_auto" title="Wählen Sie den Kanton aus" name="kantonsauswahl" onChange="document.form_kantonsauswahl.submit()">
+                <optgroup label="Kantone" class="kantone">
+					SELECT * FROM kanton WHERE aktiv=1 AND  id NOT LIKE 'V_EF' AND id NOT LIKE 'V_FE' ORDER BY name<option value="AG" >Aargau</option><option value="AR" >Appenzell Ausserrhoden</option><option value="AI" >Appenzell Innerrhoden</option><option value="BL" >Basel-Landschaft</option><option value="BS" >Basel-Stadt</option><option value="BE" >Bern</option><option value="FR" >Freiburg</option><option value="GL" >Glarus</option><option value="GR_D" >Graubünden deutschsprachige Schulen</option><option value="GR_I" >Grigioni scuole di lingua italiana</option><option value="GR_R" >Grischun scolas rumantschas</option><option value="LU" selected="selected">Luzern</option><option value="NW" >Nidwalden</option><option value="OW" >Obwalden</option><option value="SZ" >Schwyz</option><option value="SO" >Solothurn</option><option value="SG" >St.Gallen</option><option value="TG" >Thurgau</option><option value="UR" >Uri</option><option value="VS" >Wallis</option><option value="ZG" >Zug</option><option value="ZH" >Zürich</option>                    </optgroup>
+                    <optgroup label="Vorlagen" class="vorlagen">
+                    <option value="V_EF" >1. Fremdsprache Englisch (mit Latein)</option><option value="V_FE" >1. Fremdsprache Französisch (mit Latein)</option>                    </optgroup>
+                    <input name="url_from" type="hidden" value="https://lu.lehrplan.ch/index.php?code=e%7C200%7C3">				</select>
+			
+		</form> 
+		
+		</div>
+                   
+	
+	   <div class="two columns omega"><div class="right download"><a title="Hier können Sie die Inhalte des Lehrplans als PDF herunterladen." href="/downloads.php" class="tooltip_auto">Downloadbereich</a></div></div>
+
+
+</div>
+
+          <div class="two columns alpha ">
+            <!-- -->
+
+                      </div> <!-- search -->
+
+          <div class="five columns omega filter" style="text-align:right">
+            <!-- evtl. Logo Lehrplan21 -->
+           <img src="https://stammdaten.lehrplan.ch/grafiken/logo_web/lp21.png"  title="Lehrplan 21" width="115px">            
+
+          </div> <!-- search -->
+
+          <!-- Search - neu im Navibereich index.php /23.3.15aa
+        <div class="four columns omega suche">
+
+        	</div>  -->
+
+
+        </div><!-- header-right -->
+
+
+
+      </div> <!-- header -->
+    
+    
+    
+      
+		
+		       	<!-- Content
+	================================================== -->
+
+		<div class="main"> 
+        
+
+       <div class="four columns alpha navigation">
+
+              <!-- zweiter  Aufruf , stehen lassen -->         
+        
+        	
+        	
+        
+
+		<div id="navigation"><div id="breadcrumb" class="dd-header"><a id="breadcrumbnavigation_first"  href="index.php" >Startseite</a><a id="breadcrumbnavigation" href="index.php?code=e|200|1">Grundlagen</a><a id="breadcrumbnavigation" href="index.php?code=e|200|3" >Überfachliche Kompetenzen</a></div><div id="navigation"><div id="breadcrumb" class="dd-header"><a id="breadcrumbnavigation" class="active_breadcrumb" style="padding:1px" href="index.php?code=e|200|1">Grundlagen</a></div></div><div class="grey">
+<ul id="menuliste">
+<li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|200|1">Bildungsziele</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|200|2">Lern- und Unterrichtsverständnis</a></li><li class="dreieck_ohne"><a class="active_menu parent_menu" href="index.php?code=e|200|3">Überfachliche Kompetenzen</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|200|4">Bildung für Nachhaltige Entwicklung</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|200|5">Schwerpunkte des 1. Zyklus</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|200|6">Schwerpunkte des 2. und 3. Zyklus</a></li></ul>
+</div>
+
+</div>
+
+
+
+
+
+        
+        <div class="four columns alpha textblock"> <h3>Hinweis zum Download</h3>
+<p>Im Downloadbereich können Sie die Dokumente des Lehrplans als PDF herunterladen und ausdrucken.</p></div>
+         <div class="four columns alpha">
+           <form id="searchbox" action="index.php" method="get">
+    <input id="search" name="suchwort" type="text" placeholder="Suchbegriff eingeben">
+    <input id="submit" type="submit" value="Suchen">
+    <input name="code" type="hidden" value="s">
+</form>
+                 </div>
+       <!-- zwieter Auftruf fertig, stehen lassen -->
+       </div> <!-- / navigation -->
+        
+       
+
+        
+        <div class="twelve columns omega">
+        	
+                      	                <div class="einleitendekapitel">
+                <div class="ek_absatz"><div class="ek_titel"><span id="101e2003xX3VtXXb7nAKAcsSw5N9Kg"><h1><a style="text-decoration:none" name="a1">Überfachliche Kompetenzen</a></h1></span></div></div><div class="ek_absatz"><div class="ek_titel"><span id="101e200C6XT9KJk2a7cp6K4xUZmwP3"><h2><a style="text-decoration:none" name="a2">Einleitung</a></h2></span></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200cM8Td6Es2TkSuuenVZEWvfh"><h4 class="mager" ><a style="text-decoration:none" name="a3">Personale, soziale und methodische Kompetenzen</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Überfachliche Kompetenzen sind für eine erfolgreiche Lebensbewältigung zentral. Im Lehrplan 21 werden personale, soziale und methodische Kompetenzen unterschieden; sie sind auf den schulischen Kontext ausgerichtet. Die einzelnen personalen, sozialen und methodischen Kompetenzen lassen sich dabei kaum trennscharf voneinander abgrenzen, sondern überschneiden sich.
+</p><p><a class="kapitelbild" href="https://stammdaten.lehrplan.ch/pdf_inhalte/illustrationen/200/web/abb_2_uek.jpg" alt="200/web/abb_2_uek.jpg"><img src="https://stammdaten.lehrplan.ch/pdf_inhalte/illustrationen/200/web/abb_2_uek.jpg" alt="200/web/abb_2_uek.jpg" class="bildbreite" /></a></p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200meUBU5qEXHCs5nbDAMYuf7D"><h4 class="mager" ><a style="text-decoration:none" name="a4"></a></h4></span></div><div class="ek_text nine columns omega"></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200242mDudHWferD69zDUHXZX3"><h4 class="mager" ><a style="text-decoration:none" name="a5">Förderung in der Schule</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Die Ausprägung der personalen und sozialen, etwas weniger der methodischen Kompetenzen, wird zu einem grossen Teil vom familiären und weiteren sozialen Umfeld der Kinder und Jugendlichen bestimmt. Im schulischen Kontext werden sie weiter entwickelt und ausgebildet.<p>
+	Zum einen werden überfachliche Kompetenzen im alltäglichen schulischen Zusammenleben gefördert und erweitert. Zum anderen bietet der Unterricht durch die vertiefte Auseinandersetzung mit Fachinhalten Gelegenheit, an überfachlichen Kompetenzen zu arbeiten. Je nach Aufgabe, Zielsetzung und Voraussetzungen der Lernenden sind unterschiedliche personale, soziale und methodische Kompetenzen hilfreich, um eine Aufgabe zu lösen. Es gehört zum verbindlichen Auftrag der Lehrpersonen, die fachlichen und überfachlichen Kompetenzen in allen drei Zyklen und in allen Fachbereichen aufzubauen und zu fördern. Die überfachlichen Kompetenzen tragen zur Bildung für eine Nachhaltige Entwicklung bei. (Siehe auch <em>Grundlagen</em>, Kapitel <em>Bildung für Nachhaltige Entwicklung.</em>)</p>
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e2002hX8ZJa2RMUJwRcuMJsqX8g"><h4 class="mager" ><a style="text-decoration:none" name="a6">Kompetenzen der Schülerinnen und Schüler</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Die Schülerinnen und Schüler arbeiten an den überfachlichen Kompetenzen während ihrer ganzen Schulzeit. Einige der unten beschriebenen Kompetenzen erreichen sie im Laufe der Schulzeit. Für andere wird in der Schule lediglich eine Basis gelegt. An ihnen muss über die Schulzeit hinaus gearbeitet werden.
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200vGpG8KJezwTRCRrNV5CVrKP"><h4 class="mager" ><a style="text-decoration:none" name="a7">Einarbeitung in den Lehrplan 21</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	In den Fachbereichen und Modulen werden in der Bearbeitung der personalen, sozialen und methodischen Kompetenzen verschiedene Schwerpunkte gesetzt. Diese Schwerpunkte werden in den einleitenden Kapiteln des jeweiligen Fachbereichs- und Modullehrplans dargestellt. Sie werden in den Kompetenzaufbauten aufgegriffen und mit dem fachlichen Lernen verknüpft.
+</p></div></div><div class="ek_absatz"><div class="ek_titel"><span id="101e200UaTZGxkMXCWRyfxyGCYhKMv"><h2><a style="text-decoration:none" name="a8">Personale Kompetenzen (Selbstreflexion, Selbstständigkeit und Eigenständigkeit)</a></h2></span></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200fRytAN8CfArekKPq2ypaqBZ"><h4 class="mager" ><a style="text-decoration:none" name="11|1|1">Selbstreflexion:<br>Eigene Ressourcen kennen und nutzen</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Die Schülerinnen und Schüler ...
+<ul>
+	<li>
+		können eigene Gefühle wahrnehmen und situationsangemessen ausdrücken.</li>
+	<li>
+		können ihre Interessen und Bedürfnisse wahrnehmen und formulieren.</li>
+	<li>
+		können Stärken und Schwächen ihres Lern- und Sozialverhaltens einschätzen.</li>
+	<li>
+		können auf ihre Stärken zurückgreifen und diese gezielt einsetzen.</li>
+	<li>
+		können Fehler analysieren und über alternative Lösungen nachdenken.</li>
+	<li>
+		können auf Lernwege zurückschauen, diese beschreiben und beurteilen.</li>
+	<li>
+		können eigene Einschätzungen und Beurteilungen mit solchen von aussen vergleichen und Schlüsse ziehen (Selbst- und Fremdeinschätzung).</li>
+	<li>
+		können aus Selbst- und Fremdeinschätzungen gewonnene Schlüsse umsetzen.</li>
+</ul>
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200uECJTgryyLrmCXfZcvyDTgy"><h4 class="mager" ><a style="text-decoration:none" name="11|1|2">Selbstständigkeit:<br>Schulalltag und Lernprozesse zunehmend selbstständig bewältigen, Ausdauer entwickeln</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Die Schülerinnen und Schüler ...
+<ul>
+	<li>
+		können sich in neuen, ungewohnten Situationen zurechtfinden.</li>
+	<li>
+		können Herausforderungen annehmen und konstruktiv damit umgehen.</li>
+	<li>
+		können sich Unterstützung und Hilfe holen, wenn sie diese benötigen.</li>
+	<li>
+		können einen geeigneten Arbeitsplatz einrichten, das eigene Lernen organisieren, die Zeit einteilen und bei Bedarf Pausen einschalten.</li>
+	<li>
+		können sich auf eine Aufgabe konzentrieren und ausdauernd und diszipliniert daran arbeiten.</li>
+	<li>
+		können eigenverantwortlich Hausaufgaben erledigen und sich auf Lernkontrollen vorbereiten.</li>
+	<li>
+		können übertragene Arbeiten sorgfältig, zuverlässig und pünktlich erledigen.</li>
+	<li>
+		können Strategien einsetzen, um eine Aufgabe auch bei Widerständen und Hindernissen zu Ende zu führen.</li>
+</ul>
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e2009uhd8pFhuh8gKA2g3DZ3wM4"><h4 class="mager" ><a style="text-decoration:none" name="11|1|3">Eigenständigkeit:<br>Eigene Ziele und Werte reflektieren und verfolgen</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Die Schülerinnen und Schüler ...
+<ul>
+	<li>
+		können sich eigener Meinungen und Überzeugungen (z.B. zu Geschlechterrollen) bewusst werden und diese mitteilen.</li>
+	<li>
+		können eigene und andere Meinungen und Überzeugungen auf zugrunde liegende Argumente (Fakten, Interessen, Werte) hin befragen.</li>
+	<li>
+		können Argumente abwägen und einen eigenen Standpunkt einnehmen.</li>
+	<li>
+		können die Argumente zum eigenen Standpunkt verständlich und glaubwürdig vortragen.</li>
+	<li>
+		können aufgrund neuer Einsichten einen bisherigen Standpunkt ändern; sie können in Auseinandersetzungen nach Alternativen oder neuen Wegen suchen.</li>
+	<li>
+		können einen eigenen Standpunkt einnehmen und vertreten, auch wenn dieser im Gegensatz zu vorherrschenden Meinungen/Erwartungen steht.</li>
+</ul>
+</p></div></div><div class="ek_absatz"><div class="ek_titel"><span id="101e200e9ugzqY7PWCTmL88X58TUyw"><h2><a style="text-decoration:none" name="a12">Soziale Kompetenzen (Dialog- und Kooperationsfähigkeit, Konfliktfähigkeit und Umgang mit Vielfalt)</a></h2></span></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200rmUzrZSfPHMzUYXaLbGW5NL"><h4 class="mager" ><a style="text-decoration:none" name="11|2|1">Dialog- und Kooperationsfähigkeit:<br>Sich mit Menschen austauschen, zusammenarbeiten</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Die Schülerinnen und Schüler ...
+<ul>
+	<li>
+		können sich aktiv und im Dialog an der Zusammenarbeit mit anderen beteiligen.</li>
+	<li>
+		können aufmerksam zuhören und Meinungen und Standpunkte von andern wahrnehmen und einbeziehen.</li>
+	<li>
+		können in der Gruppe und in der Klasse oder in einem Schülerrat Abmachungen aushandeln und Regeln einhalten.</li>
+	<li>
+		können auf Meinungen und Standpunkte anderer achten und im Dialog darauf eingehen.</li>
+	<li>
+		können je nach Situation eigene Interessen zu Gunsten der Zielerreichung in der Gruppe zurückstellen oder durchsetzen.</li>
+	<li>
+		können Gruppenarbeiten planen.</li>
+	<li>
+		können verschiedene Formen der Gruppenarbeit anwenden.</li>
+</ul>
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200Xdz6fVZ8fY3bPH9SGKfz7wS"><h4 class="mager" ><a style="text-decoration:none" name="11|2|2">Konfliktfähigkeit:<br>Konflikte benennen, Lösungsvorschläge suchen, Konflikte lösen</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Die Schülerinnen und Schüler ...
+<ul>
+	<li>
+		können sachlich und zielorientiert kommunizieren, Gesprächsregeln anwenden und Konflikte direkt ansprechen.</li>
+	<li>
+		können sich in die Lage einer anderen Person versetzen und sich darüber klar werden, was diese Person denkt und fühlt.</li>
+	<li>
+		können Kritik angemessen, klar und anständig mitteilen und mit konstruktiven Vorschlägen verbinden.</li>
+	<li>
+		können Kritik annehmen und die eigene Position hinterfragen.</li>
+	<li>
+		können Formen und Verfahren konstruktiver Konfliktbearbeitung anwenden.</li>
+	<li>
+		können in einer Konfliktsituation einen Konsens suchen und diesen Konsens anerkennen.</li>
+	<li>
+		können Konfliktsituationen, die sich nicht lösen lassen, aushalten und nach neuen Konfliktlösungsmöglichkeiten suchen; wenn nötig holen sie bei Drittpersonen Unterstützung.</li>
+	<li>
+		können die von der Schule bereitgestellten Hilfen nutzen und Instrumente zur gewaltfreien Konfliktlösung akzeptieren.</li>
+</ul>
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200yGnT3HcyAUfzJvnSHZFXXTq"><h4 class="mager" ><a style="text-decoration:none" name="11|2|3">Umgang mit Vielfalt:<br>Vielfalt als Bereicherung erfahren, Gleichberechtigung mittragen</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Die Schülerinnen und Schüler ...
+<ul>
+	<li>
+		können Menschen in ihren Gemeinsamkeiten und Differenzen wahrnehmen und verstehen.</li>
+	<li>
+		können respektvoll mit Menschen umgehen, die unterschiedliche Lernvoraussetzungen mitbringen oder sich in Geschlecht, Hautfarbe, Sprache, sozialer Herkunft, Religion oder Lebensform unterscheiden.</li>
+	<li>
+		können die Wirkung von Sprache reflektieren und achten in Bezug auf Vielfalt auf einen wertschätzenden Sprachgebrauch.</li>
+	<li>
+		können einen herabwürdigenden Sprachgebrauch erkennen und nehmen einen solchen nicht passiv hin.</li>
+</ul>
+</p></div></div><div class="ek_absatz"><div class="ek_titel"><span id="101e200Jfy5LupnP8kExLyWJeZsDCX"><h2><a style="text-decoration:none" name="a16">Methodische Kompetenzen (Sprachfähigkeit, Informationen nutzen und Aufgaben/Probleme lösen)</a></h2></span></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200AWBvpnDteWw3Hwwut9tVZVE"><h4 class="mager" ><a style="text-decoration:none" name="11|3|1">Sprachfähigkeit:<br>Ein breites Repertoire sprachlicher Ausdrucksformen entwickeln</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Die Schülerinnen und Schüler ...
+<ul>
+	<li>
+		können sprachliche Ausdrucksformen erkennen und ihre Bedeutung verstehen.</li>
+	<li>
+		können unterschiedliche Sachverhalte sprachlich ausdrücken und sich dabei anderen verständlich machen.</li>
+	<li>
+		können Fachausdrücke und Textsorten aus den verschiedenen Fachbereichen verstehen und anwenden.</li>
+</ul>
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200RcEkcWeqXMM2nKKsg5xfC2y"><h4 class="mager" ><a style="text-decoration:none" name="11|3|2">Informationen nutzen:<br>Informationen suchen, bewerten, aufbereiten und präsentieren</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Die Schülerinnen und Schüler ...
+<ul>
+	<li>
+		können Informationen aus Beobachtungen und Experimenten, aus dem Internet, aus Büchern und Zeitungen, aus Texten, Tabellen und Statistiken, aus Grafiken und Bildern, aus Befragungen und Interviews suchen, sammeln und zusammenstellen.</li>
+	<li>
+		können die gesammelten Informationen strukturieren und zusammenfassen und dabei Wesentliches von Nebensächlichem unterscheiden.</li>
+	<li>
+		können Informationen vergleichen und Zusammenhänge herstellen (vernetztes Denken).</li>
+	<li>
+		können die Qualität und Bedeutung der gesammelten und strukturierten Informationen abschätzen und beurteilen.</li>
+	<li>
+		können die Ergebnisse in unterschiedlichen Darstellungsformen wie Mindmap, Bericht, Plakat oder Referat aufbereiten und anderen näherbringen.</li>
+</ul>
+</p></div></div><div class="ek_absatz"><div class="marginalie three columns alpha "><span id="101e200sECJS3rDH2qH2vxuxqGRW5e"><h4 class="mager" ><a style="text-decoration:none" name="11|3|3">Aufgaben/Probleme lösen:<br>Lernstrategien erwerben, Lern- und Arbeitsprozesse planen, durchführen und reflektieren</a></h4></span></div><div class="ek_text nine columns omega"><p>
+	Die Schülerinnen und Schüler ...
+<ul>
+	<li>
+		kennen allgemeine und fachspezifische Lernstrategien und können sie nutzen.</li>
+	<li>
+		können die Aufgaben- und Problemstellung sichten und verstehen und fragen bei Bedarf nach.</li>
+	<li>
+		können einschätzen, wie schwer oder leicht ihnen die Aufgaben/Problemlösungen fallen werden.</li>
+	<li>
+		können bekannte Muster hinter der Aufgabe/dem Problem erkennen und daraus einen Lösungsweg ableiten.</li>
+	<li>
+		können neue Herausforderungen erkennen und kreative Lösungen entwerfen.</li>
+	<li>
+		können Ziele für die Aufgaben und Problemlösungen setzen und Umsetzungsschritte planen.</li>
+	<li>
+		können Lern- und Arbeitsprozesse durchführen, dokumentieren und reflektieren.</li>
+</ul>
+</p></div></div>
+
+        	</div><!-- einleitendekapitel -->
+ 	
+
+
+
+        		
+        	</div><!-- twelve columns -->
+        </div> <!-- main -->
+
+        
+        		       	<!-- Fusszeile
+	================================================== -->
+
+  <div class="sixteen columns alpha omega fusszeile servicelinks">    <!-- Servicelinks -->
+    
+ 
+
+
+    
+        <ul class="mainmenu">
+	
+	
+    <li><a href="/impressum.php">Impressum</a></li><li><a href="/hilfe.php">Hilfe</a></li><li><a href="https://www.lehrplan.ch" target="_blank">Über den Lehrplan 21</a></li><li><a href="https://www.d-edk.ch" target="_blank">Die D-EDK</a></li><li><a title="Modus für das Setzen externer Links einschalten" href="if_set_link.php?back=index.php%3Fcode%3De%257C200%257C3"><img src="https://stammdaten.lehrplan.ch/grafiken/icons/clipboard.png"></a></li>	<li class="right">Lehrplan 21 · 29.2.2016</li>
+</ul>         
+                       
+        </div><!-- Fusszeile -->
+
+
+
+	</div><!-- container -->
+
+	<script src="js/selectnav.js"></script>
+	<script> selectnav('menuliste', {
+    activeclass: 'act',
+    nested: false,
+    label: false
+});
+</script>
+		
+   
+</body>
+</html>

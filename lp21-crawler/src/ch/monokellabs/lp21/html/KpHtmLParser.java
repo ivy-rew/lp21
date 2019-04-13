@@ -18,7 +18,13 @@ public class KpHtmLParser
 		Elements crumbs = document.select(".active_breadcrumb");
 		kp.fach = crumbs.get(0).text();
 		
-		kp.bereichCode = document.select(".kcode").get(0).text();
+		Elements code = document.select(".kcode");
+		if (code.isEmpty())
+		{ // not a kp page!
+			return null;
+		}
+		
+		kp.bereichCode = code.get(0).text();
 		kp.aspektCode = document.select(".htacode").get(0).text();
 		Elements areas = document.select(".kompetenzbereich");
 		kp.bereich = areas.get(0).text();

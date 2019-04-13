@@ -26,7 +26,7 @@ public class Kompetenz {
 	
 	public int titelNr;
 	public String titel;
-	public List<Verweis> verweise;
+	public List<Verweis> verweise = new ArrayList<>();
 	
 	
 	public List<Kompetenzstufe> stufen = new ArrayList<>();

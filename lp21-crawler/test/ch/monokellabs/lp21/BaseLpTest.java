@@ -3,11 +3,14 @@ package ch.monokellabs.lp21;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 
+import ch.monokellabs.lp21.html.UeberfachlicheKpParser;
 import ch.monokellabs.lp21.load.ZipHtmlLoader;
 
 public class BaseLpTest {
@@ -24,10 +27,22 @@ public class BaseLpTest {
 	}
 	
 	protected static final List<Kompetenz> parse(List<String> htmlPages) {
+		List<String> failed = new ArrayList<>();
 		List<Kompetenz> kompetenzen = htmlPages.stream()
-			.map(html -> Kompetenz.parse(html))
-			.sorted(new Kompetenz.CodeComparator())
+			.map(html -> {
+				Kompetenz kp = Kompetenz.parse(html);
+				if (kp == null)
+				{
+					failed.add(html);
+				}
+				return kp;
+			})
+			.filter(Objects::nonNull)
 			.collect(Collectors.toList());
+		for(String fail : failed)
+		{
+			kompetenzen.addAll(UeberfachlicheKpParser.parse(fail));
+		}
 		return kompetenzen;
 	}
 	

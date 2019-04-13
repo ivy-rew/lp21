@@ -38,11 +38,13 @@ public class ZipHtmlLoader
 	}
 
 	private static List<String> readHtmlDir(Path firstDir) throws IOException {
-		return Files.walk(firstDir)
+		List<String> html = Files.walk(firstDir)
 			.filter(path -> !Files.isDirectory(path))
 			.map(path -> readFile(path))
 			.filter(Objects::nonNull)
 			.collect(Collectors.toList());
+		Collections.reverse(html);
+		return html;
 	}
 
 	private static String readFile(Path path) {

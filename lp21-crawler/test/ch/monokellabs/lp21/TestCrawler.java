@@ -40,9 +40,21 @@ public class TestCrawler extends BaseLpTest {
 	}
 	
 	@Test
+	public void loadUncategorized() throws Exception
+	{
+		URI ueberfachlich = LehrplanUri.createLpUri(LehrplanUri.Fach.UEBERFACHLICHE.code);
+		String uef = cachedLoader().fetch(ueberfachlich);
+		assertThat(uef).contains("Personale Kompetenzen");
+		
+		URI ezUri = LehrplanUri.createLpUri(LehrplanUri.Fach.ENTWICKLUNGSORIENTIERTE_ZUGAENGE.code);
+		String ezHtml = cachedLoader().fetch(ezUri);
+		assertThat(ezHtml).contains("Entwicklungsorientierte Zugänge");
+	}
+	
+	@Test
 	public void loadFulLP21() throws Exception
 	{
-		assertThat(loadPages().size()).isEqualTo(398);
+		assertThat(loadPages().size()).isEqualTo(400);
 	}
 	
 	private static List<String> loadPages() throws URISyntaxException, ClientProtocolException, IOException {
