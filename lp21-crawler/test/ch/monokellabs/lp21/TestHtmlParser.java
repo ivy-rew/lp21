@@ -69,15 +69,24 @@ public class TestHtmlParser extends BaseLpTest {
 		List<Kompetenz> ueberfachlich = UeberfachlicheKpParser.parse(ueberHtml);
 		Kompetenz selfreflect = ueberfachlich.get(0);
 		
+		assertThat(selfreflect.code).isEqualTo("UE.P.A.1");
 		assertThat(selfreflect.fach).isEqualTo("Überfachliche Kompetenzen");
-		assertThat(selfreflect.bereich).isEqualTo("Personale Kompetenzen");
 		assertThat(selfreflect.bereichCode).isEqualTo("P");
+		assertThat(selfreflect.bereich).isEqualTo("Personale Kompetenzen");
+		assertThat(selfreflect.aspektCode).isEqualTo("A");
 		assertThat(selfreflect.aspekt).isEqualTo("Selbstreflexion");
+		assertThat(selfreflect.titelNr).isEqualTo(1);
 		assertThat(selfreflect.titel).isEqualTo("Eigene Ressourcen kennen und nutzen");
 		
 		assertThat(selfreflect.stufen).hasSize(8);
 		Kompetenzstufe stufe1 = selfreflect.stufen.get(0);
 		assertThat(stufe1.text)
 			.isEqualTo("können eigene Gefühle wahrnehmen und situationsangemessen ausdrücken.");
+		assertThat(stufe1.code).isEqualTo("UE.P.A.1.a");
+		
+		Kompetenz selbststaendig = ueberfachlich.get(1);
+		assertThat(selbststaendig.aspekt).isEqualTo("Selbstständigkeit");
+		assertThat(selbststaendig.aspektCode).isEqualTo("B");
+		assertThat(selbststaendig.titelNr).isEqualTo(2);
 	}
 }
