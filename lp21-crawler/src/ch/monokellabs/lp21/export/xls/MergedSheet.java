@@ -109,7 +109,11 @@ public class MergedSheet
 			zyklusCell.setCellValue(stufe.zyklus);
 			zyklusCell.setCellStyle(style.getZyklusStyle(stufe.zyklus));
 			row.add(stufe.code).setCellStyle(style.top);
-			row.add(stufe.text);
+			XSSFCell textCell = row.add(stufe.text);
+			if (stufe.grundanspruch)
+			{
+				textCell.setCellStyle(style.grundanspruch);
+			}
 			row.add(verweiseCell(stufe.verweise)).setCellStyle(style.top);
 		}
 		return rowNum;

@@ -39,11 +39,13 @@ public class TestHtmlParser extends BaseLpTest {
 		assertThat(first.zyklus).isEqualTo(1);
 		assertThat(first.code).isEqualTo("D.1.A.1.a");
 		assertThat(first.text).isEqualTo("können die Aufmerksamkeit auf die sprechende Person und deren Beitrag richten.");
-	
+		assertThat(first.grundanspruch).isEqualTo(false);
+		
 		Kompetenzstufe fourth = deHoeren.stufen.get(3);
 		assertThat(fourth.code).isEqualTo("D.1.A.1.d");
 		assertThat(fourth.text).isEqualTo("können unterschiedliche Laute und Lautverbindungen heraushören, im Wort verorten (Anlaut, Mittellaute, Endlaut) und mit Erfahrungen aus der Erstsprache vergleichen.\n"
 				+ "können einzelne Wörter und Wendungen in vertrauten Situationen verstehen oder deren Bedeutung erfragen und so ihren rezeptiven Wortschatz erweitern.");
+		assertThat(fourth.grundanspruch).isTrue();
 		assertThat(fourth.verweise).hasSize(2);
 	}
 	

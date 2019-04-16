@@ -18,6 +18,8 @@ public class Style
 	public final CellStyle z2;
 	public final CellStyle z3;
 	
+	public final CellStyle grundanspruch;
+	
 	public Style(Workbook wb)
 	{
 		top = wb.createCellStyle();
@@ -49,6 +51,10 @@ public class Style
 		z3 = wb.createCellStyle();
 		z3.cloneStyleFrom(z1);
 		z3.setFillBackgroundColor(HSSFColorPredefined.LIGHT_GREEN.getIndex());
+		
+		grundanspruch = wb.createCellStyle();
+		grundanspruch.setFillBackgroundColor(HSSFColorPredefined.BROWN.getIndex());
+		grundanspruch.setFillPattern(FillPatternType.THIN_BACKWARD_DIAG);
 	}
 	
 	public CellStyle getZyklusStyle(int zyklus) {

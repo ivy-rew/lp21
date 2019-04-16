@@ -26,6 +26,8 @@ public class StufeParser
 			entry.zyklus = lastZyklus;
 		}
 		
+		entry.grundanspruch = row.attr("class").contains("mindestanspruch");
+		
 		Elements codes = row.select(".kompetenz_lit");
 		entry.code = codes.get(0).attributes().get("title");
 		

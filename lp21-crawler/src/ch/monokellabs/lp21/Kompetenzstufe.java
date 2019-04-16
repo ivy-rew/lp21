@@ -11,6 +11,7 @@ public class Kompetenzstufe
 	public int zyklus;
 	public String code;
 	public String text;
+	public boolean grundanspruch;
 	public List<Verweis> verweise = Collections.emptyList();
 
 	@Override
