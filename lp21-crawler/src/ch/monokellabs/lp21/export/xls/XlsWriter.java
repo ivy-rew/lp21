@@ -28,11 +28,18 @@ public class XlsWriter {
 
 	public XSSFWorkbook write(Collection<Kompetenz> kompetenzen)
 	{
+		writeIndividual(kompetenzen);
 		writeMerged(kompetenzen);
         writeRaw(kompetenzen);
         return workbook;
     }
 
+	public XSSFSheet writeIndividual(Collection<Kompetenz> kompetenzen) {
+		XSSFSheet indiv = workbook.createSheet("Indiv");
+		new IndividualSheet(indiv).fill(kompetenzen);
+		return indiv;
+	}
+	
 	public XSSFSheet writeMerged(Collection<Kompetenz> kompetenzen) {
 		XSSFSheet lp21 = workbook.createSheet("LP21");
 		new MergedSheet(lp21).fill(kompetenzen);

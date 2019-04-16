@@ -13,6 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.junit.Test;
 
 import ch.monokellabs.lp21.export.xls.Header;
+import ch.monokellabs.lp21.export.xls.IndividualSheet;
 import ch.monokellabs.lp21.export.xls.XlsWriter;
 
 public class TestExportExcel extends BaseLpTest {
@@ -97,5 +98,14 @@ public class TestExportExcel extends BaseLpTest {
 			workbook.persist(out);
 		}
 	}
-	
+
+	@Test
+	public void testNextColName()
+	{
+		assertThat(IndividualSheet.getNextName("A", 2)).isEqualTo("C");
+		assertThat(IndividualSheet.getNextName("F", 1)).isEqualTo("G");
+		assertThat(IndividualSheet.getNextName("Z", 1)).isEqualTo("AA");
+		assertThat(IndividualSheet.getNextName("AA", 1)).isEqualTo("AB");
+		assertThat(IndividualSheet.getNextName("Z", 2)).isEqualTo("AB");
+	}
 }
