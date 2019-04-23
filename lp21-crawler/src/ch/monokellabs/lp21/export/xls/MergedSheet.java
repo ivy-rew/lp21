@@ -25,6 +25,8 @@ public class MergedSheet
 	private final XSSFSheet sheet;
 	private final Style style;
 	
+	public boolean genderized = false;
+	
 	public MergedSheet(XSSFSheet sheet) {
 		this.sheet = sheet;
 		this.style = new Style(sheet.getWorkbook());
@@ -63,7 +65,7 @@ public class MergedSheet
 			tNrCell.setCellValue((komp.titelNr));
 			tNrCell.setCellStyle(style.codeShort);
 			
-			XSSFCell titelCell = kpRow.add(komp.titel);
+			XSSFCell titelCell = kpRow.add(komp.titel.get(genderized));
 			titelCell.setCellStyle(style.topAutoBreak);
 			kpRow.add(verweiseCell(komp.verweise)).setCellStyle(style.top);
 			rowNum+=komp.stufen.size();

@@ -54,7 +54,7 @@ public class TestExportExcel extends BaseLpTest {
 		assertThat(kpRow.getCell(4).getStringCellValue()).isEqualTo("A");
 		assertThat(kpRow.getCell(5).getStringCellValue()).isEqualTo("Grundfertigkeiten");
 		assertThat(kpRow.getCell(6).getNumericCellValue()).isEqualTo(1);
-		assertThat(kpRow.getCell(7).getStringCellValue()).contains("können Laute, Silben, Stimmen");
+		assertThat(kpRow.getCell(7).getStringCellValue()).contains("kann Laute, Silben, Stimmen");
 		assertThat(kpRow.getCell(9).getNumericCellValue()).isEqualTo(1);
 		assertThat(kpRow.getCell(10).getStringCellValue()).isEqualTo("D.1.A.1.a");
 		assertThat(kpRow.getCell(11).getStringCellValue()).startsWith("können die Aufmerksamkeit");

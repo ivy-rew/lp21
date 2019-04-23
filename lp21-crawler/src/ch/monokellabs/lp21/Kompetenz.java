@@ -25,7 +25,7 @@ public class Kompetenz {
 	public String aspekt;
 	
 	public int titelNr;
-	public String titel;
+	public Genderized titel;
 	public List<Verweis> verweise = new ArrayList<>();
 	
 	

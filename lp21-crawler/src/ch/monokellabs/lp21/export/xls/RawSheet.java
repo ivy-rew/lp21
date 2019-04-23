@@ -18,6 +18,8 @@ public class RawSheet
 {
 	private final XSSFSheet sheet;
 
+	public boolean genderized = false;
+	
 	public RawSheet(XSSFSheet sheet) {
 		this.sheet = sheet;
 		new PrintOptions(sheet).optimize();
@@ -38,7 +40,7 @@ public class RawSheet
         header.freezeHeaderAndFilter();
 	}
 
-	private static int writeKompetenz(Kompetenz komp, XSSFSheet sheet, int rowNum) {
+	private int writeKompetenz(Kompetenz komp, XSSFSheet sheet, int rowNum) {
 		for(Kompetenzstufe stufe : komp.stufen)
 		{
 			Row row = new Row(sheet.createRow(rowNum++));
@@ -50,7 +52,7 @@ public class RawSheet
 			row.add(komp.aspekt);
 			
 			row.addCell().setCellValue((komp.titelNr));
-			row.add(komp.titel);
+			row.add(komp.titel.get(genderized));
 			row.add(verweiseCell(komp.verweise));
 			
 			row.addCell().setCellValue(stufe.zyklus);

@@ -16,6 +16,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import ch.monokellabs.lp21.Genderized;
 import ch.monokellabs.lp21.Kompetenz;
 import ch.monokellabs.lp21.Kompetenzstufe;
 
@@ -64,7 +65,7 @@ public class UeberfachlicheKpParser
 		
 		String h4 = absatz.getElementsByTag("h4").text();
 		kp.titelNr = tNr;
-		kp.titel = StringUtils.substringAfter(h4, ": ");
+		kp.titel = new Genderized(StringUtils.substringAfter(h4, ": "));
 		kp.aspekt = StringUtils.substringBefore(h4, ":");
 		Character acode = ASPECT_TO_CODE.computeIfAbsent(kp.aspekt, aspekt -> {
 			if (ASPECT_TO_CODE.isEmpty())

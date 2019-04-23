@@ -27,7 +27,7 @@ public class TestHtmlParser extends BaseLpTest {
 		assertThat(deHoeren.aspektCode).isEqualTo("A");
 		assertThat(deHoeren.aspekt).isEqualTo("Grundfertigkeiten");
 		assertThat(deHoeren.titelNr).isEqualTo(1);
-		assertThat(deHoeren.titel).isEqualTo("Die Schülerinnen und Schüler können Laute, Silben, Stimmen, Geräusche und Töne wahrnehmen, einordnen und vergleichen. Sie können ihren rezeptiven Wortschatz aktivieren, um das Gehörte angemessen schnell zu verstehen.");
+		assertThat(deHoeren.titel.getValue()).isEqualTo("Die Schülerinnen und Schüler können Laute, Silben, Stimmen, Geräusche und Töne wahrnehmen, einordnen und vergleichen. Sie können ihren rezeptiven Wortschatz aktivieren, um das Gehörte angemessen schnell zu verstehen.");
 		assertThat(deHoeren.verweise).hasSize(2);
 		assertThat(deHoeren.verweise).containsExactly(
 				new Verweis("EZ", "Räumliche Orientierung (4)"),
@@ -76,7 +76,7 @@ public class TestHtmlParser extends BaseLpTest {
 		assertThat(selfreflect.aspektCode).isEqualTo("A");
 		assertThat(selfreflect.aspekt).isEqualTo("Selbstreflexion");
 		assertThat(selfreflect.titelNr).isEqualTo(1);
-		assertThat(selfreflect.titel).isEqualTo("Eigene Ressourcen kennen und nutzen");
+		assertThat(selfreflect.titel.getValue()).isEqualTo("Eigene Ressourcen kennen und nutzen");
 		
 		assertThat(selfreflect.stufen).hasSize(8);
 		Kompetenzstufe stufe1 = selfreflect.stufen.get(0);
@@ -97,7 +97,7 @@ public class TestHtmlParser extends BaseLpTest {
 		Kompetenz mi12 = Kompetenz.parse(mi12html);
 		
 		assertThat(mi12.code).isEqualTo("MI.1.2");
-		assertThat(mi12.titel).isEqualTo("Die Schülerinnen und Schüler können "
+		assertThat(mi12.titel.getValue()).isEqualTo("Die Schülerinnen und Schüler können "
 				+ "Medien und Medienbeiträge entschlüsseln, reflektieren und nutzen.");
 		assertThat(mi12.aspekt)
 			.as("can parse informal sub title as aspect!")

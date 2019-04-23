@@ -52,7 +52,7 @@ public class CsvWriter {
 			line.append(escape(komp.aspektCode)).append(COL_SEPARATOR);
 			line.append(escape(komp.aspekt)).append(COL_SEPARATOR);
 			line.append(komp.titelNr).append(COL_SEPARATOR);
-			line.append(escape(komp.titel)).append(COL_SEPARATOR);
+			line.append(escape(komp.titel.getValue())).append(COL_SEPARATOR);
 			line.append(verweiseCell(komp.verweise)).append(COL_SEPARATOR);
 			
 			line.append(stufe.zyklus).append(COL_SEPARATOR);

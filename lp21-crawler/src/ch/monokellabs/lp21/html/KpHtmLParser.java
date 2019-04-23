@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import ch.monokellabs.lp21.Genderized;
 import ch.monokellabs.lp21.Kompetenz;
 
 public class KpHtmLParser
@@ -43,7 +44,7 @@ public class KpHtmLParser
 		
 		kp.titelNr = Integer.parseInt(document.select(".komptitelnr").get(0).text());
 		Elements titels = document.select(".kompetenztitel");
-		kp.titel = titels.select("p").get(1).text();
+		kp.titel = new Genderized(titels.select("p").get(1).text());
 		
 		kp.verweise = QVParser.parseHead(document);
 		
