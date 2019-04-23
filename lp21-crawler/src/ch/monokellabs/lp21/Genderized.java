@@ -2,6 +2,7 @@ package ch.monokellabs.lp21;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,7 +19,7 @@ public class Genderized
 	public static Map<String, String> VERBS = new HashMap<>();
 	static{
 		VERBS.put("können", "kann");
-		VERBS.put("erfahren,", "erfährt");
+		VERBS.put("erfahren, erkennen und reflektieren", "erfährt, erkennt und reflektiert");
 		VERBS.put("verstehen", "versteht");
 		VERBS.put("kennen", "kennt");
 		VERBS.put("begegnen", "begegnet");
@@ -67,6 +68,22 @@ public class Genderized
 			String multi = withoutGenderPrefix();
 			String verbMulti = StringUtils.substringBefore(multi, " ");
 			String verbSingle = VERBS.get(verbMulti);
+			if (verbSingle == null)
+			{ 
+				for(Entry<String, String> nTo1 : VERBS.entrySet())
+				{
+					if (StringUtils.startsWith(multi, nTo1.getKey()))
+					{
+						verbMulti = nTo1.getKey();
+						verbSingle = nTo1.getValue();
+						break;
+					}
+				}
+			}
+			if (verbSingle == null)
+			{
+				return multi;
+			}
 			String verbless = StringUtils.substringAfter(kpTitel, verbMulti);
 			return verbSingle + verbless;
 		}
@@ -88,8 +105,12 @@ public class Genderized
 	
 	static String cutPrefix(String titel, String prefix)
 	{
-		int whitespace = 1;
-		String shortened = titel.substring(prefix.length()+whitespace, titel.length());
+		int begin = prefix.length();
+		if (titel.charAt(begin) == ' ')
+		{
+			begin+= 1;
+		}
+		String shortened = titel.substring(begin, titel.length());
 		return shortened;
 	}
 	

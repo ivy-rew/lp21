@@ -37,6 +37,17 @@ public class TestIndividualLp extends BaseLpTest {
 	}
 	
 	@Test
+	public void individualizeTitle_literature()
+	{
+		String d6c = "Die Schülerinnen und Schüler erfahren, erkennen und reflektieren, "
+				+ "dass literarische Texte in Bezug auf Inhalt, Form und Sprache bewusst gestaltet sind, um eine ästhetische Wirkung zu erzielen. Sie kennen wesentliche Merkmale von Genres und literarischen Gattungen.";
+		String shortened = new Genderized(d6c).indiviudalized();
+		assertThat(shortened).isEqualTo("erfährt, erkennt und reflektiert, dass literarische Texte in Bezug auf Inhalt, "
+				+ "Form und Sprache bewusst gestaltet sind, um eine ästhetische Wirkung zu erzielen. "
+				+ "Sie kennen wesentliche Merkmale von Genres und literarischen Gattungen.");
+	}
+	
+	@Test
 	public void verbAfterGenderPrefix() throws Exception
 	{
 		List<String> htmlPages = loadLocalLp21();
@@ -48,10 +59,15 @@ public class TestIndividualLp extends BaseLpTest {
 			.map(shortened -> StringUtils.substringBefore(shortened, " "))
 			.collect(Collectors.toSet());
 		
-		String[] mehrzahl = Genderized.VERBS.keySet().toArray(new String[Genderized.VERBS.size()]);
 		assertThat(verbs)
 			.as("prefix following verbs are very limited and well known")
-			.containsExactly(mehrzahl);
+			.containsExactly("können",
+				    "erfahren,",
+				    "verstehen",
+				    "kennen",
+				    "begegnen",
+				    "experimentieren",
+				    "verfügen");
 	}
 	
 }
