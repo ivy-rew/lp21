@@ -4,9 +4,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRichTextString;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import ch.monokellabs.lp21.Kompetenz;
@@ -28,28 +25,19 @@ public class RawSheet
 	
 	public void fill(Collection<Kompetenz> kompetenzen)
 	{
-		writeHeaderRow(sheet.createRow(0));
-        
+		KpHeader header = new KpHeader(sheet);
+		header.writeColTitle(0);
+		
         int rowNum = 2;
         for(Kompetenz komp : kompetenzen)
         {
         	rowNum = writeKompetenz(komp, sheet, rowNum);
         }
+        
+        header.addAutoFilter(1);
+        header.freezeHeaderAndFilter();
 	}
-	
-	private static final List<String> HEADERS = Header.ALL;
-	
-	static void writeHeaderRow(XSSFRow row) {
-		for(int col=0; col<HEADERS.size(); col++)
-		{
-			String colHeader = HEADERS.get(col);
-			XSSFCell cell = row.createCell(col);
-			XSSFRichTextString formattedValue = new XSSFRichTextString(colHeader);
-			formattedValue.applyFont(XlsWriter.HEADER_FONT);
-			cell.setCellValue(formattedValue);
-		}
-	}
-	
+
 	private static int writeKompetenz(Kompetenz komp, XSSFSheet sheet, int rowNum) {
 		for(Kompetenzstufe stufe : komp.stufen)
 		{

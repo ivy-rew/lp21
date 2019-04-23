@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
@@ -34,10 +33,14 @@ public class MergedSheet
 	
 	public void fill(Collection<Kompetenz> kompetenzen)
 	{
-		writeHeaderRow(sheet.createRow(0));
+		KpHeader header = new KpHeader(sheet);
+		header.writeColTitle(0);
+		
 		writeKompetenzen(kompetenzen);
         writeKompetenStufen(kompetenzen);
-        addAutoFilter();
+        
+        header.addAutoFilter(1);
+        header.freezeHeaderAndFilter();
 	}
 
 	private void writeKompetenzen(Collection<Kompetenz> kompetenzen) {
@@ -74,22 +77,6 @@ public class MergedSheet
 		sheet.setColumnWidth(Header.indexOf(Header.aCode), 4*256);
 		sheet.setColumnWidth(Header.indexOf(Header.titelNo), 4*256);
 		sheet.setColumnWidth(Header.indexOf(Header.titel), 12*4*256);
-	}
-
-	private void addAutoFilter() {
-		sheet.setAutoFilter(new CellRangeAddress(
-				1, sheet.getLastRowNum(), 0, Header.ALL.size()-1));
-	}
-	
-	static void writeHeaderRow(XSSFRow row) {
-		for(int col=0; col<Header.ALL.size(); col++)
-		{
-			String colHeader = Header.ALL.get(col);
-			XSSFCell cell = row.createCell(col);
-			XSSFRichTextString formattedValue = new XSSFRichTextString(colHeader);
-			formattedValue.applyFont(XlsWriter.HEADER_FONT);
-			cell.setCellValue(formattedValue);
-		}
 	}
 
 	private void writeKompetenStufen(Collection<Kompetenz> kompetenzen) {
