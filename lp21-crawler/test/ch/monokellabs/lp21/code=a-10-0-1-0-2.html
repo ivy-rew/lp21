@@ -1,0 +1,650 @@
+	
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  	<title>Lehrplan 21</title>
+	<meta name="description" content="Lehrplan 21">
+	<meta name="D-EDK" content="Projekt Lehrplan 21">
+    <meta name="programmer" content="h1z - Heinz Estermann">
+
+
+	<!-- Mobile Viewports
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+
+	<!-- CSS
+  ================================================== -->
+<link rel="stylesheet" type="text/css" href="https://lu.lehrplan.ch/css/base.css"> <!-- lokal vorhanden! -->
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/skeleton.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/layout.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lp21.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lp21kompaufbau.css">
+	<link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lpu.css">
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/lpu_rev2014.css">
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/tooltipster.css" />
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/colorbox.css" />
+    <link rel="stylesheet" type="text/css" href="https://stammdaten.lehrplan.ch/css/slidetabs.css" />
+    
+	<!--[if lt IE 9]>
+		<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="SHORTCUT ICON" href="https://lu.lehrplan.ch/images/favicon.ico"><link rel="apple-touch-icon" href="https://lu.lehrplan.ch/images/apple-touch-icon.png"><link rel="apple-touch-icon" sizes="72x72" href="https://lu.lehrplan.ch/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="114x114" href="https://lu.lehrplan.ch/images/apple-touch-icon-114x114.png">    
+    
+    
+    <!-- Scripts
+	================================================== -->
+
+      	
+ 
+    <!-- jQuery von Google holen, wenn nicht erreichbar lokal laden -->
+	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	 
+	<script>!window.jQuery && document.write('<script src="https://stammdaten.lehrplan.ch/js/jquery-1.4.2.min.js"><\/script>')</script>
+    
+    
+	
+
+<script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/jquery.colorbox.js"></script>
+<!-- <script type="text/javascript" src="https://www.zebis.ch/scripts/ckeditor/ckeditor.js"></script> -->
+  	
+   <script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/tipsy.js"></script>
+   
+<script type="text/javascript">
+   $(document).ready(function(){
+      $(function(){
+		 $(".sprachfolge").colorbox({iframe:true, width:"500px", height:"415px",overlayClose:false,onLoad:function(){ $('#cboxClose').remove();},onClosed:function(){ location.reload(true);} });
+ 		 $(".editieren").colorbox({iframe:true, width:"800px", height:"90%",overlayClose:false,onClosed:function(){ location.reload(true);} });
+		 $(".kleinebox").colorbox({iframe:true,inline:true,height:"300px",width:"400px" });
+		 $(".listenbox").colorbox({iframe:true,inline:true,height:"90%",width:"450px" });
+		 $("a.kapitelbild").colorbox({maxHeight:"95%",maxWidth:"90%" });
+		 $("#hinweis_R").colorbox({open:true,inline:true, height:"200px",width:"300px" });
+		 $("#hinweis_I").colorbox({open:true,inline:true, height:"200px",width:"300px" });
+         $(".tooltip").tipsy({gravity: 's'});
+         $(".tooltip_auto").tipsy({gravity: $.fn.tipsy.autoNS})});
+	     $("#cboxCloseMe").click(function(){
+			$.fn.colorbox.close();
+			return false;
+			});
+		 $(".side").sidecontent();	
+
+
+
+   });
+</script>
+<script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/jquery.fallback.js"></script>
+<script type="text/javascript" src="https://stammdaten.lehrplan.ch/js/jquery.slidetabs.js"></script>
+
+
+
+</head>
+<body>
+<div id="how">
+
+			
+</div> 
+
+	<div class="container sixteen columns">
+    
+    
+         <!-- Header
+================================================== -->
+
+      <div class="header container sixteen columns alpha omega">
+
+        <div class="header-logo seven columns alpha">
+          <a href="index.php" alt="Startseite"><img title="Lehrplan des Kantons Luzern" src="https://stammdaten.lehrplan.ch/grafiken/logo_web/LU.png"></a>        </div>
+        
+        <div class="two columns alpha">
+        
+            <div style="margin-top:6px;height:18px; width:100%;"></div>
+                   
+	        </div>
+
+        <div class="header-right seven columns omega">
+
+          <div class="seven columns alpha omega " >
+
+          		
+		
+          <div class="seven columns omega alpha kanton">
+          <div class="five columns alpha">
+            <form name="form_kantonsauswahl" id="form_kantonsauswahl" class="kantonsauswahl" action="set_sessions.php" method="get">	 
+		
+        		<select id="selectList" class="tooltip_auto" title="Wählen Sie den Kanton aus" name="kantonsauswahl" onChange="document.form_kantonsauswahl.submit()">
+                <optgroup label="Kantone" class="kantone">
+					SELECT * FROM kanton WHERE aktiv=1 AND  id NOT LIKE 'V_EF' AND id NOT LIKE 'V_FE' ORDER BY name<option value="AG" >Aargau</option><option value="AR" >Appenzell Ausserrhoden</option><option value="AI" >Appenzell Innerrhoden</option><option value="BL" >Basel-Landschaft</option><option value="BS" >Basel-Stadt</option><option value="BE" >Bern</option><option value="FR" >Freiburg</option><option value="GL" >Glarus</option><option value="GR_D" >Graubünden deutschsprachige Schulen</option><option value="GR_I" >Grigioni scuole di lingua italiana</option><option value="GR_R" >Grischun scolas rumantschas</option><option value="LU" selected="selected">Luzern</option><option value="NW" >Nidwalden</option><option value="OW" >Obwalden</option><option value="SZ" >Schwyz</option><option value="SO" >Solothurn</option><option value="SG" >St.Gallen</option><option value="TG" >Thurgau</option><option value="UR" >Uri</option><option value="VS" >Wallis</option><option value="ZG" >Zug</option><option value="ZH" >Zürich</option>                    </optgroup>
+                    <optgroup label="Vorlagen" class="vorlagen">
+                    <option value="V_EF" >1. Fremdsprache Englisch (mit Latein)</option><option value="V_FE" >1. Fremdsprache Französisch (mit Latein)</option>                    </optgroup>
+                    <input name="url_from" type="hidden" value="https://lu.lehrplan.ch/index.php?code=a%7C10%7C0%7C1%7C0%7C2">				</select>
+			
+		</form> 
+		
+		</div>
+                   
+	
+	   <div class="two columns omega"><div class="right download"><a title="Hier können Sie die Inhalte des Lehrplans als PDF herunterladen." href="/downloads.php" class="tooltip_auto">Downloadbereich</a></div></div>
+
+
+</div>
+
+          <div class="two columns alpha ">
+            <!-- -->
+
+            <div class="alpha two columns zyklus ">
+<div class=" alpha two columns">
+
+		<!--	<p class="selectinfo">Ihre Zyklenauswahl:</p> -->
+        <form name="form_zyklusauswahl" id="form_zyklusauswahl" class="zyklusauswahl" action="set_sessions.php" method="get">
+        		<select id="selectList" name="zyklusauswahl" class="tooltip_auto" title="Wählen Sie einen Zyklus aus." onChange="document.form_zyklusauswahl.submit()">
+
+					<option value="0">Alle Zyklen</option>
+                    <option value="1" >1. Zyklus</option><option value="2" >2. Zyklus</option><option value="3" >3. Zyklus</option><input name="url_from" type="hidden" value="lu.lehrplan.ch/index.php?code=a%7C10%7C0%7C1%7C0%7C2">				</select>
+		</form>
+		</div>
+		</div>
+                  </div> <!-- search -->
+
+          <div class="five columns omega filter" style="text-align:right">
+            <!-- evtl. Logo Lehrplan21 -->
+           <img src="https://stammdaten.lehrplan.ch/grafiken/logo_web/lp21.png"  title="Lehrplan 21" width="115px">            
+
+          </div> <!-- search -->
+
+          <!-- Search - neu im Navibereich index.php /23.3.15aa
+        <div class="four columns omega suche">
+
+        	</div>  -->
+
+
+        </div><!-- header-right -->
+
+
+
+      </div> <!-- header -->
+    
+    
+    
+      
+		
+		       	<!-- Content
+	================================================== -->
+
+		<div class="main"> 
+        
+
+       <div class="four columns alpha navigation">
+
+              <!-- zweiter  Aufruf , stehen lassen -->         
+        
+        	
+        	
+        
+
+		<div id="navigation"><div id="breadcrumb" class="dd-header"><a id="breadcrumbnavigation_first"  href="index.php" >Startseite</a><a id="breadcrumbnavigation" href="index.php?code=b|10|0&la=yes" >Medien und Informatik</a><a id="breadcrumbnavigation" href="index.php?code=b|10|0|1" >1 Medien</a></div><div id="navigation"><div id="breadcrumb" class="dd-header"><a id="breadcrumbnavigation" class="active_breadcrumb" style="padding:1px" href="index.php">Medien und Informatik</a></div></div><div class="grey">
+<ul id="menuliste">
+<li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|10|1">Zum Modul</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|10|2">Bedeutung und Zielsetzungen</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|10|3">Didaktische Hinweise</a></li><li class="dreieck_ohne"><a class="parent_menu" href="index.php?code=e|10|4">Strukturelle und inhaltliche Hinweise</a></li><li class="dreieck_mit"><a class="active_menu parent_menu" href="index.php?code=b|10|0|1">1 Medien</a><ul id="menuliste2"></ul></li><li class="dreieck_mit"><a class="parent_menu" href="index.php?code=b|10|0|2">2 Informatik</a></li></ul>
+</div>
+
+</div>
+
+
+
+
+
+        
+        <div class="four columns alpha textblock"> <h3>Hinweis zum Download</h3>
+<p>Im Downloadbereich können Sie die Dokumente des Lehrplans als PDF herunterladen und ausdrucken.</p></div>
+         <div class="four columns alpha">
+           <form id="searchbox" action="index.php" method="get">
+    <input id="search" name="suchwort" type="text" placeholder="Suchbegriff eingeben">
+    <input id="submit" type="submit" value="Suchen">
+    <input name="code" type="hidden" value="s">
+</form>
+                 </div>
+       <!-- zwieter Auftruf fertig, stehen lassen -->
+       </div> <!-- / navigation -->
+        
+       
+
+        
+        <div class="twelve columns omega">
+        	
+                			
+  				<!--  <div class="kompetenznavigation kntop">
+                 	 </div> -->
+			
+
+   
+   
+        	
+        	<div class="kompetenzaufbau">
+        		
+        		<div class="kompetenzcode twelve columns alpha omega">
+        			<div class=" two columns kcode alpha"><p>MI.1</p></div>
+        			<div class="kompetenzbereich  columns"><p>Medien</p></div><div class="rightmenu columns">
+					
+<nav >
+    <ul>
+        <li>
+            <a href="#">Herunterladen</a>
+            <ul class="fallback">
+            <li><a target="_blank" href="https://lu.lehrplan.ch/lehrplan_printout.php?k=1&fb_id=10&f_id=0&kb_id=1&ha_id=0&k_id=2">Diese Kompetenz herunterladen</a></li><li><a target="_blank" href="https://lu.lehrplan.ch/lehrplan_printout.php?k=1&fb_id=10&f_id=0&kb_id=1">Diesen Kompetenzbereich herunterladen</a></li><li><a target="_blank" href="https://lu.lehrplan.ch/lehrplan_printout.php?k=1&fb_id=10">Diesen Fachbereich herunterladen</a></li><li><a target="_blank" href="https://lu.lehrplan.ch/lehrplan_printout.php?e=1&fb_id=10">Die Einleitung des Fachbereichs herunterladen</a></li>            </ul>
+        </li>
+  
+    </ul>
+</nav></div>
+
+<!-- evtl. Spezifika -->
+<div class="kompetenzcode twelve columns alpha omega "><div class=" two columns htacode alpha"><p>&nbsp;</p></div><div class="kompetenzbereich columns"><p style="color:#CB3A27">&nbsp;</p></div>       		
+        		</div><!-- kompetenzcode -->
+
+        		     <!-- koresspondierende -->
+		      	   			<!-- / koresspondierende -->
+				
+				<!-- / kompetenz -->
+			
+        		<div class="komptitel twelve columns alpha omega">
+        		<div class="two columns kompetenz_nr alpha">
+                <a href="index.php?code=a|10|0|1|0|1"  class="tooltip left" original-title="Zur vorangehenden Kompetenz wechseln"><img src="css/images/arrow_left1.png"></a>
+		
+				
+				<nav class="menu">
+    <ul>
+        <li>
+        <a href="#"><p></p></a><ul class="fallback"><li><p>Weitere Kompetenzen im Kompetenzbereich <em>Medien:</em></p></li><li><a title="1. {"DE":"Die Schu00fclerinnen und Schu00fcler ku00f6nnen sich in der physischen Umwelt sowie in medialen und virtuellen Lebensru00e4umen orientieren und sich darin entsprechend den Gesetzen, Regeln und Wertesystemen verhalten.","FR":"Die Schu00fclerinnen und Schu00fcler ku00f6nnen sich in der physischen Umwelt sowie in medialen und virtuellen Lebensru00e4umen orientieren und sich darin entsprechend den Gesetzen, Regeln und Wertesystemen verhalten.","IT":"Gli allievi sanno orientarsi nell'ambiente fisico nonchu00e9 in ambienti mediali e virtuali e sanno comportarsi in essi in modo conforme alle leggi, alle regole e ai valori.","RM":"Las scolaras ed ils scolars san s'orientar en l'ambient fisic sco era en spazis da viver medials e virtuals e sa cumportar en quels tenor las leschas, las reglas ed ils sistems da valurs.","EN":"Die Schu00fclerinnen und Schu00fcler ku00f6nnen sich in der physischen Umwelt sowie in medialen und virtuellen Lebensru00e4umen orientieren und sich darin entsprechend den Gesetzen, Regeln und Wertesystemen verhalten."}"  href="index.php?code=a|10|0|1|0|1">1. Die Schülerinnen und Schüler können sich in der physischen Umwelt sowie in medialen und virtuellen Lebensräumen orientieren und sich darin entsprechend den Gesetzen, Regeln und Wertesystemen verhalten.</a></li><li><p class="eigener">2. Die Schülerinnen und Schüler können sich in der physischen Umwelt sowie in medialen und virtuellen Lebensräumen orientieren und sich darin entsprechend den Gesetzen, Regeln und Wertesystemen verhalten.</p></li><li><a title="3. {"DE":"Die Schu00fclerinnen und Schu00fcler ku00f6nnen Gedanken, Meinungen, Erfahrungen und Wissen in Medienbeitru00e4ge umsetzen und unter Einbezug der Gesetze, Regeln und Wertesysteme auch veru00f6ffentlichen.","FR":"Die Schu00fclerinnen und Schu00fcler ku00f6nnen Gedanken, Meinungen, Erfahrungen und Wissen in Medienbeitru00e4ge umsetzen und unter Einbezug der Gesetze, Regeln und Wertesysteme auch veru00f6ffentlichen.","IT":"Gli allievi sanno trasformare pensieri, opinioni, esperienze e sapere in contributi mediali e sanno anche pubblicarli tenendo conto delle leggi, delle regole e dei valori.","RM":"Las scolaras ed ils scolars san realisar ponderaziuns, opiniuns, experientschas e savida en contribuziuns medialas ed era publitgar talas resguardond las leschas, las reglas ed ils sistems da valur.","EN":"Die Schu00fclerinnen und Schu00fcler ku00f6nnen Gedanken, Meinungen, Erfahrungen und Wissen in Medienbeitru00e4ge umsetzen und unter Einbezug der Gesetze, Regeln und Wertesysteme auch veru00f6ffentlichen."}"  href="index.php?code=a|10|0|1|0|3">3. Die Schülerinnen und Schüler können Gedanken, Meinungen, Erfahrungen und Wissen in Medienbeiträge umsetzen und unter Einbezug der Gesetze, Regeln und Wertesysteme auch veröffentlichen.</a></li><li><a title="4. {"DE":"Die Schu00fclerinnen und Schu00fcler ku00f6nnen Medien interaktiv nutzen sowie mit anderen kommunizieren und kooperieren.","FR":"Die Schu00fclerinnen und Schu00fcler ku00f6nnen Medien interaktiv nutzen sowie mit anderen kommunizieren und kooperieren.","IT":"Gli allievi sanno utilizzare in modo interattivo i media nonchu00e9 comunicare e cooperare con gli altri.","RM":"Las scolaras ed ils scolars san nizzegiar medias a moda interactiva sco era communitgar e cooperar cun auters.","EN":"Die Schu00fclerinnen und Schu00fcler ku00f6nnen Medien interaktiv nutzen sowie mit anderen kommunizieren und kooperieren."}"  href="index.php?code=a|10|0|1|0|4">4. Die Schülerinnen und Schüler können Medien interaktiv nutzen sowie mit anderen kommunizieren und kooperieren.</a></li></ul>				
+            
+        </li>
+  
+    </ul>
+</nav>
+<a href="index.php?code=a|10|0|1|0|3" class="tooltip right abstand" original-title="Zur nachfolgenden Kompetenz wechseln"><img src="css/images/arrow_right1.png"></a>        		
+        		</div> <!-- / kompetenz_nr -->
+					<div class="kompetenztitel eight columns
+                                        ">
+    
+        		<p class="komptitelnr">2</p><p>
+				Die Schülerinnen und Schüler können Medien und Medienbeiträge entschlüsseln, reflektieren und nutzen.</p>
+        		</div><!-- kompetenztitel -->
+				
+				
+        		
+        		<div class="querverweis_einleitung one column omega">
+        		<p class="querv">Querverweise</p>
+                <p class="querv">
+                                
+                </p>
+        		</div> <!-- / querverweis_einleitung -->
+        		
+        		</div>
+
+
+
+
+        	
+
+<div id="101kkDtvDmKv2gGfyZZzhKfFP8wkrLPRS.u0" class="eight alpha offset-by-two columns aufbauten_zwischentitel_erster"><p>Medien und Medienbeiträge verstehen</p></div><div id="101kkDtvDmKv2gGfyZZzhKfFP8wkrLPRS.u0" class="twelve columns alpha omega"><div class="two columns alpha ganzercode"><p><span title="Codierung dieser Kompetenz" class="tooltip font_ganzercode">MI.1.2</span></p></div><div class="eight columns alpha kompetenzen_einleitung_titel"><p>Die Schülerinnen und Schüler ...</p></div></div>
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row zyklus_1_start ">        	
+        		<div title="Auftrag 1. Zyklus" class="tooltip one column komp_cell marker_z1 "> 
+	        		  		<p class="zycode">
+	        		  		1</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="tooltip one column komp_cell kompetenz_lit" title="MI.1.2.a"><p id="101LwpkZU69r2aGs9brY7XW6nnNr5mCmm" class="lit">a</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>verstehen einfache Beiträge in verschiedenen Mediensprachen und können darüber sprechen (Text, Bild, alltägliches Symbol, Ton, Film). </li><li>können Werbung erkennen und über die Zielsetzung der Werbebotschaften sprechen.</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p class="querv"><a class="tooltip" title="D.2.B.1.a"  href="https://lu.lehrplan.ch/1019CMEsRHHPHuvhnkEKGHzaZUNzPwrRW">D.2.B.1.a</a><br><a class="tooltip" title="D.2.C.1.b"  href="https://lu.lehrplan.ch/101Fn8MpkwPnyrcgfwSRpVqs6azbruVnv">D.2.C.1.b</a><br><a class="tooltip" title="NMG.2.5.a"  href="https://lu.lehrplan.ch/101WzKDMe79Gq2AtKP79zwKqHytbTgMcw">NMG.2.5.a</a><br><a class="tooltip" title="NMG.7.4.a"  href="https://lu.lehrplan.ch/101fg9YXUW8sBUhfybXqkZWCZTNGxpFCE">NMG.7.4.a</a><br></p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <hr class="hr_komp" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row mindestanspruch ">        	
+        		<div title="Auftrag 1. Zyklus" class="tooltip one column komp_cell marker_z1 "> 
+	        		  		<p class="zycode">
+	        		  		</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="tooltip one column komp_cell kompetenz_lit" title="MI.1.2.b"><p id="101ytHUfS2436BA9cted4TLdgcEazYGuH" class="lit">b</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>können benennen, welche unmittelbaren Emotionen die Mediennutzung auslösen kann (z.B. Freude, Wut, Trauer).</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p class="querv"><a class="tooltip" title="NMG.9.4.b"  href="https://lu.lehrplan.ch/101cHWv4TGwbWnB8KXpWYe9NLtncWBVJq">NMG.9.4.b</a><br></p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <hr class="hr_komp" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row ">        	
+        		<div title="Auftrag 2. Zyklus" class="tooltip one column komp_cell marker_z2 "><div class="one column komp_cell marker_z12"></div> 
+	        		  		<p class="zycode">
+	        		  		</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="zyklus_2_start"></div><div class="tooltip one column komp_cell kompetenz_lit" title="MI.1.2.c"><p id="101zNtk7Ne4udXugHsughJxaY9fvcyW66" class="lit">c</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>können mithilfe von vorgegebenen Medien lernen und  Informationen zu einem bestimmten Thema beschaffen (z.B. Buch, Zeitschrift, Lernspiel, Spielgeschichte, Website).</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p class="querv"><a class="tooltip" title="Recherche und Lernunterstützung"  href="https://lu.lehrplan.ch/102kuYwTRz6rYDq7BWKCGhTP5mhR9q">MI</a><br><a class="tooltip" title="NMG.9.3.d"  href="https://lu.lehrplan.ch/101rrb65SGcYLfNVFLE2rY52VqJkw2JTM">NMG.9.3.d</a><br></p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <hr class="hr_komp kompetenz_ende_1" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row ">        	
+        		<div title="Auftrag 2. Zyklus" class="tooltip one column komp_cell marker_z2 "><div class="one column komp_cell marker_z2"></div> 
+	        		  		<p class="zycode">
+	        		  		2</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="tooltip one column komp_cell kompetenz_lit" title="MI.1.2.d"><p id="101x9FqbweCdUbRPnsTxgB3NzaYHFgL7w" class="lit">d</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>können die Grundfunktionen der Medien benennen (Information, Bildung, Meinungsbildung, Unterhaltung, Kommunikation).</li><li>kennen Mischformen und können typische Beispiele aufzählen (Infotainment, Edutainment).</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p>&nbsp;</p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <div title="Orientierungspunkt" class="tooltip one column  marker_z2_op"><img src="css/images/op.png" alt="orientierungspunkt" /></div><hr title="Orientierungspunkt" class="tooltip op" /><hr class="hr_komp" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row mindestanspruch ">        	
+        		<div title="Auftrag 2. Zyklus" class="tooltip one column komp_cell marker_z2 "><div class="one column komp_cell marker_z2"></div> 
+	        		  		<p class="zycode">
+	        		  		</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="tooltip one column komp_cell kompetenz_lit" title="MI.1.2.e"><p id="101JwzqYurrzta2AhaNfvGNYcv2V2xYvM" class="lit">e</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>können Informationen aus verschiedenen Quellen gezielt beschaffen, auswählen und hinsichtlich Qualität und Nutzen beurteilen.</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p class="querv"><a class="tooltip" title="D.3.B.1.g"  href="https://lu.lehrplan.ch/101KTPkFCRHJxn9XuUp9mzPtRrw55MA9V">D.3.B.1.g</a><br><a class="tooltip" title="Recherche und Lernunterstützung"  href="https://lu.lehrplan.ch/102a6zT4ErXPxpcAhVq62aJUaWPMBT">MI</a><br><a class="tooltip" title="NMG.1.5.g"  href="https://lu.lehrplan.ch/101UR3T7AUcFga5AbuW5uDEABCyKSuTt9">NMG.1.5.g</a><br><a class="tooltip" title="NMG.1.6.d"  href="https://lu.lehrplan.ch/101kD4vBRu9NfHbgZvu2Rc6drKqUEBUW6">NMG.1.6.d</a><br><a class="tooltip" title="NMG.2.5.d"  href="https://lu.lehrplan.ch/101HK5wWztys9rXYM4NGXmPdnBsVXX6nz">NMG.2.5.d</a><br><a class="tooltip" title="NMG.3.3.e"  href="https://lu.lehrplan.ch/101eLHGGEuk6UKkNSK47NKPJLDXAUKNtk">NMG.3.3.e</a><br><a class="tooltip" title="NMG.7.1.e"  href="https://lu.lehrplan.ch/101JJRHLqFfDAw7DWqRGy5aSYXagJtg7B">NMG.7.1.e</a><br><a class="tooltip" title="NMG.7.2.e"  href="https://lu.lehrplan.ch/101UhuLz5vKaqd4a6MPgm3Bafzqc7baGg">NMG.7.2.e</a><br><a class="tooltip" title="NMG.8.2.e"  href="https://lu.lehrplan.ch/101MaCJ5tMz7dTzyKpkLtH8hAVLAhqhqu">NMG.8.2.e</a><br><a class="tooltip" title="NMG.9.3.e"  href="https://lu.lehrplan.ch/1015c27sFN9wRhNT4geVqrgXKJeSTwMKx">NMG.9.3.e</a><br></p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <hr class="hr_komp kompetenz_ende_2" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row ">        	
+        		<div title="Auftrag 3. Zyklus" class="tooltip one column komp_cell marker_z3 "><div class="one column komp_cell marker_z3"></div> 
+	        		  		<p class="zycode">
+	        		  		3</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="zyklus_3_start"></div><div class="tooltip one column komp_cell kompetenz_lit" title="MI.1.2.f"><p id="101vWqbV3gswCVU6qSgAk8kggCtAcFKAc" class="lit">f</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>erkennen, dass Medien und Medienbeiträge auf Individuen unterschiedlich wirken.</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p class="querv"><a class="tooltip" title="PU.4.A.2.a"  href="https://lu.lehrplan.ch/1015whMr4xpdHCZmtwJWpXBTbHrfbxFkF">PU.4.A.2.a</a><br><a class="tooltip" title="PU.4.A.2.c"  href="https://lu.lehrplan.ch/1012Y2DpEvJceVqZFUKYLgzuh6SetFU5C">PU.4.A.2.c</a><br></p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <hr class="hr_komp" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row mindestanspruch ">        	
+        		<div title="Auftrag 3. Zyklus" class="tooltip one column komp_cell marker_z3 "><div class="one column komp_cell marker_z3"></div> 
+	        		  		<p class="zycode">
+	        		  		</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="tooltip one column komp_cell kompetenz_lit" title="MI.1.2.g"><p id="101Abn5gtqS5bMWnbNzVpxyappZVGtbZC" class="lit">g</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>kennen grundlegende Elemente der Bild-, Film- und Fernsehsprache und können ihre Funktion und Bedeutung in einem Medienbeitrag reflektieren.</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p class="querv"><a class="tooltip" title="BG.3.B.1.1c"  href="https://lu.lehrplan.ch/1018dGJdsBmwBqGy4VhV947brzu4XhgFf">BG.3.B.1.1c</a><br><a class="tooltip" title="PU.4.A.2.b"  href="https://lu.lehrplan.ch/101K9KU4Z2qUa3weVbTmEXzbU4Fm9stB7">PU.4.A.2.b</a><br><a class="tooltip" title="PU.4.A.2.c"  href="https://lu.lehrplan.ch/1012Y2DpEvJceVqZFUKYLgzuh6SetFU5C">PU.4.A.2.c</a><br></p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <div title="Orientierungspunkt" class="tooltip one column  marker_z3_op"><img src="css/images/op.png" alt="orientierungspunkt" /></div><hr title="Orientierungspunkt" class="tooltip op" /><hr class="hr_komp" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row ">        	
+        		<div title="Auftrag 3. Zyklus" class="tooltip one column komp_cell marker_z3 "><div class="one column komp_cell marker_z3"></div> 
+	        		  		<p class="zycode">
+	        		  		</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="tooltip one column komp_cell kompetenz_lit" title="MI.1.2.h"><p id="101n8RKa795RxJ5pyzdEcxnMRAaVPZJNq" class="lit">h</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>können die Absicht hinter Medienbeiträgen einschätzen (z.B. Werbung, Zeitschrift, Parteizeitung).</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p class="querv"><a class="tooltip" title="BG.3.B.1.1c"  href="https://lu.lehrplan.ch/1018dGJdsBmwBqGy4VhV947brzu4XhgFf">BG.3.B.1.1c</a><br><a class="tooltip" title="BG.3.B.1.2c"  href="https://lu.lehrplan.ch/101SJzT2Mrr5SUXbsysCTZgY7eEnYC7gW">BG.3.B.1.2c</a><br><a class="tooltip" title="ERG.3.1.d"  href="https://lu.lehrplan.ch/101P9mUCghDZLMnPuCnaLZXHv7MkHNKGm">ERG.3.1.d</a><br><a class="tooltip" title="ERG.5.2.b"  href="https://lu.lehrplan.ch/101EZfpkkpcGwvUgVMgegLZMTyVs7hqeA">ERG.5.2.b</a><br><a class="tooltip" title="ERG.5.5.d"  href="https://lu.lehrplan.ch/101GpvFSbWRJNR7gNkt6uhV5xxXyur8vX">ERG.5.5.d</a><br><a class="tooltip" title="NT.3.3.c"  href="https://lu.lehrplan.ch/101sGNp8HPDrExZEFNvab4UABeaR6LXpK">NT.3.3.c</a><br><a class="tooltip" title="RZG.3.3.a"  href="https://lu.lehrplan.ch/101eM5wwUtzb5UTz3AWfHUKBHRRLDJZWw">RZG.3.3.a</a><br></p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <hr class="hr_komp" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            
+ <!-- evtl. leere Stufe mit Pfeil -->
+                                <!-- Ende leere Stufe mit Pfeil -->  
+   
+           
+	<div class="twelve columns komp_table">
+
+
+<!-- ###### AUSGABE EINER KOMPETENZSTUFE MIT VORANGESTELLTEM FARBFELD UND ZIFFER -->	        		
+			<div class="twelve columns komp_row ">        	
+        		<div title="Auftrag 3. Zyklus" class="tooltip one column komp_cell marker_z3 "><div class="one column komp_cell marker_z3"></div> 
+	        		  		<p class="zycode">
+	        		  		</p>
+	        		  </div>	<!-- / marker_z1 -->	        		
+                     <div class="tooltip one column komp_cell kompetenz_lit" title="MI.1.2.i"><p id="101bScUAdY9hcRtrAfNRpecUX8kWurK5r" class="lit">i</p>
+		        	 </div> <!-- / kompetenz_lit (Buchstabe) -->
+	
+		        	 
+		        	 <div class="eight columns komp_cell kompetenz_text">
+			        		  			<ul class="komp">
+                                        
+                                            <li>kennen Organisations- und Finanzierungsformen von Medienangeboten und deren Konsequenzen.</li>				        		  			
+
+				        		  		</ul>
+		        		
+				   </div> <!-- / kompetenz_text -->
+				   
+				   	 <div class="komp_cell kompetenz_querverw one column">
+                     <div class="qspalte_links"><p>&nbsp;</p></div><div class="qspalte_rechts"></div>		        	 </div> <!-- / kompetenz_querverw -->
+                     <hr class="hr_komp kompetenz_ende_3" />		      </div> <!-- / komp_row -->
+				
+		      </div> <!-- / komp_table -->
+		      
+
+            		   
+		      </div> <!-- / kompetenzausgabe -->
+		      
+		      <!-- korrespondierende -->
+              					</div>
+	   			<!-- / koresspondierende -->
+	   
+        	<!-- / <div class="kompetenznavigation knbottom">
+        	        
+        		
+	
+
+
+
+        		
+        	</div><!-- twelve columns -->
+        </div> <!-- main -->
+
+        
+        		       	<!-- Fusszeile
+	================================================== -->
+
+  <div class="sixteen columns alpha omega fusszeile servicelinks">    <!-- Servicelinks -->
+    
+ 
+
+
+    
+        <ul class="mainmenu">
+	
+	
+    <li><a href="/impressum.php">Impressum</a></li><li><a href="/hilfe.php">Hilfe</a></li><li><a href="https://www.lehrplan.ch" target="_blank">Über den Lehrplan 21</a></li><li><a href="https://www.d-edk.ch" target="_blank">Die D-EDK</a></li><li><a title="Modus für das Setzen externer Links einschalten" href="if_set_link.php?back=index.php%3Fcode%3Da%257C10%257C0%257C1%257C0%257C2"><img src="https://stammdaten.lehrplan.ch/grafiken/icons/clipboard.png"></a></li>	<li class="right">Lehrplan 21 · 29.2.2016</li>
+</ul>         
+                       
+        </div><!-- Fusszeile -->
+
+
+
+	</div><!-- container -->
+
+	<script src="js/selectnav.js"></script>
+	<script> selectnav('menuliste', {
+    activeclass: 'act',
+    nested: false,
+    label: false
+});
+</script>
+		
+   
+</body>
+</html>

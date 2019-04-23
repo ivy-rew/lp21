@@ -89,4 +89,18 @@ public class TestHtmlParser extends BaseLpTest {
 		assertThat(selbststaendig.aspektCode).isEqualTo("B");
 		assertThat(selbststaendig.titelNr).isEqualTo(2);
 	}
+	
+	@Test
+	public void parseInformatikMedienKp() throws IOException
+	{
+		String mi12html = loadStaticResource("code=a-10-0-1-0-2.html");
+		Kompetenz mi12 = Kompetenz.parse(mi12html);
+		
+		assertThat(mi12.code).isEqualTo("MI.1.2");
+		assertThat(mi12.titel).isEqualTo("Die Schülerinnen und Schüler können "
+				+ "Medien und Medienbeiträge entschlüsseln, reflektieren und nutzen.");
+		assertThat(mi12.aspekt)
+			.as("can parse informal sub title as aspect!")
+			.isEqualTo("Medien und Medienbeiträge verstehen");
+	}
 }
