@@ -19,6 +19,7 @@ public class Style
 	public final CellStyle z3;
 	
 	public final CellStyle grundanspruch;
+	public final CellStyle rotate90;
 	
 	public Style(Workbook wb)
 	{
@@ -55,6 +56,11 @@ public class Style
 		grundanspruch = wb.createCellStyle();
 		grundanspruch.setFillBackgroundColor(HSSFColorPredefined.BROWN.getIndex());
 		grundanspruch.setFillPattern(FillPatternType.THIN_BACKWARD_DIAG);
+		
+		rotate90 = wb.createCellStyle();
+		rotate90.setRotation((short)90);
+		rotate90.setAlignment(HorizontalAlignment.LEFT);
+		rotate90.setVerticalAlignment(VerticalAlignment.BOTTOM);
 	}
 	
 	public CellStyle getZyklusStyle(int zyklus) {

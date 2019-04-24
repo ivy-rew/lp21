@@ -14,7 +14,7 @@ public class PrintOptions {
 	public void optimize()
 	{
 		sheet.getPrintSetup().setLandscape(true);
-		sheet.getPrintSetup().setPaperSize(HSSFPrintSetup.A4_PAPERSIZE);
+		sheet.getPrintSetup().setPaperSize(HSSFPrintSetup.A3_PAPERSIZE);
 		
 		sheet.getFooter().setCenter("(c)opyright by Privatunterricht Wermelinger");
 	}

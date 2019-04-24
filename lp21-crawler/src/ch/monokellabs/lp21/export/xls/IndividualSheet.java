@@ -36,6 +36,9 @@ public class IndividualSheet
 		statusRow(5);
 		
 		kompetenzenGridEast(6, kompetenzen);
+		
+		sheet.createFreezePane(0, 6); // freeze
+		sheet.setRepeatingRows(CellRangeAddress.valueOf("4:6")); // repeat header on print
 	}
 
 	private void zyklusRow(int rowNum) {
@@ -95,25 +98,38 @@ public class IndividualSheet
 	
 	private static final List<String> RAW_KP_COLUMNS = java.util.Arrays.asList(
 			"J", // zyklus
+			"B", // fach
 			"K", // stufencode
+			"F", // aspekt
 			"L" // stufentext
 			);
 	
 	private void kompetenzenGridEast(int rowNum, Collection<Kompetenz> kompetenzen) {
-		int offsetToKpRaw = -3;
-		Row kpHeader = new Row(sheet.getRow(rowNum-1), MAX_STATUS+2);
-		kpHeader.add("Erreicht");
-		kpHeader.add("Zyklus");
-		kpHeader.add("S Code");
-		kpHeader.add("Komptenzstuffe");
+		int gridOffsetWest = MAX_STATUS+2;
+		int col = gridOffsetWest;
+		
+		XSSFCell errHeader = merge3(rowNum, col++);
+		errHeader.setCellValue("Erreicht");
+		XSSFCell zyklusHeader = merge3(rowNum, col++);
+		zyklusHeader.setCellValue(Header.zyklus);
+		
+		Row kpHeader = new Row(sheet.getRow(rowNum-1), col);
+		kpHeader.add(Header.fach);
+		kpHeader.add(Header.sCode);
+		kpHeader.add(Header.aspekt);
+		kpHeader.add("Kompetenzstufe");
 
 		Integer stufen = kompetenzen.stream()
 				.map(k -> k.stufen.size())
 				.reduce(0, Integer::sum);
-		int firstFilterCol = MAX_STATUS+2;
 		sheet.setAutoFilter(new CellRangeAddress(
-				rowNum-1, rowNum-1+stufen, firstFilterCol, firstFilterCol+3));
+				rowNum-1, rowNum-1+stufen, gridOffsetWest, gridOffsetWest+3));
 		
+		printStufenReferencesToRaw(rowNum, stufen);
+	}
+
+	private void printStufenReferencesToRaw(int rowNum, Integer stufen) {
+		int offsetToKpRaw = -3;
 		for(int row=rowNum; row<stufen; row++)
 		{
 			Row kpRow = new Row(sheet.createRow(row), MAX_STATUS+2);
@@ -121,13 +137,33 @@ public class IndividualSheet
 			erreicht.setCellType(CellType.FORMULA);
 			int formularRow = row+1;
 			erreicht.setCellFormula(evaluateMaxErreicht(formularRow));
+			erreicht.setCellStyle(style.topCenter);
+			
 			for(String kpColRef : RAW_KP_COLUMNS)
 			{
 				XSSFCell cell = kpRow.addCell();
+				// no fixed offset! map local to remote!
 				cell.setCellType(CellType.FORMULA);
 				cell.setCellFormula("RAW!"+kpColRef+(row+offsetToKpRaw));
+				
+				if (kpColRef.equals("J") || kpColRef.equals("K"))
+				{   // zyklus, stufencode
+					cell.setCellStyle(style.topCenter);
+				}
+				else if (kpColRef.equals("B") || kpColRef.equals("F"))
+				{	// fach, aspekt
+					cell.setCellStyle(style.top);
+				}
 			}
 		}
+	}
+
+	private XSSFCell merge3(int rowNum, int col) {
+		sheet.addMergedRegion(new CellRangeAddress(rowNum-3, rowNum-1, col, col));
+		XSSFCell errHeader = sheet.getRow(rowNum-3).createCell(col);
+		errHeader.setCellStyle(style.rotate90); // rotated (ms only)
+		sheet.setColumnWidth(col, 4*256); // small
+		return errHeader;
 	}
 
 	private static String evaluateMaxErreicht(int formularRow) {
