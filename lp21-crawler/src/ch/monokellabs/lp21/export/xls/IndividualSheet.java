@@ -1,9 +1,15 @@
 package ch.monokellabs.lp21.export.xls;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.ComparisonOperator;
+import org.apache.poi.ss.usermodel.ConditionalFormattingRule;
+import org.apache.poi.ss.usermodel.PatternFormatting;
+import org.apache.poi.ss.usermodel.SheetConditionalFormatting;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -31,11 +37,15 @@ public class IndividualSheet
 	
 	public void fill(Collection<Kompetenz> kompetenzen)
 	{
+		Integer stufenCount = kompetenzen.stream()
+				.map(k -> k.stufen.size())
+				.reduce(0, Integer::sum);
+
 		zyklusRow(3);
 		semesterRow(4);
-		statusRow(5);
-		
-		kompetenzenGridEast(6, kompetenzen);
+		statusRow(5, stufenCount);
+
+		kompetenzenGridEast(6, stufenCount);
 		
 		sheet.createFreezePane(0, 6); // freeze
 		sheet.setRepeatingRows(CellRangeAddress.valueOf("4:6")); // repeat header on print
@@ -73,28 +83,73 @@ public class IndividualSheet
 		}
 	}
 
-	private void statusRow(int rowNum) {
+	private void statusRow(int rowNum, Integer stufen) {
 		Row statusRow = new Row(sheet.createRow(rowNum), 0);
 		statusRow.add("Status");
+		List<Integer> erreichtCols = new ArrayList<>();
+		List<Integer> planCols = new ArrayList<>();
 		for(int status=0; status<=MAX_STATUS; status++)
 		{
 			XSSFCell cell = statusRow.addCell();
-			cell.setCellStyle(style.topCenter);
 			boolean even = status%2 == 0;
 			if (even)
 			{
 				cell.setCellValue("E");
+				cell.setCellStyle(style.erreichtHead);
+				erreichtCols.add(cell.getAddress().getColumn());
 			}
 			else
 			{
 				cell.setCellValue("P");
+				cell.setCellStyle(style.planned);
+				planCols.add(cell.getAddress().getColumn());
 			}
 		}
 		for(int col = 1; col<=MAX_STATUS+1; col++)
 		{ // make small
 			sheet.setColumnWidth(col, 2*256);
 		}
+		
+		CellRangeAddress[] pRegions = toRanges(planCols, rowNum+2, rowNum+2+stufen);
+		colorizePlannedKps(pRegions);
+		
+		CellRangeAddress[] eRegions = toRanges(erreichtCols, rowNum+2, rowNum+2+stufen);
+		colorizeErreichtKps(eRegions);
 	}
+
+	private void colorizeErreichtKps(CellRangeAddress[] regions) {
+		SheetConditionalFormatting sheetCF = sheet.getSheetConditionalFormatting();
+		ConditionalFormattingRule[] erreichtRules = IntStream.range(1, 4) // max 3 rules allowed :-/
+			.mapToObj(grad -> toRule(sheetCF, grad))
+			.toArray(ConditionalFormattingRule[]::new);  
+	    sheetCF.addConditionalFormatting(regions, erreichtRules);
+	}
+	
+	private ConditionalFormattingRule toRule(SheetConditionalFormatting cf, int grad) {
+		ConditionalFormattingRule colorGrade = cf.createConditionalFormattingRule(ComparisonOperator.EQUAL, String.valueOf(grad));
+		PatternFormatting patternFormatting = colorGrade.createPatternFormatting();
+		patternFormatting.setFillBackgroundColor(style.erreicht[grad].getFillBackgroundColor());
+		patternFormatting.setFillPattern(style.erreicht[grad].getFillPattern().getCode());
+		return colorGrade;
+	}
+
+	private void colorizePlannedKps(CellRangeAddress[] regions) {
+		SheetConditionalFormatting sheetCF = sheet.getSheetConditionalFormatting();
+	    ConditionalFormattingRule colorizePlanned = sheetCF.createConditionalFormattingRule(ComparisonOperator.GT, "0");
+	    PatternFormatting patternFormatting = colorizePlanned.createPatternFormatting();
+	    patternFormatting.setFillBackgroundColor(style.planned.getFillBackgroundColor());
+	    patternFormatting.setFillPattern(style.planned.getFillPattern().getCode());
+	    sheetCF.addConditionalFormatting(regions, colorizePlanned);
+	}
+
+	private static CellRangeAddress[] toRanges(List<Integer> cols, int rowStart, int rowEnd) {
+		CellRangeAddress[] pRegions = cols.stream()
+	    	.map(col -> new CellRangeAddress(rowStart, rowEnd, col, col))
+	    	.toArray(CellRangeAddress[]::new);
+		return pRegions;
+	}
+	
+	
 	
 	private static final List<String> RAW_KP_COLUMNS = java.util.Arrays.asList(
 			"J", // zyklus
@@ -104,7 +159,7 @@ public class IndividualSheet
 			"L" // stufentext
 			);
 	
-	private void kompetenzenGridEast(int rowNum, Collection<Kompetenz> kompetenzen) {
+	private void kompetenzenGridEast(int rowNum, Integer stufen) {
 		int gridOffsetWest = MAX_STATUS+2;
 		int col = gridOffsetWest;
 		
@@ -119,9 +174,6 @@ public class IndividualSheet
 		kpHeader.add(Header.aspekt);
 		kpHeader.add("Kompetenzstufe");
 
-		Integer stufen = kompetenzen.stream()
-				.map(k -> k.stufen.size())
-				.reduce(0, Integer::sum);
 		sheet.setAutoFilter(new CellRangeAddress(
 				rowNum-1, rowNum-1+stufen, gridOffsetWest, gridOffsetWest+3));
 		

@@ -21,6 +21,10 @@ public class Style
 	public final CellStyle grundanspruch;
 	public final CellStyle rotate90;
 	
+	public final CellStyle planned;
+	public final CellStyle erreichtHead;
+	public final CellStyle[] erreicht = new CellStyle[5];
+	
 	public Style(Workbook wb)
 	{
 		top = wb.createCellStyle();
@@ -61,6 +65,24 @@ public class Style
 		rotate90.setRotation((short)90);
 		rotate90.setAlignment(HorizontalAlignment.LEFT);
 		rotate90.setVerticalAlignment(VerticalAlignment.BOTTOM);
+		
+		erreichtHead = wb.createCellStyle();
+		erreichtHead.cloneStyleFrom(topCenter);
+		erreichtHead.setFillBackgroundColor(HSSFColorPredefined.LIGHT_GREEN.getIndex());
+		erreichtHead.setFillPattern(FillPatternType.THIN_BACKWARD_DIAG);
+		
+		for(int i=0; i<4; i++)
+		{
+			CellStyle err = wb.createCellStyle();
+			err.cloneStyleFrom(erreichtHead);
+			err.setFillBackgroundColor((short) ((short)err.getFillBackgroundColor()+i));
+			erreicht[i] = err;
+		}
+		
+		planned = wb.createCellStyle();
+		planned.cloneStyleFrom(topCenter);
+		planned.setFillBackgroundColor(HSSFColorPredefined.BLUE_GREY.getIndex());
+		planned.setFillPattern(FillPatternType.THIN_BACKWARD_DIAG);
 	}
 	
 	public CellStyle getZyklusStyle(int zyklus) {
