@@ -2,6 +2,10 @@ package ch.monokellabs.lp21.load;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
@@ -53,5 +57,21 @@ public class LehrplanUri
 			return code;
 		}
 		return null;
+	}
+	
+	public List<URI> getStarts(Properties kantonalerLp)
+	{
+		return kantonalerLp.values().stream()
+			.map(obj -> (String)obj)
+			.map(code -> {
+				try {
+					return createLpUri(code);
+				} catch (URISyntaxException e) {
+					e.printStackTrace();
+					return null;
+				}
+			})
+			.filter(Objects::nonNull)
+			.collect(Collectors.toList());
 	}
 }

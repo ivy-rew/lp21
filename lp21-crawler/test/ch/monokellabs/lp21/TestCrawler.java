@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -68,6 +69,24 @@ public class TestCrawler extends BaseLpTest {
 		{
 			props.store(os, "Lehrplan21 Luzern");
 		}
+	}
+	
+	@Test
+	public void loadThirdparty_AG() throws FileNotFoundException, IOException, URISyntaxException
+	{
+		Properties ag = new Properties();
+		try(InputStream is = TestCrawler.class.getResourceAsStream("ag.lp21.starts.properties"))
+		{
+			ag.load(is);
+		}
+		
+		LehrplanUri agUri = new LehrplanUri("ag");
+		List<URI> fachStarts = agUri.getStarts(ag);
+		assertThat(fachStarts).hasSize(20);
+		
+		KpPageLoader loader = new KpPageLoader("ag");
+		List<String> kpHtmls = loader.fetchLehrplan(fachStarts);
+		assertThat(kpHtmls).hasSize(400);
 	}
 	
 	private static List<String> loadPages() throws URISyntaxException, ClientProtocolException, IOException {

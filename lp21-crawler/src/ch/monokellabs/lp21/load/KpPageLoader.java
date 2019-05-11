@@ -31,8 +31,13 @@ public class KpPageLoader {
 	
 	public KpPageLoader(String kanton)
 	{
+		this(new LehrplanUri(kanton));
+	}
+	
+	public KpPageLoader(LehrplanUri lpUris)
+	{
 		this.siteCacheDir = new File(System.getProperty("java.io.tmpdir"), "lp21");
-		this.lpUri = new LehrplanUri(kanton);
+		this.lpUri = lpUris;
 	}
 	
 	public void setCacheDir(File cache)
