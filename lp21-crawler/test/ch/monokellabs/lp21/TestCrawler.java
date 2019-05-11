@@ -3,16 +3,21 @@ package ch.monokellabs.lp21;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.http.client.ClientProtocolException;
 import org.junit.Test;
 
 import ch.monokellabs.lp21.load.KpPageLoader;
 import ch.monokellabs.lp21.load.LehrplanUri;
+import ch.monokellabs.lp21.load.LpLuzern;
 
 public class TestCrawler extends BaseLpTest {
 
@@ -20,9 +25,7 @@ public class TestCrawler extends BaseLpTest {
 	public void loadPageCached() throws ClientProtocolException, IOException, URISyntaxException
 	{
 		KpPageLoader kompetenz = cachedLoader();
-		kompetenz.setKanton("Luzern");
-		kompetenz.setZyklus(1);
-		URI testDeHoeren = LehrplanUri.createLpUri("a|1|11|1|1|1");
+		URI testDeHoeren = new LehrplanUri().createLpUri("a|1|11|1|1|1");
 		String html = kompetenz.fetch(testDeHoeren);
 		assertThat(html).isNotNull();
 		
@@ -34,7 +37,7 @@ public class TestCrawler extends BaseLpTest {
 	@Test
 	public void runThroughFach() throws Exception
 	{
-		URI testDeHoeren = LehrplanUri.createLpUri("a|1|11|1|1|1");
+		URI testDeHoeren = new LehrplanUri().createLpUri("a|1|11|1|1|1");
 		List<String> deutsch = cachedLoader().fetchFach(testDeHoeren);
 		assertThat(deutsch).hasSize(28);
 	}
@@ -42,11 +45,11 @@ public class TestCrawler extends BaseLpTest {
 	@Test
 	public void loadUncategorized() throws Exception
 	{
-		URI ueberfachlich = LehrplanUri.createLpUri(LehrplanUri.Fach.UEBERFACHLICHE.code);
+		URI ueberfachlich = new LehrplanUri().createLpUri(LpLuzern.UEBERFACHLICHE.code);
 		String uef = cachedLoader().fetch(ueberfachlich);
 		assertThat(uef).contains("Personale Kompetenzen");
 		
-		URI ezUri = LehrplanUri.createLpUri(LehrplanUri.Fach.ENTWICKLUNGSORIENTIERTE_ZUGAENGE.code);
+		URI ezUri = new LehrplanUri().createLpUri(LpLuzern.ENTWICKLUNGSORIENTIERTE_ZUGAENGE.code);
 		String ezHtml = cachedLoader().fetch(ezUri);
 		assertThat(ezHtml).contains("Entwicklungsorientierte Zugänge");
 	}
@@ -57,14 +60,24 @@ public class TestCrawler extends BaseLpTest {
 		assertThat(loadPages().size()).isEqualTo(400);
 	}
 	
+	@Test
+	public void storeLucernLp() throws FileNotFoundException, IOException
+	{
+		Properties props = LpLuzern.toProps();
+		try(OutputStream os = new FileOutputStream(new File("target/lu.lp21.starts.properties")))
+		{
+			props.store(os, "Lehrplan21 Luzern");
+		}
+	}
+	
 	private static List<String> loadPages() throws URISyntaxException, ClientProtocolException, IOException {
-		List<URI> starts = LehrplanUri.getStarts();
+		List<URI> starts = LpLuzern.getStarts();
 		List<String> htmlPages = cachedLoader().fetchLehrplan(starts);
 		return htmlPages;
 	}
 
 	private static KpPageLoader cachedLoader() {
-		KpPageLoader loader = new KpPageLoader();
+		KpPageLoader loader = new KpPageLoader("lu");
 		loader.setCacheDir(new File("target/site-cache-april"));
 		return loader;
 	}

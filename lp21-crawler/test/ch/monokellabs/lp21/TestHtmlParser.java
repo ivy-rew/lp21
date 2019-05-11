@@ -53,11 +53,11 @@ public class TestHtmlParser extends BaseLpTest {
 	public void canNavigateToNext() throws IOException, URISyntaxException
 	{
 		String hoerenHtml = loadStaticResource("code=a-1-11-1-1-1.html");
-		URI nextUri = LehrplanUri.parseNext(hoerenHtml);
+		URI nextUri = new LehrplanUri().parseNext(hoerenHtml);
 		assertThat(nextUri.getQuery().toString()).isEqualTo("code=a|1|11|1|2|1");
 		
 		String lastMathHtml = loadStaticResource("code=a-5-0-3-3-3.html");
-		URI noLink = LehrplanUri.parseNext(lastMathHtml);
+		URI noLink = new LehrplanUri().parseNext(lastMathHtml);
 		assertThat(noLink).isNull();
 	}
 	

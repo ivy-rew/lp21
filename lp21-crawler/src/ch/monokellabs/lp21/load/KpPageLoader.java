@@ -24,18 +24,15 @@ import org.apache.http.impl.client.HttpClientBuilder;
 public class KpPageLoader {
 	private static final Logger LOGGER = Logger.getLogger(KpPageLoader.class.getName());
 	
-	private String kanton;
-	private int zyklus;
-	
-	private File siteCacheDir = new File(System.getProperty("java.io.tmpdir"), "lp21");
+	private File siteCacheDir;
 	private boolean useCache = true;
-	
-	public void setKanton(String kanton) {
-		this.kanton = kanton;
-	}
 
-	public void setZyklus(int zyklus) {
-		this.zyklus = zyklus;
+	private final LehrplanUri lpUri;
+	
+	public KpPageLoader(String kanton)
+	{
+		this.siteCacheDir = new File(System.getProperty("java.io.tmpdir"), "lp21");
+		this.lpUri = new LehrplanUri(kanton);
 	}
 	
 	public void setCacheDir(File cache)
@@ -60,7 +57,7 @@ public class KpPageLoader {
 		do{
 			String kpHtml = fetch(nextUri);
 			htmlSites.add(kpHtml);
-			nextUri = LehrplanUri.parseNext(kpHtml);
+			nextUri = lpUri.parseNext(kpHtml);
 		}while(nextUri != null);
 		LOGGER.info("Done: Found "+htmlSites.size()+" Kompetenzen");
 		return htmlSites;
