@@ -14,7 +14,7 @@ import org.jsoup.select.Elements;
 
 public class LehrplanUri
 {
-	private final String baseUri;
+	public final String baseUri;
 
 	public LehrplanUri()
 	{

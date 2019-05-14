@@ -30,9 +30,9 @@ public class XlsWriter {
 	{
 		writeIndividual(kompetenzen);
 		writeMerged(kompetenzen);
-        writeRaw(kompetenzen);
-        return workbook;
-    }
+		writeRaw(kompetenzen);
+		return workbook;
+	}
 
 	public XSSFSheet writeIndividual(Collection<Kompetenz> kompetenzen) {
 		XSSFSheet indiv = workbook.createSheet("Indiv");
@@ -51,8 +51,8 @@ public class XlsWriter {
 	}
 	
 	public void persist(OutputStream out) throws IOException {
-	    workbook.write(out);
-	    workbook.close();
+		workbook.write(out);
+		workbook.close();
 	}
-	
+
 }

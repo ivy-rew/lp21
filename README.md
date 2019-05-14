@@ -13,8 +13,16 @@ Vereinfacht die Planung und Bewertung eines Schulkindes für Lehrpersonen ohne s
 - [ ] Publiziere generierte Kompetenzpläne
  * Download Bereich für alle erzeugten Artefakte des Lehrplans
 - [ ] Auslesen der Kompetenzen anderer Kantone. Priorisiere klassische Homschooler Kantone (AG, BE, ZH)
-- [ ] CLI API damit Benutzer selbst ihren kantonalen Lehrplan herunterladen können.
-- [ ] Zusätzliche Arbeitsmappen zum Planen & Bewerten der Kompetenzen pro Kind/Semester
+- [x] CLI API damit Benutzer selbst ihren kantonalen Lehrplan herunterladen können.
+- [x] Zusätzliche Arbeitsmappen zum Planen & Bewerten der Kompetenzen pro Kind/Semester
+
+## Your own
+`java -jar lp21-XYZ.jar ch.monokellabs.lp21.load.LpLoadCli lu.lp21.starts.properties ag csv|xls`
+
+Parameter:
+1. Datei im Properties Format, welches den Code ersten Kompetenz eines Faches referenziert.
+2. Kürzel des Kantons z.B. ag,lu oder zh.
+3. Export Format `csv` oder `xls`.
 
 ## Legal
 - Open Source
